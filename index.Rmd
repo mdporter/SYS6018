@@ -1,0 +1,46 @@
+
+<ul class="navibar">
+  <li><a href="./index.html" class="current" >Schedule</a></li>
+  <li><a href="./syllabus.html" class="navibar" >Syllabus</a></li>
+  <li><a href="./homework.html" class="navibar" >Homework</a></li>
+</ul>
+
+
+
+
+<!--- Start Main Page --->
+<br><br>
+
+### Schedule
+
+-----------
+
+
+```{r, include=FALSE, cache=FALSE, echo=FALSE}
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(knitr)
+source("make_calendar.R")
+source("schedule.R")
+```
+
+
+```{r, echo=FALSE}
+
+left_join(calendar, schedule,by="Class") %>% 
+  replace_na(list(Topic.x='', Topic.y='', Reading='', Notes='')) %>% 
+  unite('Topic', Topic.x, Topic.y, sep='') %>% 
+  rename(`Reading (Pre-Class)` = Reading) %>% 
+  knitr::kable(format="pandoc")
+```
+
+
+-------------------------------------------------------
+
+#### Reading 
+
+- ISL: [**An Introduction to Statistical Learning** by James, Witten, Hastie and Tibshirani](http://www-bcf.usc.edu/~gareth/ISL/)
+- ESL: [**The Elements of Statistical Learning: Data Mining, Inference, and Prediction (2nd Edition)** by Hastie, Tibshirani, and Friedman](http://www-stat.stanford.edu/~tibs/ElemStatLearn/)]
+- ITDM: [**Introduction to Data Mining (Second Edition)** by Tan, Steinbach, Karpatne, and Kumar](https://www-users.cs.umn.edu/~kumar001/dmbook/index.php)
+- MMDS: [**Mining of Massive Datasets** by Jure Leskovec, Anand Rajaraman, Jeff Ullman](http://www.mmds.org/)

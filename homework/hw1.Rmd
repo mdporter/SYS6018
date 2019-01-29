@@ -1,0 +1,187 @@
+---
+title: "Homework #1"
+author: "**Your Name Here**"
+date: "Due: Mon Jan 28 9:30am"
+output: html_document
+---
+
+<!--- Below are global settings for knitr. You can override any of them by adding the changes to individual chunks --->
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
+                      collapse=FALSE,    # collapse by default
+                      echo=TRUE,         # echo code by default
+                      comment = "#>",    # change comment character
+                      fig.width = 5,     # set figure width
+                      out.width = "50%", # set width of displayed images
+                      warning=FALSE,     # do not show R warnings
+                      message=FALSE)     # do not show R messages
+```
+
+<!--- Solution Region --->
+<style>
+#solution {
+  background-color: #8FBC8F;
+  border-style: solid;
+  border-color: blue
+}
+</style>
+
+
+
+**SYS 4582/6018 | Spring 2019 | University of Virginia **
+
+*******************************************
+
+<!--- Load Required R packages here --->
+```{r, include=FALSE}
+library(tidyverse)
+library(readxl)
+library(arules)
+```
+
+### Problem 1.1: Interestingness 
+
+Suppose we have market basket data consisting of 100 transactions and 20 items. Assume the support for item {$a$} is 20%, support for item {$b$} is 85%, and support for itemset {$a,b$} is 15%. 
+
+
+a. What is the confidence of the rule {a} $\rightarrow$ {b}? 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+b. Will the apriori algorithm find this rule (interesting) if $c=.60$ and $s=.10$?  
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+c. Find the *lift* of this rule. 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+d. Find the *addedValue* of this rule. 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+e. Find the *leverage/PS* of this rule. 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+f. Describe the nature of the relationship between items {a} and {b} according to *lift*, *addedValue* and *leverage/PS*. What observation can you draw from parts (b) and (c-e)? 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+g. Let $p(a)$, $p(b)$, and $p(a,b)$ be the actual probabilities of observing items {a}, {b}, and {a,b} respectively in a transaction. What is the expected confidence rule a -> {b} if a and b are independent? 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+
+### Problem 1.2: Online Retail
+
+The website <http://archive.ics.uci.edu/ml/datasets/online+retail> describes some transactional data from an online retailer. 
+
+
+a. Download the [excel file](http://archive.ics.uci.edu/ml/machine-learning-databases/00352/Online%20Retail.xlsx) to your machine and read it into R. 
+```{r, eval=FALSE}
+library(readxl)
+data.dir = <"path/to/datadir">
+X = read_excel(file.path(data.dir, "Online Retail.xlsx"))
+```
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+b. There are many quality problems with this dataset, but we will only address two of them. Remove all of the rows with missing Description values (NAs) and remove any duplicate items in a single transaction. Print the first 10 rows of the resulting data. 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+c. Find the number of transactions and number of items using *InvoiceNo* for transactions and *Description* as items (i.e., ignore the *StockCode* column).
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+
+d. Convert the data frame into a *transaction list* and convert it into a *transactions object* (don't forget to load the \texttt{arules} package). Print a summary (using \texttt{summary()}) of the new object. 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+e. Find the items with the highest support. Print and plot the support of the top 10. 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+f. Find the *frequent itemsets* that contain at least 3 items and have $s\geq 0.02$. Show the top 10 results, ordered by *lift*. 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+g. Find all of the *association rules* with $s \geq 0.02$, $c \geq 0.70$. Add the *PS/leverage* and *addedValue* metrics. Show all results, ordered by *addedValue*
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+
+h. Find one rule that you think is interesting. Write the rule and explain why you find it interesting. 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

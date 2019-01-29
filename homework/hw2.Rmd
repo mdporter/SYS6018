@@ -73,7 +73,7 @@ c. Calculate the following centrality scores for the network: *eigenvector, betw
 Solution Here
 </div>
 
-d. Show the 3 centrality scores, sorted by *betweeness centrality*, for the three largest communites. How are these three heros *important*.
+d. Show the 3 centrality scores, sorted by *betweeness centrality*, for the three largest communities. How are these three heros *important*.
 
 <div id="solution">
 Solution Here

@@ -12,7 +12,6 @@
 #-- Install Required Packages
 library(tidyverse)    # install.packages("tidyverse")
 library(fitdistrplus) # install.packages("fitdistrplus")
-library(mixtools)     # install.packages("mixtools")
 
 #---------------------------------------------------------------------------#
 #-- Load ED counts Data
@@ -131,108 +130,165 @@ lines(x.seq, f.pois, col="blue")
 lines(x.seq, f.nb, col="red")
 lines(x.seq, f.gauss, col="green")
 
+
+
 #---------------------------------------------------------------------------#
-#-- Old Faithful
+#-- Histograms
 #---------------------------------------------------------------------------#
 
 #-- Load the Old Faithful data
 wait = datasets::faithful$waiting
 
-#-- Calculate summary stats
-length(wait)            # sample size
-summary(wait)           # six number summary
-mean(wait)              # mean
-sd(wait)
-median(wait)
-quantile(wait, probs=c(.25,.50,.75))  # quantiles
 
-#-- Plots
-#-- Put data into a data.frame/tibble for use with ggplot
-wait.df = tibble(wait)
+#-- Histogram settings
+bw = 10                     # binwidth parameter
+bks = seq(40, 110, by=bw)   # create a sequence of numbers
 
-#-- Make a ggplot object
-pp = ggplot(wait.df, aes(x=wait)) + xlab("waiting time (min)")
+#-- Frequency Histogram
+hist(wait, breaks=bks, las=1, main="Frequency Histogram")
+
+#-- Relative Frequency Histogram
+h.rf = hist(wait, breaks=bks, plot=FALSE)
+h.rf$counts = h.rf$counts/sum(h.rf$counts)   # make relative frequency
+plot(h.rf, las=1, main="Relative Frequency Histogram")
+
+#-- Density Histogram
+hist(wait, freq=FALSE, breaks=bks, las=1, main="Density Histogram")
+
+
+#-- Manual histogram calculations
+hist.data = tibble(wait) %>% 
+  mutate(bin = cut_width(wait, width=bw, boundary=40)) %>% 
+  count(bin) %>% 
+  mutate(rel.freq = n/sum(n), density=rel.freq/bw)
+  
+ggplot(hist.data) + geom_col(aes(bin, rel.freq), width=1)
+
+
+#---------------------------------------------------------------------------#
+#-- Shrinkage Estimation: Histograms
+#---------------------------------------------------------------------------#
+
+#-- Data
+x = c(0,3,5,3,1)
+bins = seq(0,1,length=6)
+mids = bins[-1]-diff(bins)/2
+hh = hist(rep(mids,x), bins, plot=FALSE)
+
+#-- extract data
+h = diff(hh$breaks)  # bin widths
+n = hh$counts        # bin counts
+N = sum(n)           # number of obs
+p.hat = n/sum(n)     # MLE of bin height
+
+#-- Set shrinkage parameters
+u = h/sum(h)
+pi.1 = N/(N+1)           # 1 pseudo-observation
+pi.10 = N/(N+10)         # 10 pseudo-observations
+
+#-- Parameter estimates
+theta.1 = pi.1 * p.hat + (1-pi.1) * u
+theta.10 = pi.10 * p.hat + (1-pi.10) * u
+
+#-- Density Estimates
+f.1 = theta.1/h
+f.10 = theta.10/h  
+
+#-- Plot
+par(mfrow=c(1,1),mar=c(4,4,.5,.5)+0.1)
+plot(hh, freq=FALSE, ylim=c(0, 2.2), 
+     las=1, main='', border='white', col='grey75', xlab="x")
+box()
+text(hh$mids, hh$density, labels=hh$counts, pos=3, cex=1.10)  
+lines(hh$breaks, c(p.hat/h, 0), type='s', col="black") # MLE
+lines(hh$breaks, c(f.1, 0), type='s', col="blue")      # A=1
+lines(hh$breaks, c(f.10, 0), type='s', col="red")      # A=10
+lines(hh$breaks, c(u/h, 0), type='s', lty=3)           # prior
+legend('topleft',c('MLE','Prior','Shrinkage A=1','Shrinkage A=10'),
+       lty=c(1,3,1,1),lwd=2,col=c(1,1,4,2),bty='n')
+
+
+
+#---------------------------------------------------------------------------#
+#-- KDE 
+#---------------------------------------------------------------------------#
+library(ks)
 
 #-- Histogram
-pp + geom_histogram(binwidth = 1) + ggtitle("histogram")
+bw = 5                      # binwidth parameter
+bks = seq(40, 100, by=bw)   # create a sequence of numbers
+hh = hist(wait,  breaks=bks)# histogram object
 
-#-- overlay kernel density plot
-pp + geom_histogram(binwidth = 1, aes(y=stat(density))) +  # *density* histogram
-  geom_density(bw=2, size=2, color="blue") + ggtitle("kernel density") 
+#-- KDE
+library(ks)
+f = kde(wait, h=bw/3)
+plot(f)
+
+#-- Plot hist and kde
+plot(hh, freq=FALSE, ylim=c(0, max(c(hh$density, f$estimate))), 
+     las=1, main='', border='white', col='grey75') 
+rug(jitter(wait))
+lines(f$eval.points, f$estimate, col=2, lwd=1.25)
+# OR: plot(f, add=TRUE, col=2, lwd=1.25)
+
+
+
+
+
+#---------------------------------------------------------------------------#
+#-- Multivariate KDE 
+#---------------------------------------------------------------------------#
+#-- Load the Old Faithful data
+X = datasets::faithful
+
+#-- Plot: Base R
+plot(X, las=1); grid()
+#-- Plot: ggplot
+ggplot(X) + geom_point(aes(eruptions, waiting))
+
+#-- MV KDE: Unconstrained
+H1 = Hscv(X)                  # smoothed cross-validation bw estimator
+f1 = kde(X, H=H1)             # use H for multivariate data
+
+plot(f1, 
+     cont = c(10, 50, 95),                        # set contour levels
+     # display = "filled.contour",                # use filled contour
+     las=1, xlim = c(1.0, 5.5), ylim=c(35, 100))  # set asthetics
+points(X, pch=19, cex=.5, col='grey60')           # add points
+grid()                                            # add grid lines
+
+
+
+#-- Product kernel
+H2 = Hscv.diag(X)
+f2 = kde(X, H=H2)             
+
+plot(f2, 
+     cont = c(10, 50, 95),                        # set contour levels
+     las=1, xlim = c(1.0, 5.5), ylim=c(35, 100))  # set asthetics
+points(X, pch=19, cex=.5, col='grey60')           # add points
+grid()                                            # add grid lines
+
 
 
 
 #---------------------------------------------------------------------------#
-#-- Two-component Gaussian Mixture Model
+#-- Visualize kernel shapes
 #---------------------------------------------------------------------------#
-#-- Function to calculate Gaussian mixture pdf
-dnmix <- function(theta1, theta2, w=.5, x.seq=seq(-4, 4, length=100)){
-  f1 = dnorm(x.seq, mean=theta1[1], sd=theta1[2])
-  f2 = dnorm(x.seq, mean=theta2[1], sd=theta2[2])
-  fmix = f1*w + f2*(1-w)
-  return(fmix)
-}
+plot(X, las=1); grid()
 
-#-- Set parameters
-theta1 = c(mu=50, sigma=10)       # parameters for component 1
-theta2 = c(mu=90, sigma=5)        # parameters for component 2
-w = .5                            # mixture weight
-
-#-- Make data for plotting
-x.seq = seq(40, 100, length=200) 
-f = dnmix(theta1, theta2, w, x.seq)
-data.mix = tibble(x.seq, f)
-
-#-- Make plot
-pp + geom_histogram(binwidth = 1, aes(y=stat(density)), alpha=.5) + 
-  geom_line(data=data.mix, aes(x=x.seq, y=f), color="blue", size=1.25) 
-
-
-#---------------------------------------------------------------------------#
-#-- Fitting Gaussian Mixture Model with mixtools package
-#---------------------------------------------------------------------------#
+#-- Add 95% confidence ellipse for *unconstrained* at location (2, 60)
 library(mixtools)
-gauss_mix = normalmixEM(wait, k=2)  # 2 component gaussian mixture 
+points(2, 60, pch="+", col="red", cex=1.5)
+mixtools::ellipse(mu=c(2, 60), 
+                  sigma=H1, 
+                  alpha = .05, col="red") 
 
-w = gauss_mix$lambda       # prior probabilities (pi)
-mu = gauss_mix$mu          # component means
-sigma = gauss_mix$sigma    # component standard deviations
-r = gauss_mix$posterior    # responsibiliites matrix
+#-- Add 95% confidence ellipse for *product kernel* at location (4, 80)
+library(mixtools)
+points(4, 80, pch="+", col="blue", cex=1.5)
+mixtools::ellipse(mu=c(4, 80), 
+                  sigma=H2, 
+                  alpha = .05, col="blue") 
 
 
-#-- Responsibility Plot
-data.resp = as_tibble(r) %>% rename(f1=comp.1, f2=comp.2) %>% 
-  mutate(x=wait) %>% arrange(x)
-
-#- ggplot2
-data.resp %>% 
-  gather(model, r, -x) %>%            # convert to long format
-  ggplot(aes(x, r, color=model)) +    # make ggplot object
-  geom_line() + geom_point() +        # add lines and points
-  labs(x="waiting time (min)", y="responsibilities") # change labels
-
-#- base R
-plot(data.resp$x, data.resp$f1, type='l', col="red", 
-     xlab="waiting time (min)", ylab="responsibilities", las=1)
-lines(data.resp$x, data.resp$f2, col="blue")
-
-#-- Component Plot
-
-data.mix = tibble(x = seq(40, 100, length=200),
-                  f1 = w[1]*dnorm(x, mean=mu[1], sd=sigma[1]),
-                  f2 = w[2]*dnorm(x, mean=mu[2], sd=sigma[2]),
-                  fmix = f1 + f2) 
-
-#- ggplot2
-ggplot(data.mix) + 
-  geom_area(aes(x=x, y=f1, fill="f1"), alpha=.6) +
-  geom_area(aes(x=x, y=f2, fill="f2"), alpha=.6) +
-  geom_line(aes(x=x, y=fmix), color="black", size=1.25) + 
-  labs(x="waiting time (min)", y="density")
-
-#- baseR
-plot(data.mix$x, data.mix$f1, col="red", type='l', 
-     xlab="waiting time (min)", ylab="density", las=1, 
-     ylim=c(range(data.mix$fmix)))
-lines(data.mix$x, data.mix$f2, col="blue")
-lines(data.mix$x, data.mix$fmix, col="black", lwd=2)

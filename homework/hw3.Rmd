@@ -1,0 +1,150 @@
+---
+title: "Homework #3"
+author: "**Your Name Here**"
+date: "Due: Mon Feb 11 9:30am"
+output: html_document
+---
+
+<!--- Below are global settings for knitr. You can override any of them by adding the changes to individual chunks --->
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
+                      collapse=FALSE,    # collapse by default
+                      echo=TRUE,         # echo code by default
+                      comment = "#>",    # change comment character
+                      fig.width = 5,     # set figure width
+                      out.width = "50%", # set width of displayed images
+                      warning=FALSE,     # do not show R warnings
+                      message=FALSE)     # do not show R messages
+```
+
+<!--- Solution Region --->
+<style>
+#solution {
+  background-color: #8FBC8F;
+  border-style: solid;
+  border-color: blue;
+  padding: .5em;
+  margin: 20px
+}
+</style>
+
+
+
+**SYS 4582/6018 | Spring 2019 | University of Virginia **
+
+*******************************************
+
+<!--- Load Required R packages here --->
+```{r, include=FALSE}
+library(tidyverse)
+library(igraph)
+digits <- function(x, k=2) format(round(x, k), nsmall=k)
+```
+
+
+### Problem 3.1 Geographic Profiling
+
+Geographic profiling is used by crime analysts to estimation a serial offender's *anchor point*; the location where a serial offender lives, works, or otherwise spends time. Because certain types of criminals offend in areas in which they have familiarity, their crimes are often close to these anchor points. Geographic profiling exploits this to estimate an offender's anchor point according to the distance from a location to their recent crimes. 
+
+A sample of $283$ distances that criminals traveled (in miles) from their anchor point can be found at: 
+<https://raw.githubusercontent.com/mdporter/SYS6018/master/data/geo_profile.csv>
+
+```{r, eval=FALSE}
+#-- Load geo-profile data into R
+# It's a single column csv file with no header
+data.dir = 'https://raw.githubusercontent.com/mdporter/SYS6018/master/data'
+data = readr::read_csv(file.path(data.dir, 'geo_profile.csv'),
+                    col_names=FALSE)     # 1st row is data, not name
+# This makes a data.frame/tibble with column name X1.
+# To convert to a vector, use data$X1
+```
+
+
+One model for the distance a criminal will travel is:
+\begin{align*}
+f(x; \theta) = \frac{x}{\theta} \exp \left( - \frac{x^2}{2 \theta} \right)
+\end{align*}
+where the parameter $\theta > 0$ controls how far they are willing to travel. 
+
+a. Derive the MLE for $\theta$. 
+
+<div id="solution">
+Solution Here
+</div>
+
+
+b. What is the MLE of $\theta$ for the offender data? 
+
+<div id="solution">
+Solution Here
+</div>
+
+
+c. Calculate the density of this distribution at a set of evaluation points between 0 and 8 miles. Plot the fitted density.
+
+<div id="solution">
+Solution Here
+</div>
+
+d. Estimate the density using KDE. Report the bandwidth you chose and produce a density plot. 
+
+
+<div id="solution">
+Solution Here
+</div>
+
+
+e. Argue for the best estimate to give to the police, the parametric or KDE. Use plot(s) to support your arguments. 
+
+<div id="solution">
+Solution Here
+</div>
+
+
+
+
+
+
+### Problem 3.2: Interstate Crash Density
+
+Interstate 64 (I-64) is a major east-west road that passes just south of Charlottesville. Where and when are the most dangerous places/times to be on I-64? The crash data (link below) gives the mile marker and fractional time-of-week for crashes that occurred on I-64 between mile marker 87 and 136 in 2016. The time-of-week data takes a numeric value of *\<dow\>.\<hour/24\>*, where the dow starts at 0 for Sunday (6 for Sat) and the decimal gives the time of day information. Thus `time=0.0417` corresponds to Sun at 1am and `time=6.5` corresponds to Sat at noon). 
+
+- **Crash Data**: <https://raw.githubusercontent.com/mdporter/SYS6018/master/data/crashes16.csv>
+
+
+a. Extract the crashes and make a scatter plot with mile marker on x-axis and time on y-axis. 
+
+<div id="solution">
+Solution Here
+</div>
+
+b. Use KDE to estimate the mile marker density. What bandwidth did you use? Plot the density estimate. 
+
+<div id="solution">
+Solution Here
+</div>
+
+c. Use KDE to estimate the temporal time-of-week density. What bandwidth did you use? Plot the density estimate. 
+
+<div id="solution">
+Solution Here
+</div>
+
+
+d. Use KDE to estimate the bivariate mile-time density. What are the bandwidth parameters? Plot the bivariate density estimate. 
+
+<div id="solution">
+Solution Here
+</div>
+
+
+
+e. Based on the estimated density, approximate what mile marker and time-of-week are the most dangerous? 
+
+<div id="solution">
+Solution Here
+</div>
+
+
+		

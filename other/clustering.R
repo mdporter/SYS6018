@@ -11,6 +11,7 @@
 #-- Install Required Packages
 library(MASS)
 library(tidyverse)    # install.packages("tidyverse")
+library(mclust)
 
 #---------------------------------------------------------------------------#
 #-- Load crabs data
@@ -128,7 +129,6 @@ table(true=crabsY, est=km$cluster)
 #-- K-means clustering: Old Faithful
 #---------------------------------------------------------------------------#
 
-
 oldf = datasets::faithful 
 plot(oldf, pch=19, las=1, main="Old Faithful"); grid()
 plot(oldf, pch=19, las=1, main="Old Faithful: same aspect", asp=1); grid()
@@ -153,5 +153,48 @@ points(km$centers, col=1:2, pch=15, cex=2)
 plot(X2, col=km2$cluster, las=1, main="scaled: raw values", asp=1)
 points(km2$centers, col=1:2, pch=15, cex=2)
 
+
+
+#---------------------------------------------------------------------------#
+#-- GMM clustering: Old Faithful
+#---------------------------------------------------------------------------#
+
+X = datasets::faithful 
+
+#-- Fit K=2 component mixture model
+GMM =  mvnormalmixEM(X, k=2)  # use mvnormalmixEM()
+(w = GMM$lambda)           # estimated weights
+(mu = GMM$mu)              # estimate means
+(Sigma = GMM$sigma)        # estimated covariance matrix
+sapply(Sigma, det)         # determinant
+
+#-- Plot 95% contour
+plot(GMM, whichplots = 2, alpha=.05) # 95% is 1-alpha
+
+
+#---------------------------------------------------------------------------#
+#-- MBC clustering: Old Faithful
+#---------------------------------------------------------------------------#
+# Use the mclust package to help search across all K's
+library(mclust)
+mix = Mclust(X)
+summary(mix)   # finds 3 clusters
+
+plot(mix, what="BIC")  
+plot(mix, what="classification")
+plot(mix, what="uncertainty")  
+plot(mix, what="density")  
+
+#-- get parameters
+summary(mix, parameters=TRUE)
+
+
+#-- More detailed analysis: see https://www.stat.washington.edu/sites/default/files/files/reports/2012/tr597.pdf
+faithfulBIC = mclustBIC(X)
+faithfulSummary  = summary(faithfulBIC, data=X)
+faithfulSummary
+
+plot(faithfulBIC, G=1:7, 
+     ylim=c(-2500,-2300), legendArgs=list(x="bottomright",ncol=5))
 
 

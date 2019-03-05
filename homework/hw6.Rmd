@@ -1,0 +1,138 @@
+---
+title: "Homework #6"
+author: "**Your Name Here**"
+date: "Due: Tue Mar 19 9:30am"
+output: html_document
+---
+
+<!--- Below are global settings for knitr. You can override any of them by adding the changes to individual chunks --->
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
+                      cache=FALSE,       # don't cache anythin by default
+                      collapse=FALSE,    # collapse by default
+                      echo=TRUE,         # echo code by default
+                      comment = "#>",    # change comment character
+                      fig.width = 5,     # set figure width
+                      out.width = "50%", # set width of displayed images
+                      warning=FALSE,     # do not show R warnings
+                      message=FALSE)     # do not show R messages
+```
+
+<!--- Solution Region --->
+<style>
+#solution {
+  background-color: #8FBC8F;
+  border-style: solid;
+  border-color: blue;
+  padding: .5em;
+  margin: 20px
+}
+</style>
+
+
+
+**SYS 4582/6018 | Spring 2019 | University of Virginia **
+
+*******************************************
+
+<!--- Load Required R packages here --->
+```{r, include=FALSE}
+library(tidyverse)
+digits <- function(x, k=2) format(round(x, k), nsmall=k)
+data.dir = 'https://raw.githubusercontent.com/mdporter/SYS6018/master/data'
+```
+
+
+
+
+
+### Problem 6.1: Evaluating a Regression Model
+
+a. Create a set of functions to generate data from the following distributions:
+\begin{align*}
+X &\sim \mathcal{N}(0, 1) \\
+Y &= -1 + .5X + .2X^2 + \epsilon \\
+\epsilon &\sim \mathcal{N}(0,\, \sigma)
+\end{align*}
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+
+b. Simulate $n=100$ realizations from these distributions using $\sigma=3$. Produce a scatterplot and draw the true regression line $f(x) = E[Y \mid X=x]$. Use `set.seed(611)` prior to generating the data.
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+c. Fit three polynomial regression models using least squares: linear, quadratic, and cubic. Produce another scatterplot, add the fitted lines and true population line $f(x)$  using different colors, and add a legend that maps the line color to a model.
+Note: Notice that while the true model is quadratic, we are also fitting linear (less complex) and cubic (more complex) models. 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+d. Simulate a test data set of $10000$ observations from the same distributions. Use `set.seed(612)` prior to generating the test data. Calculate the estimated mean squared error (MSE) for each model.
+Are the results as expected? 
+
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+e. What is the best achievable MSE? That is, what is the MSE if the true $f(x)$ was used to evaluate the test set? How close does the best method come to achieving the optimum? 
+
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+f. The MSE scores obtained in part *d* came from one realization of training data. Here will we explore how much variation there is in the MSE scores by replicating the simulation many times. 
+Re-run the same simulation in part *d* 100 times. Create kernel density plots (you choose bandwidth) of the resulting MSE values for each model. 
+Use `set.seed(613)` prior to running the simulation and do not set the seed in any other places.
+
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+g. Show a count of how many times each model was the best. That is, out of the 100 simulations, count how many times each model had the lowest MSE.
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+h. Repeat the simulation in part *g*, but use $\sigma=2$. Report the number of times each model was best (you do not need to produce any plots). Use the same `set.seed(613)` prior to running the simulation and do not set the seed in any other places.
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+i. Repeat *g*, but now use $\sigma=4$ and $n=200$. 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+j. Describe the effects $\sigma$ and $n$ has on selection of the best model? Why is the *true* model form (i.e., quadratic) not always the *best* model to use when prediction is the goal? 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+

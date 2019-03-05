@@ -213,4 +213,233 @@ mean((f(xtest) - ytest)^2)
 
 
 
+#--------------------------------------------------------------------#
+#-- Ensemble Evaluation
+#--------------------------------------------------------------------#
+library(FNN)
+library(tidyverse)
+
+
+#-- Create Ensemble weights from class input
+ensemble.data = tribble(
+  ~model, ~tuning, ~n,
+  'poly', 5, 4, 
+  'poly', 4, 2, 
+  'poly', 3, 4, 
+  'poly', 10, 2, 
+  'knn', 10, 7, 
+  'knn', 5, 5, 
+  'knn', 7, 1, 
+  'knn', 20, 2, 
+  'knn', 8, 1
+  ) %>% mutate(w = n/sum(n))
+
+
+#-- Create helper functions to make predictions
+pred_knn <- function(k, data.train, data.test){
+  m = knn.reg(data.train[,'x', drop=FALSE], 
+              y = data.train$y, 
+              test = data.test[,'x', drop=FALSE], 
+              k = k)
+  m$pred
+}
+
+pred_poly <- function(deg, data.train, data.test){
+  m = lm(y~poly(x, degree=deg), data=data.train)
+  predict(m, newdata=data.test)
+}
+
+
+#-- make training and test data sets. 
+#   Ensure they have same column names
+data.train = data.frame(x, y) 
+data.test = data.frame(x=xtest, y=ytest)
+
+#-- Create matrix of predictions from each model
+YHAT = matrix(NA, nrow=nrow(data.test), ncol=nrow(ensemble.data))
+for(i in 1:nrow(ensemble.data)){
+  if(ensemble.data$model[i] == "poly"){
+    deg = ensemble.data$tuning[i]
+    YHAT[,i] = pred_poly(deg=deg, data.train, data.test)
+  }
+  if(ensemble.data$model[i] == "knn"){
+    k = ensemble.data$tuning[i]
+    YHAT[,i] = pred_knn(k=k, data.train, data.test)
+  }
+}
+
+#-- Ensemble prediction is weighted sum of individual predictions
+yhat = YHAT %*% ensemble.data$w    
+
+#-- MSE of ensemble
+mean( (data.test$y - yhat)^2 )
+  
+  
+#-- Add results to the list
+ensemble.data %>%
+  # Add the MSE for each model individually
+  mutate(mse=apply(YHAT, 2, function(yhat) mean((data.test$y - yhat)^2))) %>% 
+  # Add row for ensemble
+  bind_rows(tibble(model="ensemble", mse=mean( (data.test$y - yhat)^2 ))) %>% 
+  # order/arrange results by mse
+  arrange(mse)
+
+
+
+#--------------------------------------------------------------------#
+#-- Two training sets
+#--------------------------------------------------------------------#
+#-- Settings
+n = 100                                 # number of observations
+sim_x <- function(n) runif(n)           # U[0,1]
+f <- function(x) 1 + 2*x + 5*sin(5*x)   # true mean function
+sd = 2                                  # stdev for error
+sim_y <- function(x, sd){               # generate Y|X from N{f(x),sd}
+  n = length(x)
+  f(x) + rnorm(n, sd=sd)             
+}
+
+#-- Generate 1st Training Data (same as above)
+set.seed(825)                           # set seed for reproducibility
+x = sim_x(n)                            # get x values
+y = sim_y(x, sd=sd)                     # get y values
+data1 = tibble(x,y)
+
+#-- Generate 2nd training data
+set.seed(826)
+data2 = tibble(x=sim_x(n), y=sim_y(x,sd=sd))  # use tibble() so y uses x=sim_x
+
+#-- Fit model for each training data
+poly1 = lm(y~poly(x, degree=4), data=data1)
+poly2 = lm(y~poly(x, degree=4), data=data2)
+
+#-- Plots (base R)
+plot(y~x, data=data1, pch=19,col="#E5720050", las=1)
+points(data2$x, data2$y, pch=19, col="#232D4B50")
+lines(xseq, predict(poly1, newdata=data.frame(x=xseq)), col="#E57200")
+lines(xseq, predict(poly2, newdata=data.frame(x=xseq)), col="#232D4B")
+
+#-- Plots (ggplot2)
+data.points = bind_rows(`train_set=1` = data1, `train_set=2`=data2, .id="data")
+data.pred = tibble(x=xseq, 
+                   `train_set=1` = predict(poly1, newdata=data.frame(x=xseq)), 
+                   `train_set=2` = predict(poly2, newdata=data.frame(x=xseq))) %>% 
+  gather(data, y, -x)
+
+ggplot(data.points, aes(x,y, color=data)) +
+  geom_point() + 
+  geom_line(data=data.pred) + 
+  scale_color_manual(values=c("#232D4B", "#E57200"), name="data set") + 
+  ggtitle("polynomial, degree=4")
+
+
+#--------------------------------------------------------------------#
+#-- Bias-Variance Evaluation
+#--------------------------------------------------------------------#
+#- Run M simulations; each time draw training data from P(X,Y)
+
+
+#-- Distributions
+sim_x <- function(n) runif(n)           # generate n obs from U[0,1]
+f <- function(x) 1 + 2*x +5*sin(5*x)    # true mean function
+sim_y <- function(x){                   # generate Y|X from N{f(x),sd}
+  n = length(x)
+  f(x) + rnorm(n, sd=2)
+}
+
+xseq = seq(0, 1, length=200)            # sequence of equally spaced values from 0 to 1
+
+
+
+#-- Single Realization
+set.seed(825)                           # set seed for exact replication
+n = 100                                 # number of obs
+x = sim_x(n)
+y = sim_y(x, sd=2)
+
+plot(x,y,pch=19,col="#00000080", las=1)
+curve(f,add=TRUE,lwd=2,col="#808080C0")
+
+
+
+#-- function to generate prediction function for polynomial regression
+poly_predict <- function(deg, x, y, xseq){
+  xeval = data.frame(x=xseq)
+  if(deg == 0) return( rep(mean(y), length(xseq)))
+  m = lm(y~poly(x, degree=deg))
+  predict(m, newdata=xeval)
+}
+
+
+#-- Settings
+set.seed(2015)                          # set seed
+M = 2000                                # number of simulations
+
+#-- Initialization
+Degree = c(0,1,2,4,8)   # degree sequence for polynomial
+YHAT = array(0, dim=c(length(xseq), M, length(Degree)), 
+             dimnames=list(NULL, 1:M, paste0('deg=',Degree))) 
+
+#-- Run Simulation: Generate sequence of yhat's
+for(m in 1:M){
+  x = sim_x(n)
+  y = sim_y(x, sd=2)
+  for(j in 1:length(Degree)){
+    YHAT[, m, j] = poly_predict(deg=Degree[j], x, y, xseq)  # yhat
+  }
+}
+
+
+
+#-- Function to evaluate simulation results
+eval_metrics <- function(Yhat, mu, irr.error){
+  bias = rowMeans(Yhat) - mu        # E[f_D(X)] - mu.true
+  bias.sq = bias^2
+  var = apply(Yhat, 1, var)         # V[f_D(X)] 
+  mse = var + bias.sq + irr.error
+  df = data.frame(x=xseq, mse, bias, bias.sq, var)
+  return(df)  
+}
+
+#-- Evaluate results
+perf = apply(YHAT, 3, eval_metrics, mu=f(xseq), irr.error=sd^2)  # calculate metrics for each model
+
+# Note: apply() is is a shortcut for the loop
+# perf = list()
+# for(j in 1:dim(YHAT)[3]){
+#   yhat = YHAT[,,j]
+#   perf[[j]] = eval_metrics(yhat, mu=f(xseq))
+# }
+
+#-- Plots: Mean Squared Error
+with(perf$`deg=0`, plot(x, mse, type='l', col="#569BBD", ylab="MSE", ylim=c(4, 19) ))
+with(perf$`deg=1`, lines(x, mse, col="#F05133" ))
+with(perf$`deg=2`, lines(x, mse, col="#4C721D" ))
+with(perf$`deg=4`, lines(x, mse, col="#F4DC00" ))
+with(perf$`deg=8`, lines(x, mse, col="#FF6600" ))
+title("Mean Square Error")
+legend("top",c("intercept",'linear',"quadratic","poly4", 'poly8'),
+       col=c("#569BBD","#F05133","#4C721D","#F4DC00", "#FF6600"),lwd=2,cex=.7)
+
+
+#-- Interated MSE 
+IMSE = sapply(perf,  colMeans)
+IMSE[-c(1,3),] %>% knitr::kable(digits=2)
+
+
+#-- get the estimated MSE for every simulation and every model
+est_mse <- function(yhat, sd) apply(yhat, 2, function(x) sd^2+mean((x-f(xseq))^2)) 
+MSE = apply(YHAT, 3, est_mse, sd=sd )           # matrix of estimate MSE
+
+#-- Count of best model
+best.model = apply(MSE.matrix, 1, which.min)   # vector of best model
+table(colnames(MSE.matrix)[best.model])        # counts of best model
+
+
+
+
+
+
+
+
 

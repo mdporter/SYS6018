@@ -1,0 +1,170 @@
+---
+title: "Homework #7"
+author: "**Your Name Here**"
+date: "Due: Mon Mar 25 9:30am"
+output: html_document
+---
+
+<!--- Below are global settings for knitr. You can override any of them by adding the changes to individual chunks --->
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
+                      cache=FALSE,       # don't cache anythin by default
+                      collapse=FALSE,    # collapse by default
+                      echo=TRUE,         # echo code by default
+                      comment = "#>",    # change comment character
+                      fig.width = 5,     # set figure width
+                      out.width = "50%", # set width of displayed images
+                      warning=FALSE,     # do not show R warnings
+                      message=FALSE)     # do not show R messages
+```
+
+<!--- Solution Region --->
+<style>
+#solution {
+  background-color: #8FBC8F;
+  border-style: solid;
+  border-color: blue;
+  padding: .5em;
+  margin: 20px
+}
+</style>
+
+
+
+**SYS 4582/6018 | Spring 2019 | University of Virginia **
+
+*******************************************
+
+<!--- Load Required R packages here --->
+```{r, include=FALSE}
+library(tidyverse)
+digits <- function(x, k=2) format(round(x, k), nsmall=k)
+data.dir = 'https://raw.githubusercontent.com/mdporter/SYS6018/master/data'
+```
+
+
+
+### Problem 7.1: Bootstrapping 
+
+Bootstrap resampling can be used to quantify the uncertainty in a fitted curve. 
+
+
+a. Create a set of functions to generate data from the following distributions:
+\begin{align*}
+X &\sim \mathcal{U}(0, 2) \qquad \text{Uniform in $[0,2]$}\\
+Y &= 1 + 2x + 5\sin(5x) + \epsilon \\
+\epsilon &\sim \mathcal{N}(0,\, \sigma=2.5)
+\end{align*}
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+b. Simulate $n=100$ realizations from these distributions. Produce a scatterplot and draw the true regression line $f(x) = E[Y \mid X=x]$. Use `set.seed(711)` prior to generating the data.
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+c. Now fit a 5th degree polynomial. Produce a scatterplot and draw the estimated regression line.
+
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+
+d. Draw $200$ bootstrap samples, fit a 5th degree polynomial to each bootstrap sample, and make predictions at `xseq = seq(0, 2, length=100)`
+    - Set the seed (use `set.seed(712)`) so your results are reproducible.
+    - Produce a scatterplot and add the $200$ bootstrap curves
+    
+<div id="solution">
+SOLUTION HERE
+</div>
+  
+    
+e. Calculate the pointwise 95% confidence intervals from the bootstrap samples. That is, for each $x \in xseq$, calculate the upper and lower limits such that only 5% of the curves fall outside the interval at $x$. 
+    - Remake the plot from part *c*, but add the upper and lower boundaries from the 95% confidence intervals. 
+
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+### Problem 7.2: K-Fold cross-validation with $k$ nearest neighbors
+
+Run 10-fold cross-validation, on the data generated in part 1, to select the optimal $k$ in a k nearest neighbor (kNN) model. Then evaluate how well cross-validation performed by evaluating the performance on a large test set. The steps below will guide you.
+
+
+a. Use $10$ fold cross-validation to find the value of $k$ (i.e., neighborhood size) that provides the smallest estimated MSE using a kNN model. Search over $k=3,4,\ldots, 50$.
+    - Use `set.seed(721)` prior to generating the folds to ensure the results are replicable. 
+    - Report the optimal $k$, the corresponding estimated MSE, and produce a plot with $k$ on the x-axis and the estimated MSE on the y-axis (optional: add 1-standard error bars). 
+
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+b. The $k$ (number of neighbors) in a kNN model determines the effective degrees of freedom *edf*. What is the optimal *edf*? Be sure to use the correct sample size when making this calculation. Produce a plot similar to that from part *a*, but use *edf* (effective degrees of freedom) on the x-axis. 
+
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+c. After running cross-validation, a final model fit from *all* of the training data needs to be produced to make predictions. What value of $k$ would you choose? Why? 
+
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+d. Now we will see how well cross-validation performed. Simulate a test data set of $50000$ observations from the same distributions. Use `set.seed(723)` prior to generating the test data. 
+    - Fit a set of kNN models, using the full training data, and calculate the mean squared error (MSE) on the test data for each model. Use the same $k$ values in *a*. 
+    - Report the optimal $k$, corresponding *edf*, and MSE based on the test set. 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+e. Plot both the cross-validation estimated and true test error on the same plot. See Figure 5.6 in ISL (pg 182) as a guide. 
+    - Produce two plots: one with $k$ on the x-axis and one with *edf* on the x-axis.
+    
+    
+<div id="solution">
+SOLUTION HERE
+</div>
+
+    
+    
+f. Based on the plots from *e*, does it appear that cross-validation worked as intended? How sensitive is the choice of $k$ on the resulting test MSE?      
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

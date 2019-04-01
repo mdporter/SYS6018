@@ -1,0 +1,141 @@
+---
+title: "Homework #9"
+author: "**Your Name Here**"
+date: "Due: Mon Apr 8 9:30am"
+output: html_document
+---
+
+<!--- Below are global settings for knitr. You can override any of them by adding the changes to individual chunks --->
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
+                      cache=FALSE,       # don't cache anythin by default
+                      collapse=FALSE,    # collapse by default
+                      echo=TRUE,         # echo code by default
+                      comment = "#>",    # change comment character
+                      fig.width = 5,     # set figure width
+                      out.width = "50%", # set width of displayed images
+                      warning=FALSE,     # do not show R warnings
+                      message=FALSE)     # do not show R messages
+```
+
+<!--- Solution Region --->
+<style>
+#solution {
+  background-color: #8FBC8F;
+  border-style: solid;
+  border-color: blue;
+  padding: .5em;
+  margin: 20px
+}
+</style>
+
+
+
+**SYS 4582/6018 | Spring 2019 | University of Virginia **
+
+*******************************************
+
+<!--- Load Required R packages here --->
+```{r, include=FALSE}
+library(tidyverse)
+digits <- function(x, k=2) format(round(x, k), nsmall=k)
+data.dir = 'https://raw.githubusercontent.com/mdporter/SYS6018/master/data'
+```
+
+
+## Crime Linkage
+
+Crime linkage attempts to determine if two or more unsolved crimes share a common offender. *Pairwise* crime linkage is the more simple task of deciding if two crimes share a common offender; it can be considered a binary classification problem. The linkage training data has 8 evidence variables that measure the similarity between a pair of crimes:
+
+- `spatial` is the spatial distance between the crimes
+- `temporal` is the fractional time (in days) between the crimes
+- `tod` and `dow` are the differences in time of day and day of week between the crimes
+- `LOC`, `POA,` and `MOA` are binary with a 1 corresponding to a match (type of property, point of entry, method of entry)
+- `TIMERANGE` is the time between the earliest and latest possible times the crime could have occurred (because the victim was away from the house during the crime).
+- The response variable indicates if the crimes are linked ($y=1$) or unlinked ($y=0$).
+
+
+These problems use the [linkage-train](https://mdporter.github.io/SYS6018/data/linkage_train.csv) and [linkage-test](https://mdporter.github.io/SYS6018/data/linkage_test.csv) datasets (click on links for data). 
+
+
+
+### Problem 9.1: Penalized Regression for Crime Linkage
+
+a. Fit a penalized *linear regression* model. Use a lasso, ridge, or elasticnet penalty (your choice). 
+    - Report the value of $\alpha$ used (if elasticnet)
+    - Report the value of $\lambda$ used
+    - Report the estimated coefficients
+
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+b. Fit a penalized *logistic regression* model. Use a lasso, ridge, or elasticnet penalty (your choice).  
+    - Report the value of $\alpha$ used (if elasticnet)
+    - Report the value of $\lambda$ used
+    - Report the estimated coefficients
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+c. Produce one plot that has the ROC curves, using the training data, for both models (from part a and b). Use color and/or linetype to distinguish between models and include a legend.    
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+d. Contest Round 1: Predict the estimated *probability* of linkage for the test data (using any regression based model). 
+    - Submit a .csv file (ensure comma separated format) named `lastname_firstname.csv` that includes the column named **p** that is your estimated posterior probability. We will use automated evaluation, so the format must be exact. 
+    - You are free to use any tuning parameters
+    - You are free to use any data transformation or feature engineering
+    - You will receive credit for a proper submission; the top five scores will receive 2 bonus points.     
+    - The Area under the ROC curve (AUC) will be used for evaluation. 
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+### Problem 9.2: Discriminant Analysis for Crime Linkage
+
+Spatial and temporal proximity are usually cited as the most important predictors for crime linkage (i.e., the closer in space and time, the more likely the crimes are linked). Use only these two variables from the linkage data (i.e., `spatial` and `temporal`) for this section.
+
+a. Implement LDA. 
+    - Report the estimated class means
+    - Report the estimated probability that two crime that have a spatial distance of 10 and temporal distance of 7 are linked.
+    
+    
+<div id="solution">
+SOLUTION HERE
+</div>
+    
+    
+b. Implement QDA
+    - Report the estimated class means
+    - Report the estimated probability that two crime that have a spatial distance of 10 and temporal distance of 7 are linked.
+    
+<div id="solution">
+SOLUTION HERE
+</div>
+    
+c. Contest Round 2: Use bivariate kernel density estimation to estimate each class' component density. Combine with estimates of the class prior to produce an estimate of the posterior linkage probability for the test data. 
+    - Report the bandwidths used
+    - Report the estimated prior (class) probabilities used
+    - Submit a .csv file (ensure comma separated format) named `lastname_firstname.csv` that includes the column named **p** that is your estimated posterior probability. We will use automated evaluation, so the format must be exact. 
+    - You will receive credit for a proper submission; the top five scores will receive 2 bonus points.  
+    - Evaluation will be based on $\frac{1}{N} \sum_{i=1}^N \log p_{g_i}$, where $p_{g_i}$ is the probability you assigned to class $g_i$. 
+
+
+<div id="solution">
+SOLUTION HERE
+</div>
+
+
+
+
+

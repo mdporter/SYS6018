@@ -1,0 +1,126 @@
+---
+title: "Homework #0"
+author: "**Your Name Here**"
+date: "Due: Sun Sept 01 11:00pm"
+output: html_document
+---
+
+<!--- Below are global settings for knitr. You can override any of them by adding the changes to individual chunks --->
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
+                      collapse=FALSE,    # collapse by default
+                      echo=TRUE,         # echo code by default
+                      comment = "#>",    # change comment character
+                      fig.width = 5,     # set figure width
+                      out.width = "50%", # set width of displayed images
+                      warning=FALSE,     # do not show R warnings
+                      message=FALSE)     # do not show R messages
+```
+
+<!--- Solution Region --->
+<style>
+#solution {
+  background-color: #8FBC8F;
+  border-style: solid;
+  border-color: blue 
+}
+</style>
+
+
+
+**SYS 6018 | Fall 2019 | University of Virginia **
+
+*******************************************
+
+<!--- Load Required R packages here --->
+```{r, include=FALSE}
+library(tidyverse)
+library(readxl)
+library(arules)
+digits <- function(x, k=2) format(round(x, k), nsmall=k)
+```
+
+### Problem 0.1: Who are you?
+
+a. What is your name? 
+
+<div id="solution">
+Solution Here
+</div>
+
+b. Where are you from (e.g., hometown)? 
+
+<div id="solution">
+Solution Here
+</div>
+
+c. What do you hope to do after graduation (be specific)?  
+
+<div id="solution">
+Solution Here
+</div>
+
+d. List 3 interesting things about yourself. 
+
+<div id="solution">
+Solution Here: Look up how to make a enumerated list in markdown! 
+</div>
+
+
+----------
+
+### Problem 0.2: About the course
+
+a. What are you most excited to learn in this course?
+
+<div id="solution">
+Solution Here
+</div>
+
+
+b. What pre-req topics (e.g., math, coding, probability, statistics) are your weakest? 
+
+<div id="solution">
+Solution Here
+</div>
+
+
+c. What pre-req topics are your strongest? 
+
+<div id="solution">
+Solution Here
+</div>
+
+d. Would you rather see the mathematical details or coding details of a method/algorithm? 
+
+<div id="solution">
+Solution Here
+</div>
+
+----------
+
+### Problem 0.3: Math Notation
+
+a. What are the equations for the least squares coefficients in linear regression (in matrix notation)? Use $X$ for the design/predictor matrix, and $Y$ the vector of responses. 
+
+<div id="solution">
+Hello LaTex! (<https://www.latex-tutorial.com/tutorials/amsmath/>, <https://www.overleaf.com/learn/latex/Mathematical_expressions>)
+</div>
+
+
+b. Let $x_1, x_2, \ldots, x_n$ be a sample of length of time that a customer is on the phone with a call center help line. We feel comfortable modeling the data as coming from an *exponential distribution*. What is the MLE (Maximum Likelihood Estimate) of the parameter?  Show your steps.
+
+<div id="solution">
+*Don't panic, breath, remember this is not for credit!*
+</div>
+
+
+
+
+
+
+
+
+
+

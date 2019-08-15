@@ -86,7 +86,7 @@ h6 {
 }
 </style>
 
-<link href="data:text/css;charset=utf-8,%0A%0A%0Ah1%20%7B%0Amargin%2Dbottom%3A%2010px%3B%0A%7D%0Ah2%20%7B%0Atext%2Ddecoration%3A%20none%3B%0Afont%2Dweight%3A%20bold%3B%0Apadding%2Dleft%3A%200%3B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A1%2E6em%3B%0A%7D%0A%0Aa%3Avisited%20%7B%0Acolor%3A%20%232FA4E7%3B%0A%7D%0A%2Enavibar%20%7B%0Amargin%3A%200%3B%0Apadding%3A%200%3B%0Alist%2Dstyle%3A%20none%3B%0A%7D%0A%2Enavibar%20ul%20%7B%0Alist%2Dstyle%2Dtype%3A%20none%3B%0Amargin%3A%200%3B%0Apadding%3A%200%3B%0Aoverflow%3A%20hidden%3B%0A%7D%0A%2Enavibar%20li%20%7B%0Afloat%3A%20left%3B%0A%7D%0Aa%2Enavibar%3Alink%2C%20a%2Enavibar%3Avisited%2C%20%2Ecurrent%20%7B%20display%3A%20block%3B%0Awidth%3A%20160px%3B%20font%2Dweight%3A%20bold%3B%0Acolor%3A%20%23FFFFFF%3B%0Abackground%2Dcolor%3A%20%232FA4E7%3B%0Atext%2Dalign%3A%20center%3B%0Apadding%3A%204px%3B%20text%2Ddecoration%3A%20none%3B%0A%7D%0Aa%2Enavibar%3Ahover%2C%20a%2Enavibar%3Aactive%20%7B%0Abackground%2Dcolor%3A%20darkblue%3B%20%7D%0A%2Ecurrent%20%7B%0Abackground%2Dcolor%3A%20darkblue%3B%20%7D%0A" rel="stylesheet" type="text/css" />
+<link href="data:text/css;charset=utf-8,%0A%0A%0Ah1%20%7B%0Amargin%2Dbottom%3A%2010px%3B%0A%0A%7D%0Ah2%20%7B%0Atext%2Ddecoration%3A%20none%3B%0Afont%2Dweight%3A%20bold%3B%0Apadding%2Dleft%3A%200%3B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A1%2E6em%3B%0A%7D%0A%0Aa%3Avisited%20%7B%0Acolor%3A%20%232FA4E7%3B%0A%7D%0A%2Enavibar%20%7B%0Amargin%3A%200%3B%0Apadding%3A%200%3B%0Alist%2Dstyle%3A%20none%3B%0A%7D%0A%2Enavibar%20ul%20%7B%0Alist%2Dstyle%2Dtype%3A%20none%3B%0Amargin%3A%200%3B%0Apadding%3A%200%3B%0Aoverflow%3A%20hidden%3B%0A%7D%0A%2Enavibar%20li%20%7B%0Afloat%3A%20left%3B%0Aborder%2Dright%3A1px%20solid%20white%3B%0A%7D%0Aa%2Enavibar%3Alink%2C%20a%2Enavibar%3Avisited%2C%20%2Ecurrent%20%7B%20display%3A%20block%3B%0Awidth%3A%20160px%3B%20font%2Dweight%3A%20bold%3B%0Acolor%3A%20%23FFFFFF%3B%0Abackground%2Dcolor%3A%20%232FA4E7%3B%0Atext%2Dalign%3A%20center%3B%0Apadding%3A%204px%3B%20text%2Ddecoration%3A%20none%3B%0A%7D%0Aa%2Enavibar%3Ahover%2C%20a%2Enavibar%3Aactive%20%7B%0Abackground%2Dcolor%3A%20darkblue%3B%20%7D%0A%2Ecurrent%20%7B%0Abackground%2Dcolor%3A%20darkblue%3B%20%7D%0A%0Ablockquote%20%7B%20display%3A%20block%3B%0Afont%2Dsize%3A%2010pt%3B%0Afont%2Dfamily%3A%20Times%3B%0Amargin%2Dtop%3A%201em%3B%0Amargin%2Dbottom%3A%201em%3B%0Amargin%2Dleft%3A%2040px%3B%0Amargin%2Dright%3A%2040px%3B%0A%7D%0A" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -197,8 +197,9 @@ $(document).ready(function () {
 
 
 
-<h1>SYS 4582/6018: Data Mining</h1> 
-<h2>Spring 2019</h2>
+<h1 style="display: inline;"> SYS 6018: Data Mining </h1>
+<h2>Fall 2019</h2>
+
 
 
 <!-- <head> -->
@@ -224,6 +225,7 @@ td {
 </div>
 
 
+<!-- Navigation Bar -->
 <ul class="navibar">
 <li>
 <a href="./index.html" class="navibar">Schedule</a>
@@ -235,79 +237,67 @@ td {
 <a href="./homework.html" class="current">Homework</a>
 </li>
 </ul>
-<!--- Start Main Page --->
 <p><br><br></p>
 <div id="homework" class="section level3">
 <h3>Homework</h3>
 <hr />
 <p><strong>Homework is submitted on the course <a href="https://collab.its.virginia.edu/portal">Collab site</a></strong></p>
 </div>
-<div id="homework-1-rmd" class="section level3">
-<h3><a href="homework/hw1.html">Homework #1</a> <small> <a href="homework/hw1.Rmd">(Rmd)</a></h3>
-<!--- ### Homework #1: --->
+<div id="homework-0-rmd" class="section level3">
+<h3><a href="homework/hw0.html">Homework #0</a> <small> <a href="homework/hw0.Rmd">(Rmd)</a></h3>
+<!--- ### Homework #0: --->
 <blockquote>
-<p>Due: Mon Jan 28 9:30am</p>
+<p>Due: Sun Sept 1 11:00pm</p>
 </blockquote>
+<!-- ### [Homework #1](homework/hw1.html) <small> [(Rmd)](homework/hw1.Rmd) -->
 </div>
-<div id="homework-2-rmd" class="section level3">
-<h3><a href="homework/hw2.html">Homework #2</a> <small> <a href="homework/hw2.Rmd">(Rmd)</a></h3>
-<!--- ### Homework #2: --->
-<blockquote>
-<p>Due: Mon Feb 04 9:30am</p>
-</blockquote>
+<div id="homework-1" class="section level3">
+<h3>Homework #1:</h3>
+<!-- > Due: Mon Jan 28 9:30am  -->
+<!-- ### [Homework #2](homework/hw2.html) <small> [(Rmd)](homework/hw2.Rmd) -->
 </div>
-<div id="homework-3-rmd" class="section level3">
-<h3><a href="homework/hw3.html">Homework #3</a> <small> <a href="homework/hw3.Rmd">(Rmd)</a></h3>
-<!-- ### Homework #3: -->
-<blockquote>
-<p>Due: Mon Feb 11 9:30am</p>
-</blockquote>
+<div id="homework-2" class="section level3">
+<h3>Homework #2:</h3>
+<!-- > Due: Mon Feb 04 9:30am  -->
+<!-- ### [Homework #3](homework/hw3.html) <small> [(Rmd)](homework/hw3.Rmd) -->
 </div>
-<div id="homework-4-rmd" class="section level3">
-<h3><a href="homework/hw4.html">Homework #4</a> <small> <a href="homework/hw4.Rmd">(Rmd)</a></h3>
-<!-- ### Homework #4:  -->
-<blockquote>
-<p>Due: Mon Feb 18 9:30am</p>
-</blockquote>
+<div id="homework-3" class="section level3">
+<h3>Homework #3:</h3>
+<!-- > Due: Mon Feb 11 9:30am  -->
+<!-- ### [Homework #4](homework/hw4.html) <small> [(Rmd)](homework/hw4.Rmd) -->
 </div>
-<div id="homework-5-rmd" class="section level3">
-<h3><a href="homework/hw5.html">Homework #5</a> <small> <a href="homework/hw5.Rmd">(Rmd)</a></h3>
-<!-- ### Homework #5: -->
-<blockquote>
-<p>Due: <del>Mon Feb 25 9:30am</del> Wed Feb 27 9:30am</p>
-</blockquote>
+<div id="homework-4" class="section level3">
+<h3>Homework #4:</h3>
+<!-- > Due: Mon Feb 18 9:30am  -->
+<!-- ### [Homework #5](homework/hw5.html) <small> [(Rmd)](homework/hw5.Rmd) -->
 </div>
-<div id="homework-6-rmd" class="section level3">
-<h3><a href="homework/hw6.html">Homework #6</a> <small> <a href="homework/hw6.Rmd">(Rmd)</a></h3>
-<!-- ### Homework #6: -->
-<blockquote>
-<p>Due: <strong>Tue</strong> Mar 19 9:30am</p>
-</blockquote>
+<div id="homework-5" class="section level3">
+<h3>Homework #5:</h3>
+<!-- > Due: ~~Mon Feb 25 9:30am~~ Wed Feb 27 9:30am  -->
+<!-- ### [Homework #6](homework/hw6.html) <small> [(Rmd)](homework/hw6.Rmd) -->
 </div>
-<div id="homework-7-rmd" class="section level3">
-<h3><a href="homework/hw7.html">Homework #7</a> <small> <a href="homework/hw7.Rmd">(Rmd)</a></h3>
-<!-- ### Homework #7: -->
-<blockquote>
-<p>Due: Mon Mar 25 9:30am</p>
-</blockquote>
+<div id="homework-6" class="section level3">
+<h3>Homework #6:</h3>
+<!-- > Due: **Tue** Mar 19 9:30am  -->
+<!-- ### [Homework #7](homework/hw7.html) <small> [(Rmd)](homework/hw7.Rmd) -->
 </div>
-<div id="homework-8-rmd" class="section level3">
-<h3><a href="homework/hw8.html">Homework #8</a> <small> <a href="homework/hw8.Rmd">(Rmd)</a></h3>
-<!-- ### Homework #8: -->
-<blockquote>
-<p>Due: Mon Apr 01 9:30am</p>
-</blockquote>
+<div id="homework-7" class="section level3">
+<h3>Homework #7:</h3>
+<!-- > Due: Mon Mar 25 9:30am  -->
+<!-- ### [Homework #8](homework/hw8.html) <small> [(Rmd)](homework/hw8.Rmd) -->
 </div>
-<div id="homework-9-rmd" class="section level3">
-<h3><a href="homework/hw9.html">Homework #9</a> <small> <a href="homework/hw9.Rmd">(Rmd)</a></h3>
-<!-- ### Homework #9: -->
-<blockquote>
-<p>Due: Mon Apr 08 9:30am</p>
-</blockquote>
+<div id="homework-8" class="section level3">
+<h3>Homework #8:</h3>
+<!-- > Due: Mon Apr 01 9:30am  -->
+<!-- ### [Homework #9](homework/hw9.html) <small> [(Rmd)](homework/hw9.Rmd) -->
+</div>
+<div id="homework-9" class="section level3">
+<h3>Homework #9:</h3>
+<!-- > Due: Mon Apr 08 9:30am  -->
 <!-- ### [Homework #10](homework/hw10.html) <small> [(Rmd)](homework/hw10.Rmd) -->
 </div>
 <div id="homework-10" class="section level3">
-<h3><del>Homework #10:</del></h3>
+<h3>Homework #10:</h3>
 <!-- > Due: Mon Apr 22 9:30am -->
 </div>
 

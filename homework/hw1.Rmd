@@ -1,7 +1,7 @@
 ---
 title: "Homework #1"
 author: "**Your Name Here**"
-date: "Due: Mon Jan 28 9:30am"
+date: "Due: Mon Sept 9 2:00pm"
 output: html_document
 ---
 
@@ -29,7 +29,7 @@ knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
 
 
 
-**SYS 4582/6018 | Spring 2019 | University of Virginia **
+**SYS 6018 | Fall 2019 | University of Virginia**
 
 *******************************************
 

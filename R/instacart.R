@@ -20,7 +20,8 @@ orders = read_csv(file.path(data.dir, "order_products__train.csv"))
 products = read_csv(file.path(data.dir, "products.csv"))
 
 
-#- Join orders and products, only keeping columns of interest
+#- Join orders and products, only keeping columns of interest. 
+#  This is not strictly necessary, but I'd rather see product names then id's
 Y = left_join(orders %>% select(order_id, product_id), 
               products %>% select(product_id, product_name), 
               by = "product_id") %>% 
@@ -49,10 +50,11 @@ Y = Y %>% distinct(order_id, product_id, .keep_all = TRUE)
 NT = n_distinct(Y$order_id)     # Number of transactions
 NI = n_distinct(Y$product_name) # Number of items
 
-#-- distribution of itemset length
+#-- plot the distribution of itemset length (barplot of pmf)
 count(Y, order_id) %>% 
   ggplot(aes(n)) + geom_bar() + xlab("length of itemset")
 
+#-- plot the distribution of itemset length (cumulative distribution)
 count(Y, order_id) %>% 
   ggplot(aes(n)) + stat_ecdf() + xlab("length of itemset")
 
@@ -62,7 +64,7 @@ count(Y, order_id) %>%
 
 #-- get transaction list
 tList = split(Y$product_name, Y$order_id)    # get transaction list
-# tList = lapply(tList, unique)             # remove duplicates  
+# tList = lapply(tList, unique)              # another way to remove duplicates  
 
 #-- get transaction class
 trans = as(tList, "transactions")
@@ -132,8 +134,9 @@ rules = apriori(trans,
              parameter = list(support=.001, confidence=.50, 
                               minlen=2,target="rules"))
 
-apriori2df(rules) %>% arrange(-lift)
-apriori2df(rules) %>% arrange(-confidence)
+apriori2df(rules) %>% arrange(-confidence)  # order by confidence metric
+apriori2df(rules) %>% arrange(-lift)        # order by lift metric
+
 
 #-- Add other interest measures
 apriori2df(rules) %>% 
@@ -161,6 +164,7 @@ filter(itemFreq, str_detect(product_name, "Hass Avocado"))
   # Notice all the variations on "Avocado"
 filter(itemFreq, str_detect(product_name, "Tomato"))
 filter(itemFreq, str_detect(product_name, "Onions"))
+  # see ?str_detect() for detecting certain patterns in a string
 
 
 #-- Find all rules with 'Small Hass Avocado' on the lhs

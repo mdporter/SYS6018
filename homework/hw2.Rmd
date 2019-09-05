@@ -1,7 +1,7 @@
 ---
 title: "Homework #2"
 author: "**Your Name Here**"
-date: "Due: Mon Feb 04 9:30am"
+date: "Due: Mon Sept 16 2:00pm"
 output: html_document
 ---
 
@@ -13,7 +13,8 @@ knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
                       echo=TRUE,         # echo code by default
                       comment = "#>",    # change comment character
                       fig.width = 5,     # set figure width
-                      out.width = "50%", # set width of displayed images
+                      fig.align = "center",# set figure position
+                      out.width = "49%", # set width of displayed images
                       warning=FALSE,     # do not show R warnings
                       message=FALSE)     # do not show R messages
 ```
@@ -31,67 +32,73 @@ knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
 
 
 
-**SYS 4582/6018 | Spring 2019 | University of Virginia **
+**SYS 6018 | Fall 2019 | University of Virginia **
 
 *******************************************
 
 <!--- Load Required R packages here --->
 ```{r, include=FALSE}
 library(tidyverse)
-library(igraph)
+library(igraph)      # note the conflicts: simplify(), groups()
 digits <- function(x, k=2) format(round(x, k), nsmall=k)
 ```
+
 
 
 ### Problem 2.1 The Marvel Universe
 
 [Alberich, Miro-Julia, \& Rossell&oacute; (2002)](https://arxiv.org/pdf/cond-mat/0202174.pdf) 
 examined the social network structure of the Marvel Comics Universe and found some similarities to real-world collaboration networks. 
-The folks at <http://syntagmatic.github.io/exposedata/marvel/> have made the network data available (along with some nice visualizations). I have extracted the Hero Social Network Data which can be accessed using [this link](https://raw.githubusercontent.com/mdporter/SYS6018/master/data/marvel_hero-network.csv). Note that the data contain one edge for each time a hero appeared in the same comic, so there will be multiple edges. 
+The folks at <http://syntagmatic.github.io/exposedata/marvel/> have made the network data available (along with some nice visualizations). I have extracted the Hero Social Network Data which can be accessed using [this link](https://raw.githubusercontent.com/mdporter/SYS6018/master/data/marvel_hero-network.csv). Note that the data contain one edge for each time two heroes appeared in the same comic.  
 
 
-a. Load the data and make a *weighted* and *undirected* graph, where the `weight` corresponds to the number of times the heros appeared in the same comic. Ensure your graph has an edge attribute named `weight`. The weight between *LITTLE, ABNER* and *BLACK PANTHER/T'CHAL LITTLE* should be $7$. 
+a. Load the data and make a *weighted* and *undirected* graph, where the `weight` corresponds to the number of times the heroes appeared in the same comic. Ensure your graph has an edge attribute named `weight`. The weight between *LITTLE, ABNER* and *BLACK PANTHER/T'CHAL LITTLE* should be 7. 
+    - No need to make a plot, just show your code to make the graph object.
 
 
 <div id="solution">
-Solution Here
+SOLUTION HERE
 </div>
 
 
 
-b. Run the *fast-greedy* community detection algorithm (`igraph::cluster_fast_greedy()`). How many communities did it find? Show a barplot/histogram of the community sizes (i.e., how many nodes are in each community). 
+b. Run the *fast-greedy* community detection algorithm (`igraph::cluster_fast_greedy()`).
+    - Use the edge weights in the community detection algorithm.
+    - How many communities did it find? 
+    - Use a barplot to show community size of each group (i.e., group number on the x-axis and group size on y-axis).
 
 <div id="solution">
-Solution Here
+SOLUTION HERE
 </div>
 
 
 
-c. Calculate the following centrality scores for the network: *eigenvector, betweeness, and degree*. Show the top 10 heros arranged by *eigenvector centrality*. Which hero has the largest eigenvector centrality? How does this make the hero *important*? 
+c. Calculate the following centrality scores for the hero network: *eigenvector, betweeness, and degree*. 
+    - `igraph` has two versions of centrality calculations (I know, a bit confusing).
+    - The ones starting with `centr_` do not consider edge weights.
+    - The others (e.g., `betweenness()`, `eigen_centrality()`) will allow weights.
+    - For this exercise, ignore the weights and use the `centr_` versions. 
+    - By default, these will return a normalized version (which divides the score by the theoretical maximum value). 
+    - Show the top 10 heroes arranged by *eigenvector centrality*. 
+    - Which hero has the largest eigenvector centrality? How does this make the hero *important*? 
+
+
 
 <div id="solution">
-Solution Here
+SOLUTION HERE
 </div>
 
-d. Show the 3 centrality scores, sorted by *betweeness centrality*, for the three largest communities. How are these three heros *important*.
+d. For each of the three largest communities find the hero with the largest *betweeness centrality*. Explain how these heroes are *important*. 
+
 
 <div id="solution">
-Solution Here
+SOLUTION HERE
 </div>
-
-       
-
-
 
 
 
 ### Problem 2.2: Alpha Centrality
 
-<!---
-Eigenvector-like measures of centrality for asymmetric relations
-Phillip Bonacich, Paulette Lloyd
-Social Networks 23 (2001) 191–201
---->
 
 [Bonacich and Lloyd (2001)](https://github.com/mdporter/SYS6018/raw/master/other/alpha-centrality_Bonacich.pdf) introduced *alpha centrality* as an alternative to eigenvector centrality. Their main idea is that the importance of a node is based on the network structure **plus** some known external sources of importance. The alpha centrality vector $x$ is defined:
 \[ 
@@ -103,7 +110,7 @@ where $s$ is the vector of exogenous importance and $0 \leq \alpha \leq 1/\lambd
 a. PageRank can be considered a special case of alpha centrality. What does PageRank use for $s$, $\alpha$, and $A$? Use the notation from the class notes,  e.g., $\alpha=d$. 
 
 <div id="solution">
-Solution Here
+SOLUTION HERE
 </div>
 
 ---
@@ -119,41 +126,20 @@ The next few problems will explore how alpha centrality can be used for identify
 </div>
 
 
-b. Make one *directed* and one *undirected* graph from these data. 
+b. Make a *directed* graph from these data. 
+    - Show code, no need to make a plot
 
 <div id="solution">
-Solution Here
+SOLUTION HERE
 </div>
 
-
-c. Using the *directed* graph, calculate the alpha centrality using $s=\mathbf{1}_n$, the vector of all ones. Use $\alpha \in \{.1, .8\}$. 
-For each $\alpha$, plot the results using color to distinguish between the fraud, non-fraud, and unknown nodes. Comment on what this tells you about the two unknown nodes. 
-
-<div id="solution">
-Solution Here
-</div>
-
-
-d. Repeat for the *undirected* graph using only $\alpha=.1$. 
+c. Using the *directed graph*, set $s=1$ for the known fraudsters, $s=0$ for the legitimate, and $s=0.01$ for the unknown nodes and calculate the alpha centrality. You can think of $s$ as proportional to the prior probability that a node is a fraudster. 
+    - Use $\alpha = 0.8$. 
+    - Use a Cleveland dot plot (or bar plot) to visually display the alpha centrality scores for all node. Use color (or fill) to distinguish between the fraud, non-fraud, and unknown nodes. 
+    - Comment on what this tells you about the two unknown nodes
 
 <div id="solution">
-Solution Here
-</div>
-
-
-e. Why can $\alpha=.8$ not be used for the *undirected* graph? What is the maximum value of $\alpha$ in this case? 
-
-<div id="solution">
-Solution Here
-</div>
-
-
-
-f. Using the *directed graph*, set $e=1$ for the known fraudsters, $e=0$ for the legitimate, and $e=.01$ for the unknown nodes. You can think of $e$ as proportional to the prior probability that a node is a fraudster. Calculate the alpha centrality (using $\alpha = .8$) and make the plot. Comment on what this tells you about the two unknown nodes. 
-
-
-<div id="solution">
-Solution Here
+SOLUTION HERE
 </div>
 
 
@@ -162,15 +148,13 @@ Solution Here
 
 ### Problem 2.3: Hubs and Authorities (HITS) 
 
-**This problem is for graduate students. Undergrads do not need to complete**.
-
 The HITS algorithm is described in [MMDS 5.5](http://infolab.stanford.edu/~ullman/mmds/ch5.pdf)
 
 
 a. The HITS scores are designed to work with *directed* networks. What is the result of running HITS on an *undirected* network? Show that the scores reduce to a familiar centrality score. 
 
 <div id="solution">
-Solution Here
+SOLUTION HERE
 </div>
 
 
@@ -178,8 +162,9 @@ Solution Here
 b. Write a function to calculate the Hubs and Authority scores. See MMDS 5.5.2 for details. 
 
 <div id="solution">
-Solution Here
+SOLUTION HERE
 </div>
+
 
 c. Use your function to calculate the hubs and authority scores for the Political Blog data [Adamic and Glance (2005). "The political blogosphere and the 2004 U.S. election: divided they blog", In Proceedings of the *3rd International Workshop on Link discovery (LinkKDD '05)*. ACM, New York, NY, USA](https://github.com/mdporter/SYS6018/raw/master/other/(Adamic)%20Political%20Blogs.pdf).
 
@@ -196,7 +181,7 @@ Run HITS on the full data, and then report the top 5 hubs and top 5 authority sc
  
 
 <div id="solution">
-Solution Here
+SOLUTION HERE
 </div>
 
 

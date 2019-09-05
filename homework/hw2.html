@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Your Name Here" />
@@ -70,9 +71,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -86,7 +85,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -103,8 +101,6 @@ summary {
 </style>
 
 
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -162,20 +158,17 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -185,8 +178,8 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Homework #2</h1>
-<h4 class="author"><em><strong>Your Name Here</strong></em></h4>
-<h4 class="date"><em>Due: Mon Feb 04 9:30am</em></h4>
+<h4 class="author"><strong>Your Name Here</strong></h4>
+<h4 class="date">Due: Mon Sept 16 2:00pm</h4>
 
 </div>
 
@@ -202,44 +195,56 @@ $(document).ready(function () {
   margin: 20px
 }
 </style>
-<p><strong>SYS 4582/6018 | Spring 2019 | University of Virginia </strong></p>
+<p><strong>SYS 6018 | Fall 2019 | University of Virginia </strong></p>
 <hr />
 <!--- Load Required R packages here --->
 <div id="problem-2.1-the-marvel-universe" class="section level3">
 <h3>Problem 2.1 The Marvel Universe</h3>
-<p><a href="https://arxiv.org/pdf/cond-mat/0202174.pdf">Alberich, Miro-Julia, &amp; Rosselló (2002)</a> examined the social network structure of the Marvel Comics Universe and found some similarities to real-world collaboration networks. The folks at <a href="http://syntagmatic.github.io/exposedata/marvel/" class="uri">http://syntagmatic.github.io/exposedata/marvel/</a> have made the network data available (along with some nice visualizations). I have extracted the Hero Social Network Data which can be accessed using <a href="https://raw.githubusercontent.com/mdporter/SYS6018/master/data/marvel_hero-network.csv">this link</a>. Note that the data contain one edge for each time a hero appeared in the same comic, so there will be multiple edges.</p>
+<p><a href="https://arxiv.org/pdf/cond-mat/0202174.pdf">Alberich, Miro-Julia, &amp; Rosselló (2002)</a> examined the social network structure of the Marvel Comics Universe and found some similarities to real-world collaboration networks. The folks at <a href="http://syntagmatic.github.io/exposedata/marvel/" class="uri">http://syntagmatic.github.io/exposedata/marvel/</a> have made the network data available (along with some nice visualizations). I have extracted the Hero Social Network Data which can be accessed using <a href="https://raw.githubusercontent.com/mdporter/SYS6018/master/data/marvel_hero-network.csv">this link</a>. Note that the data contain one edge for each time two heroes appeared in the same comic.</p>
 <ol style="list-style-type: lower-alpha">
-<li>Load the data and make a <em>weighted</em> and <em>undirected</em> graph, where the <code>weight</code> corresponds to the number of times the heros appeared in the same comic. Ensure your graph has an edge attribute named <code>weight</code>. The weight between <em>LITTLE, ABNER</em> and <em>BLACK PANTHER/T’CHAL LITTLE</em> should be <span class="math inline">\(7\)</span>.</li>
+<li>Load the data and make a <em>weighted</em> and <em>undirected</em> graph, where the <code>weight</code> corresponds to the number of times the heroes appeared in the same comic. Ensure your graph has an edge attribute named <code>weight</code>. The weight between <em>LITTLE, ABNER</em> and <em>BLACK PANTHER/T’CHAL LITTLE</em> should be 7.
+<ul>
+<li>No need to make a plot, just show your code to make the graph object.</li>
+</ul></li>
 </ol>
 <div id="solution">
-<p>Solution Here</p>
+<p>SOLUTION HERE</p>
 </div>
 <ol start="2" style="list-style-type: lower-alpha">
-<li>Run the <em>fast-greedy</em> community detection algorithm (<code>igraph::cluster_fast_greedy()</code>). How many communities did it find? Show a barplot/histogram of the community sizes (i.e., how many nodes are in each community).</li>
+<li>Run the <em>fast-greedy</em> community detection algorithm (<code>igraph::cluster_fast_greedy()</code>).
+<ul>
+<li>Use the edge weights in the community detection algorithm.</li>
+<li>How many communities did it find?</li>
+<li>Use a barplot to show community size of each group (i.e., group number on the x-axis and group size on y-axis).</li>
+</ul></li>
 </ol>
 <div id="solution">
-<p>Solution Here</p>
+<p>SOLUTION HERE</p>
 </div>
 <ol start="3" style="list-style-type: lower-alpha">
-<li>Calculate the following centrality scores for the network: <em>eigenvector, betweeness, and degree</em>. Show the top 10 heros arranged by <em>eigenvector centrality</em>. Which hero has the largest eigenvector centrality? How does this make the hero <em>important</em>?</li>
+<li>Calculate the following centrality scores for the hero network: <em>eigenvector, betweeness, and degree</em>.
+<ul>
+<li><code>igraph</code> has two versions of centrality calculations (I know, a bit confusing).</li>
+<li>The ones starting with <code>centr_</code> do not consider edge weights.</li>
+<li>The others (e.g., <code>betweenness()</code>, <code>eigen_centrality()</code>) will allow weights.</li>
+<li>For this exercise, ignore the weights and use the <code>centr_</code> versions.</li>
+<li>By default, these will return a normalized version (which divides the score by the theoretical maximum value).</li>
+<li>Show the top 10 heroes arranged by <em>eigenvector centrality</em>.</li>
+<li>Which hero has the largest eigenvector centrality? How does this make the hero <em>important</em>?</li>
+</ul></li>
 </ol>
 <div id="solution">
-<p>Solution Here</p>
+<p>SOLUTION HERE</p>
 </div>
 <ol start="4" style="list-style-type: lower-alpha">
-<li>Show the 3 centrality scores, sorted by <em>betweeness centrality</em>, for the three largest communities. How are these three heros <em>important</em>.</li>
+<li>For each of the three largest communities find the hero with the largest <em>betweeness centrality</em>. Explain how these heroes are <em>important</em>.</li>
 </ol>
 <div id="solution">
-<p>Solution Here</p>
+<p>SOLUTION HERE</p>
 </div>
 </div>
 <div id="problem-2.2-alpha-centrality" class="section level3">
 <h3>Problem 2.2: Alpha Centrality</h3>
-<!---
-Eigenvector-like measures of centrality for asymmetric relations
-Phillip Bonacich, Paulette Lloyd
-Social Networks 23 (2001) 191–201
---->
 <p><a href="https://github.com/mdporter/SYS6018/raw/master/other/alpha-centrality_Bonacich.pdf">Bonacich and Lloyd (2001)</a> introduced <em>alpha centrality</em> as an alternative to eigenvector centrality. Their main idea is that the importance of a node is based on the network structure <strong>plus</strong> some known external sources of importance. The alpha centrality vector <span class="math inline">\(x\)</span> is defined: <span class="math display">\[ 
 x = \alpha  A^T x + s
 \]</span> where <span class="math inline">\(s\)</span> is the vector of exogenous importance and <span class="math inline">\(0 \leq \alpha \leq 1/\lambda_1\)</span> (where <span class="math inline">\(\lambda_1\)</span> is the maximum eigenvalue of <span class="math inline">\(A\)</span>) reflects the relative importance of the endogenous factors of importance.</p>
@@ -247,7 +252,7 @@ x = \alpha  A^T x + s
 <li>PageRank can be considered a special case of alpha centrality. What does PageRank use for <span class="math inline">\(s\)</span>, <span class="math inline">\(\alpha\)</span>, and <span class="math inline">\(A\)</span>? Use the notation from the class notes, e.g., <span class="math inline">\(\alpha=d\)</span>.</li>
 </ol>
 <div id="solution">
-<p>Solution Here</p>
+<p>SOLUTION HERE</p>
 </div>
 <hr />
 <div style="background-color:lightgrey; display: block; border-color: black; padding:1em">
@@ -258,51 +263,40 @@ x = \alpha  A^T x + s
 </ul>
 </div>
 <ol start="2" style="list-style-type: lower-alpha">
-<li>Make one <em>directed</em> and one <em>undirected</em> graph from these data.</li>
+<li>Make a <em>directed</em> graph from these data.
+<ul>
+<li>Show code, no need to make a plot</li>
+</ul></li>
 </ol>
 <div id="solution">
-<p>Solution Here</p>
+<p>SOLUTION HERE</p>
 </div>
 <ol start="3" style="list-style-type: lower-alpha">
-<li>Using the <em>directed</em> graph, calculate the alpha centrality using <span class="math inline">\(s=\mathbf{1}_n\)</span>, the vector of all ones. Use <span class="math inline">\(\alpha \in \{.1, .8\}\)</span>. For each <span class="math inline">\(\alpha\)</span>, plot the results using color to distinguish between the fraud, non-fraud, and unknown nodes. Comment on what this tells you about the two unknown nodes.</li>
+<li>Using the <em>directed graph</em>, set <span class="math inline">\(s=1\)</span> for the known fraudsters, <span class="math inline">\(s=0\)</span> for the legitimate, and <span class="math inline">\(s=0.01\)</span> for the unknown nodes and calculate the alpha centrality. You can think of <span class="math inline">\(s\)</span> as proportional to the prior probability that a node is a fraudster.
+<ul>
+<li>Use <span class="math inline">\(\alpha = 0.8\)</span>.</li>
+<li>Use a Cleveland dot plot (or bar plot) to visually display the alpha centrality scores for all node. Use color (or fill) to distinguish between the fraud, non-fraud, and unknown nodes.</li>
+<li>Comment on what this tells you about the two unknown nodes</li>
+</ul></li>
 </ol>
 <div id="solution">
-<p>Solution Here</p>
-</div>
-<ol start="4" style="list-style-type: lower-alpha">
-<li>Repeat for the <em>undirected</em> graph using only <span class="math inline">\(\alpha=.1\)</span>.</li>
-</ol>
-<div id="solution">
-<p>Solution Here</p>
-</div>
-<ol start="5" style="list-style-type: lower-alpha">
-<li>Why can <span class="math inline">\(\alpha=.8\)</span> not be used for the <em>undirected</em> graph? What is the maximum value of <span class="math inline">\(\alpha\)</span> in this case?</li>
-</ol>
-<div id="solution">
-<p>Solution Here</p>
-</div>
-<ol start="6" style="list-style-type: lower-alpha">
-<li>Using the <em>directed graph</em>, set <span class="math inline">\(e=1\)</span> for the known fraudsters, <span class="math inline">\(e=0\)</span> for the legitimate, and <span class="math inline">\(e=.01\)</span> for the unknown nodes. You can think of <span class="math inline">\(e\)</span> as proportional to the prior probability that a node is a fraudster. Calculate the alpha centrality (using <span class="math inline">\(\alpha = .8\)</span>) and make the plot. Comment on what this tells you about the two unknown nodes.</li>
-</ol>
-<div id="solution">
-<p>Solution Here</p>
+<p>SOLUTION HERE</p>
 </div>
 </div>
 <div id="problem-2.3-hubs-and-authorities-hits" class="section level3">
 <h3>Problem 2.3: Hubs and Authorities (HITS)</h3>
-<p><strong>This problem is for graduate students. Undergrads do not need to complete</strong>.</p>
 <p>The HITS algorithm is described in <a href="http://infolab.stanford.edu/~ullman/mmds/ch5.pdf">MMDS 5.5</a></p>
 <ol style="list-style-type: lower-alpha">
 <li>The HITS scores are designed to work with <em>directed</em> networks. What is the result of running HITS on an <em>undirected</em> network? Show that the scores reduce to a familiar centrality score.</li>
 </ol>
 <div id="solution">
-<p>Solution Here</p>
+<p>SOLUTION HERE</p>
 </div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Write a function to calculate the Hubs and Authority scores. See MMDS 5.5.2 for details.</li>
 </ol>
 <div id="solution">
-<p>Solution Here</p>
+<p>SOLUTION HERE</p>
 </div>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Use your function to calculate the hubs and authority scores for the Political Blog data <a href="https://github.com/mdporter/SYS6018/raw/master/other/(Adamic)%20Political%20Blogs.pdf">Adamic and Glance (2005). “The political blogosphere and the 2004 U.S. election: divided they blog”, In Proceedings of the <em>3rd International Workshop on Link discovery (LinkKDD ’05)</em>. ACM, New York, NY, USA</a>.</li>
@@ -319,7 +313,7 @@ x = \alpha  A^T x + s
 <li>Note: the network is <em>directed</em></li>
 </ul>
 <div id="solution">
-<p>Solution Here</p>
+<p>SOLUTION HERE</p>
 </div>
 </div>
 
@@ -340,6 +334,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

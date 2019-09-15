@@ -1,7 +1,7 @@
 ---
 title: "Homework #3"
 author: "**Your Name Here**"
-date: "Due: Mon Feb 11 9:30am"
+date: "Due: Mon Sept 23 2:00pm"
 output: html_document
 ---
 
@@ -13,7 +13,8 @@ knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
                       echo=TRUE,         # echo code by default
                       comment = "#>",    # change comment character
                       fig.width = 5,     # set figure width
-                      out.width = "50%", # set width of displayed images
+                      fig.align = "center",# set figure position
+                      out.width = "49%", # set width of displayed images
                       warning=FALSE,     # do not show R warnings
                       message=FALSE)     # do not show R messages
 ```
@@ -31,14 +32,13 @@ knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
 
 
 
-**SYS 4582/6018 | Spring 2019 | University of Virginia **
+**SYS 6018 | Fall 2019 | University of Virginia **
 
 *******************************************
 
 <!--- Load Required R packages here --->
 ```{r, include=FALSE}
 library(tidyverse)
-library(igraph)
 digits <- function(x, k=2) format(round(x, k), nsmall=k)
 ```
 

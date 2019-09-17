@@ -139,4 +139,119 @@ lines(x.seq, f.nb, col="red")
 lines(x.seq, f.gauss, col="green")
 
 
+#---------------------------------------------------------------------------#
+#-- Histograms
+#---------------------------------------------------------------------------#
+
+#-- Load the Old Faithful data
+wait = datasets::faithful$waiting
+
+
+#-- Histogram settings
+bw = 10                     # binwidth parameter
+bks = seq(40, 110, by=bw)   # create a sequence of numbers
+
+#-- Frequency Histogram
+hist(wait, breaks=bks, las=1, main="Frequency Histogram")
+
+#-- Relative Frequency Histogram
+h.rf = hist(wait, breaks=bks, plot=FALSE)
+h.rf$counts = h.rf$counts/sum(h.rf$counts)   # make relative frequency
+plot(h.rf, las=1, main="Relative Frequency Histogram")
+
+#-- Density Histogram
+hist(wait, freq=FALSE, breaks=bks, las=1, main="Density Histogram")
+
+
+#-- Manual histogram calculations
+hist.data = tibble(wait) %>% 
+  mutate(bin = cut_width(wait, width=bw, boundary=40)) %>% 
+  count(bin) %>% 
+  mutate(rel.freq = n/sum(n), density=rel.freq/bw)
+
+ggplot(hist.data) + geom_col(aes(bin, rel.freq), width=1)
+
+
+#---------------------------------------------------------------------------#
+#-- KDE 
+#---------------------------------------------------------------------------#
+library(ks)
+
+#-- Histogram
+bw = 5                      # binwidth parameter
+bks = seq(40, 100, by=bw)   # create a sequence of numbers
+hh = hist(wait,  breaks=bks)# histogram object
+
+#-- KDE
+library(ks)
+f = kde(wait, h=bw/3)
+plot(f)
+
+#-- Plot hist and kde
+plot(hh, freq=FALSE, ylim=c(0, max(c(hh$density, f$estimate))), 
+     las=1, main='', border='white', col='grey75') 
+rug(jitter(wait))
+lines(f$eval.points, f$estimate, col=2, lwd=1.25)
+# OR: plot(f, add=TRUE, col=2, lwd=1.25)
+
+
+
+
+
+#---------------------------------------------------------------------------#
+#-- Multivariate KDE 
+#---------------------------------------------------------------------------#
+#-- Load the Old Faithful data
+X = datasets::faithful
+
+#-- Plot: Base R
+plot(X, las=1); grid()
+#-- Plot: ggplot
+ggplot(X) + geom_point(aes(eruptions, waiting))
+
+#-- MV KDE: Unconstrained
+H1 = Hscv(X)                  # smoothed cross-validation bw estimator
+f1 = kde(X, H=H1)             # use H for multivariate data
+
+plot(f1, 
+     cont = c(10, 50, 95),                        # set contour levels
+     # display = "filled.contour",                # use filled contour
+     las=1, xlim = c(1.0, 5.5), ylim=c(35, 100))  # set asthetics
+points(X, pch=19, cex=.5, col='grey60')           # add points
+grid()                                            # add grid lines
+
+
+
+#-- Product kernel
+H2 = Hscv.diag(X)
+f2 = kde(X, H=H2)             
+
+plot(f2, 
+     cont = c(10, 50, 95),                        # set contour levels
+     las=1, xlim = c(1.0, 5.5), ylim=c(35, 100))  # set asthetics
+points(X, pch=19, cex=.5, col='grey60')           # add points
+grid()                                            # add grid lines
+
+
+
+
+#---------------------------------------------------------------------------#
+#-- Visualize kernel shapes
+#---------------------------------------------------------------------------#
+plot(X, las=1); grid()
+
+#-- Add 95% confidence ellipse for *unconstrained* at location (2, 60)
+library(mixtools)
+points(2, 60, pch="+", col="red", cex=1.5)
+mixtools::ellipse(mu=c(2, 60), 
+                  sigma=H1, 
+                  alpha = .05, col="red") 
+
+#-- Add 95% confidence ellipse for *product kernel* at location (4, 80)
+library(mixtools)
+points(4, 80, pch="+", col="blue", cex=1.5)
+mixtools::ellipse(mu=c(4, 80), 
+                  sigma=H2, 
+                  alpha = .05, col="blue") 
+
 

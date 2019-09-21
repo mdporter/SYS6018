@@ -14,7 +14,8 @@ knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
                       echo=TRUE,         # echo code by default
                       comment = "#>",    # change comment character
                       fig.width = 5,     # set figure width
-                      out.width = "50%", # set width of displayed images
+                      fig.align = "center",# set figure position
+                      out.width = "49%", # set width of displayed images
                       warning=FALSE,     # do not show R warnings
                       message=FALSE)     # do not show R messages
 ```
@@ -32,7 +33,7 @@ knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
 
 
 
-**SYS 4582/6018 | Spring 2019 | University of Virginia **
+**SYS 6018 | Fall 2019 | University of Virginia **
 
 *******************************************
 
@@ -138,7 +139,6 @@ SOLUTION HERE
 
 ### Problem 4.3: Poisson Mixture Model
 
-**This problem is for graduate students. Undergrads do not need to complete**.
 
 The pmf of a Poisson random variable is:
 \begin{align*}
@@ -209,6 +209,7 @@ SOLUTION HERE
 
 
 f. **2 pts Extra Credit**: Write a function that estimates this two-component mixture model using the EM approach. Show that it gives the same result as part *e*. 
+    - Note: you are not permitted to copy code.  Write everything from scratch and use comments to indicate how the code works (e.g., the E-step, M-step, initialization strategy, and convergence should be clear)
 
 <div id="solution">
 SOLUTION HERE

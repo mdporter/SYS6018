@@ -9,8 +9,8 @@
 #####################################################################
 
 #-- Install Required Packages
-library(MASS)
-library(tidyverse)    # install.packages("tidyverse")
+# library(MASS)       # only needed for the crabs data
+library(tidyverse)    # load after MASS so dplyr::select() is not overwritten
 library(mclust)
 
 #---------------------------------------------------------------------------#
@@ -154,6 +154,62 @@ plot(X2, col=km2$cluster, las=1, main="scaled: raw values", asp=1)
 points(km2$centers, col=1:2, pch=15, cex=2)
 
 
+#---------------------------------------------------------------------------#
+#-- GMM Example: Old Faithful (Waiting Time)
+# See interactive shiny example at: https://pasda.shinyapps.io/Old_Faithful/
+#---------------------------------------------------------------------------#
+#-- Load the Old Faithful data
+oldf = datasets::faithful
+
+#-- Make a ggplot object
+pp = ggplot(oldf, aes(x=waiting)) + xlab("waiting time (min)")
+
+#-- Function to calculate Gaussian mixture pdf
+dnmix <- function(theta1, theta2, w=.5, x.seq=seq(-4, 4, length=100)){
+  f1 = dnorm(x.seq, mean=theta1[1], sd=theta1[2])
+  f2 = dnorm(x.seq, mean=theta2[1], sd=theta2[2])
+  fmix = f1*w + f2*(1-w)
+  return(fmix)
+}
+
+#-- Set parameters
+theta1 = c(mu=50, sigma=10)       # parameters for component 1
+theta2 = c(mu=90, sigma=5)        # parameters for component 2
+w = .5                            # mixture weight
+
+#-- Make data for plotting
+x.seq = seq(40, 100, length=200)     # make sequence of x values
+f = dnmix(theta1, theta2, w, x.seq)  # calculate the density at those values
+data.mix = tibble(x.seq, f)          # make into a data frame/tibble
+
+#-- Make plot
+pp + geom_histogram(binwidth = 1, aes(y=stat(density)), alpha=.5) + 
+  geom_line(data=data.mix, aes(x=x.seq, y=f), color="blue", size=1.25) 
+
+
+#---------------------------------------------------------------------------#
+#-- Sampling from a two component univariate GMM
+#---------------------------------------------------------------------------#
+
+#-- Set parameters
+theta1 = c(mu=50, sigma=10)       # parameters for component 1
+theta2 = c(mu=90, sigma=5)        # parameters for component 2
+w = c(.4, .6)                     # mixture weights (must sum to one)
+n = 300                           # number of samples to draw
+set.seed(2019)                    # set the random seed for replication
+
+#-- (1) Draw the group labels
+g = sample(c(1,2), size=n, replace=TRUE, prob=w)
+
+
+#-- (2) Sample from the component densities
+#   To avoid loops, generate n observations from each density and pick the
+#   one according to group label. 
+X = ifelse(g == 1, 
+           rnorm(n, mean=theta1[1], sd=theta1[2]), 
+           rnorm(n, mean=theta2[1], sd=theta2[2]))
+
+hist(X, breaks=50)
 
 #---------------------------------------------------------------------------#
 #-- GMM clustering: Old Faithful

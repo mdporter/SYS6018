@@ -2,7 +2,7 @@
 title: "Homework #4"
 author: "**SOLUTIONS**"
 #author: "**Your Name Here**"
-date: "Due: Mon Feb 18 9:30am"
+date: "Due: Mon Sept 30 2:00pm"
 output: html_document
 ---
 
@@ -125,7 +125,7 @@ Name the file `lastname_firstname.txt`. We will use automated evaluation, so the
 #-- Example of making submission data. 
 # est.label is a vector of labels (length 5000)
 write.table(est.labels, file="save.dir/lastname_firstname.txt", 
-          row.names=FALSE, col.names=NA)
+          row.names=FALSE, col.names=FALSE) #col.names=NA)
 ```
 
 

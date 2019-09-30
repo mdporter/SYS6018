@@ -1,7 +1,7 @@
 ---
 title: "Homework #5"
 author: "**Your Name Here**"
-date: "Due: Mon Feb 25 9:30am"
+date: "Due: Tue Oct 8 2:00pm"
 output: html_document
 ---
 
@@ -9,12 +9,12 @@ output: html_document
 
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
-                      cache=FALSE,       # don't cache anythin by default
                       collapse=FALSE,    # collapse by default
                       echo=TRUE,         # echo code by default
                       comment = "#>",    # change comment character
                       fig.width = 5,     # set figure width
-                      out.width = "50%", # set width of displayed images
+                      fig.align = "center",# set figure position
+                      out.width = "49%", # set width of displayed images
                       warning=FALSE,     # do not show R warnings
                       message=FALSE)     # do not show R messages
 ```
@@ -32,7 +32,7 @@ knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
 
 
 
-**SYS 4582/6018 | Spring 2019 | University of Virginia **
+**SYS 6018 | Fall 2019 | University of Virginia **
 
 *******************************************
 
@@ -41,6 +41,11 @@ knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
 library(tidyverse)
 digits <- function(x, k=2) format(round(x, k), nsmall=k)
 data.dir = 'https://raw.githubusercontent.com/mdporter/SYS6018/master/data'
+
+#-- Useful R Code. See anomaly.R and class notes for more examples
+# the table() function calculates the frequency of the values in a vector
+# the dplyr functions count() calculates the frequency of the values in a data frame
+# colSums() computes column sums of a matrix or data frame
 ```
 
 
@@ -51,9 +56,7 @@ The website [OpenPaymentsData.CMS.gov](OpenPaymentsData.CMS.gov) provides data o
 
 The data can be found at <https://raw.githubusercontent.com/mdporter/SYS6018/master/data/research_payments.csv>
 
-
-
-a. Load the data, extract the first digit from the `payment` column, and calculate the counts of each digit, $1,2,\ldots, 9$. Show a table of the counts. 
+a. Load the data, extract the first digit from the `payment` column, and calculate the counts of each digit, $1,2,\ldots, 9$. Show a table or data frame of the counts. 
 
 <div id="solution">
 SOLUTION HERE
@@ -61,6 +64,7 @@ SOLUTION HERE
 
 
 b. Calculate the $\chi^2$ and *log likelihood ratio* test statistics. Use Benford's distribution as the null model. 
+    - Use the MLE for the alternative distribution for the log-likelihood ratio test statistic
 
 <div id="solution">
 SOLUTION HERE
@@ -73,7 +77,12 @@ SOLUTION HERE
 </div>
 
 
-d. Simulate $M=10000$ realizations from Benford's distribution and compute the approximate 95\% pointwise confidence intervals for the *frequency* (calculate a confidence interval for each digit). Show a table of the confidence intervals and produce a visual display. What does this analysis suggest about the nature of conformity or nonconformity to Benford's distribution? 
+d. This exercise will help you measure the uncertainty in the counts from Benford's distribution. Simulate $M=10000$ realizations from Benford's distribution and compute the approximate 95\% pointwise prediction intervals for the *frequency* of each digit.
+    - Each simulation will generate $n$ first digits, where $n$ is the number of observations in the Medical Payments data from part a. 
+    - Estimate the 95% prediction intervals for each digit. These are the 2.5% and 97.5% quantiles. 
+    - Show a table of the prediction intervals. It should include the digit {1,2, \ldots, 9}, the lower bound, and the upper bound. Again, approximately 95% of the simulated data should be inside the intervals. 
+    - Produce a visual display of the 95% intervals. Include the observed data. 
+    - What does this analysis suggest about the nature of conformity or nonconformity to Benford's distribution? 
 
 <div id="solution">
 SOLUTION HERE
@@ -81,14 +90,11 @@ SOLUTION HERE
 
 
 
-
-
-
 ### Problem 5.2: Interstate Crash Hotspots
 
 In HW 3.2 (Interstate Crash Density), part e, you were asked to identify the *most dangerous* (mile, time) pair. Here we will attempt this with hotspot analysis. 
 
-As we discussed in class, a hotspot model can be formulated in the form of a mixture model. Specifically, if a uniform distribution is specified for the null model and the mixture components are Gaussian then the pdf becomes
+As we discussed in class, a hotspot model can be formulated in the form of a mixture model. Specifically, if a uniform distribution is specified for the null model and the hotspot components are Gaussian then the pdf becomes
 $$f(x; \theta) = \frac{\pi_0}{V} + \sum_{k=1}^K \pi_i \mathcal{N}(\mathbf{x}| \mathbf{\mu}_k, \Sigma_k)$$
 
 - $V$ is the volume of the [minimum bounding box](https://en.wikipedia.org/wiki/Minimum_bounding_box)

@@ -4,14 +4,14 @@
 ## 
 ## Michael D. Porter
 ## Created: Feb 2019
-## For: Data Mining (SYS-6018/SYS-4582) at University of Virginia
+## For: Data Mining (SYS-6018) at University of Virginia
 ## https://mdporter.github.io/SYS6018/
 #####################################################################
 
 #-- Install Required Packages
 library(mclust)
 library(tidyverse)   
-library(readxl)
+library(readxl)    # for reading excel data (part of tidyverse, but not loaded)
 
 
 
@@ -25,11 +25,14 @@ library(readxl)
 #  Extracts the first digit (natural number [1-9])
 #  ignores negative signs, decimals, zeros, etc
 #  x: vector of numbers (could contain characters)
-#  Returns a factor with levels 1:9 to ensure further analysis
-#   is not affected by missing levels
-extract_first_digit <- function(x){
-  d = stringr::str_extract(x, "[1-9]") # get first natural number
-  factor(d, levels=1:9)                # convert to factor with levels 1:9
+#  type: either "factor" or "integer". Returns vector of this type.
+#  Returns a vector of first digits. The default is to return a factor with 
+#   levels 1:9 to ensure further analysis is not affected by missing levels.
+extract_first_digit <- function(x, type="factor"){
+  d = stringr::str_extract(x, "[1-9]")           # extract first natural number
+  if(type == "factor") d = factor(d, levels=1:9) # convert to factor with levels 1:9
+  else if (type == "integer") d = as.integer(d)  # convert to an integer
+  return(d)
 }
 
 #-- dbenford()
@@ -191,15 +194,19 @@ cor(stat.chisq, stat.llr)  # strong correlation between metrics
 par(mfrow=c(1,2))
 plot(density(stat.chisq))   # kde plot
 abline(v = chisq, col="red")
+lines(0:40, dchisq(0:40, df=8), col="blue")         # overlay the asympotic distribution
 
 plot(ecdf(stat.chisq))      # ecdf plot
 abline(v = chisq, col="red")
+lines(0:40, pchisq(0:40, df=8), col="blue")         # overlay the asympotic distribution
 
-plot(density(stat.llr))
+plot(density(2*stat.llr))
 abline(v = llr.mle, col="red")
+lines(0:40, dchisq(0:40, df=8), col="blue")         # overlay the asympotic distribution
 
-plot(ecdf(stat.llr))      # ecdf plot
+plot(ecdf(2*stat.llr))      # ecdf plot
 abline(v = llr.mle, col="red")
+lines(0:40, pchisq(0:40, df=8), col="blue")         # overlay the asympotic distribution
 
 
 #---------------------------------------------------------------------------#

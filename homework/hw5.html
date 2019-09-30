@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Your Name Here" />
@@ -70,9 +71,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -86,7 +85,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -103,8 +101,6 @@ summary {
 </style>
 
 
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -162,20 +158,17 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -185,8 +178,8 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Homework #5</h1>
-<h4 class="author"><em><strong>Your Name Here</strong></em></h4>
-<h4 class="date"><em>Due: Mon Feb 25 9:30am</em></h4>
+<h4 class="author"><strong>Your Name Here</strong></h4>
+<h4 class="date">Due: Tue Oct 8 2:00pm</h4>
 
 </div>
 
@@ -202,7 +195,7 @@ $(document).ready(function () {
   margin: 20px
 }
 </style>
-<p><strong>SYS 4582/6018 | Spring 2019 | University of Virginia </strong></p>
+<p><strong>SYS 6018 | Fall 2019 | University of Virginia </strong></p>
 <hr />
 <!--- Load Required R packages here --->
 <div id="problem-5.1-uva-medical-center-payments" class="section level3">
@@ -210,13 +203,16 @@ $(document).ready(function () {
 <p>The website <a href="OpenPaymentsData.CMS.gov" class="uri">OpenPaymentsData.CMS.gov</a> provides data on the payments made by drug and medical device companies to physicians and teaching hospitals. I have extracted the payments made to the University of Virginia Medical Center for research activities. This exercise will evaluate if the results conform to Benford’s Law.</p>
 <p>The data can be found at <a href="https://raw.githubusercontent.com/mdporter/SYS6018/master/data/research_payments.csv" class="uri">https://raw.githubusercontent.com/mdporter/SYS6018/master/data/research_payments.csv</a></p>
 <ol style="list-style-type: lower-alpha">
-<li>Load the data, extract the first digit from the <code>payment</code> column, and calculate the counts of each digit, <span class="math inline">\(1,2,\ldots, 9\)</span>. Show a table of the counts.</li>
+<li>Load the data, extract the first digit from the <code>payment</code> column, and calculate the counts of each digit, <span class="math inline">\(1,2,\ldots, 9\)</span>. Show a table or data frame of the counts.</li>
 </ol>
 <div id="solution">
 <p>SOLUTION HERE</p>
 </div>
 <ol start="2" style="list-style-type: lower-alpha">
-<li>Calculate the <span class="math inline">\(\chi^2\)</span> and <em>log likelihood ratio</em> test statistics. Use Benford’s distribution as the null model.</li>
+<li>Calculate the <span class="math inline">\(\chi^2\)</span> and <em>log likelihood ratio</em> test statistics. Use Benford’s distribution as the null model.
+<ul>
+<li>Use the MLE for the alternative distribution for the log-likelihood ratio test statistic</li>
+</ul></li>
 </ol>
 <div id="solution">
 <p>SOLUTION HERE</p>
@@ -228,7 +224,14 @@ $(document).ready(function () {
 <p>SOLUTION HERE</p>
 </div>
 <ol start="4" style="list-style-type: lower-alpha">
-<li>Simulate <span class="math inline">\(M=10000\)</span> realizations from Benford’s distribution and compute the approximate 95% pointwise confidence intervals for the <em>frequency</em> (calculate a confidence interval for each digit). Show a table of the confidence intervals and produce a visual display. What does this analysis suggest about the nature of conformity or nonconformity to Benford’s distribution?</li>
+<li>This exercise will help you measure the uncertainty in the counts from Benford’s distribution. Simulate <span class="math inline">\(M=10000\)</span> realizations from Benford’s distribution and compute the approximate 95% pointwise prediction intervals for the <em>frequency</em> of each digit.
+<ul>
+<li>Each simulation will generate <span class="math inline">\(n\)</span> first digits, where <span class="math inline">\(n\)</span> is the number of observations in the Medical Payments data from part a.</li>
+<li>Estimate the 95% prediction intervals for each digit. These are the 2.5% and 97.5% quantiles.</li>
+<li>Show a table of the prediction intervals. It should include the digit {1,2, , 9}, the lower bound, and the upper bound. Again, approximately 95% of the simulated data should be inside the intervals.</li>
+<li>Produce a visual display of the 95% intervals. Include the observed data.</li>
+<li>What does this analysis suggest about the nature of conformity or nonconformity to Benford’s distribution?</li>
+</ul></li>
 </ol>
 <div id="solution">
 <p>SOLUTION HERE</p>
@@ -237,7 +240,7 @@ $(document).ready(function () {
 <div id="problem-5.2-interstate-crash-hotspots" class="section level3">
 <h3>Problem 5.2: Interstate Crash Hotspots</h3>
 <p>In HW 3.2 (Interstate Crash Density), part e, you were asked to identify the <em>most dangerous</em> (mile, time) pair. Here we will attempt this with hotspot analysis.</p>
-<p>As we discussed in class, a hotspot model can be formulated in the form of a mixture model. Specifically, if a uniform distribution is specified for the null model and the mixture components are Gaussian then the pdf becomes <span class="math display">\[f(x; \theta) = \frac{\pi_0}{V} + \sum_{k=1}^K \pi_i \mathcal{N}(\mathbf{x}| \mathbf{\mu}_k, \Sigma_k)\]</span></p>
+<p>As we discussed in class, a hotspot model can be formulated in the form of a mixture model. Specifically, if a uniform distribution is specified for the null model and the hotspot components are Gaussian then the pdf becomes <span class="math display">\[f(x; \theta) = \frac{\pi_0}{V} + \sum_{k=1}^K \pi_i \mathcal{N}(\mathbf{x}| \mathbf{\mu}_k, \Sigma_k)\]</span></p>
 <ul>
 <li><span class="math inline">\(V\)</span> is the volume of the <a href="https://en.wikipedia.org/wiki/Minimum_bounding_box">minimum bounding box</a></li>
 <li><span class="math inline">\(\pi_0 + \sum_{k=1}^K \pi_k = 1\)</span></li>
@@ -292,6 +295,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

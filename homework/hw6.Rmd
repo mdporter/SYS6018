@@ -1,7 +1,7 @@
 ---
 title: "Homework #6"
 author: "**Your Name Here**"
-date: "Due: Tue Mar 19 9:30am"
+date: "Due: Mon Oct 21 2:00pm"
 output: html_document
 ---
 
@@ -9,12 +9,12 @@ output: html_document
 
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
-                      cache=FALSE,       # don't cache anythin by default
                       collapse=FALSE,    # collapse by default
                       echo=TRUE,         # echo code by default
                       comment = "#>",    # change comment character
                       fig.width = 5,     # set figure width
-                      out.width = "50%", # set width of displayed images
+                      fig.align = "center",# set figure position
+                      out.width = "49%", # set width of displayed images
                       warning=FALSE,     # do not show R warnings
                       message=FALSE)     # do not show R messages
 ```
@@ -32,7 +32,7 @@ knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
 
 
 
-**SYS 4582/6018 | Spring 2019 | University of Virginia **
+**SYS 6018 | Fall 2019 | University of Virginia **
 
 *******************************************
 
@@ -71,7 +71,7 @@ SOLUTION HERE
 
 
 c. Fit three polynomial regression models using least squares: linear, quadratic, and cubic. Produce another scatterplot, add the fitted lines and true population line $f(x)$  using different colors, and add a legend that maps the line color to a model.
-Note: Notice that while the true model is quadratic, we are also fitting linear (less complex) and cubic (more complex) models. 
+    - Note: Notice that while the true model is quadratic, we are also fitting linear (less complex) and cubic (more complex) models. 
 
 <div id="solution">
 SOLUTION HERE
@@ -97,8 +97,9 @@ SOLUTION HERE
 
 
 f. The MSE scores obtained in part *d* came from one realization of training data. Here will we explore how much variation there is in the MSE scores by replicating the simulation many times. 
-Re-run the same simulation in part *d* 100 times. Create kernel density plots (you choose bandwidth) of the resulting MSE values for each model. 
-Use `set.seed(613)` prior to running the simulation and do not set the seed in any other places.
+    - Re-run the same simulation in part *d* 100 times. 
+    - Create kernel density plots (you choose bandwidth) of the resulting MSE values for each model. 
+    - Use `set.seed(613)` prior to running the simulation and do not set the seed in any other places.
 
 
 <div id="solution">

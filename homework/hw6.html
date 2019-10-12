@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Your Name Here" />
@@ -70,9 +71,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -86,7 +85,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -103,8 +101,6 @@ summary {
 </style>
 
 
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -162,20 +158,17 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -185,8 +178,8 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Homework #6</h1>
-<h4 class="author"><em><strong>Your Name Here</strong></em></h4>
-<h4 class="date"><em>Due: Tue Mar 19 9:30am</em></h4>
+<h4 class="author"><strong>Your Name Here</strong></h4>
+<h4 class="date">Due: Mon Oct 21 2:00pm</h4>
 
 </div>
 
@@ -202,7 +195,7 @@ $(document).ready(function () {
   margin: 20px
 }
 </style>
-<p><strong>SYS 4582/6018 | Spring 2019 | University of Virginia </strong></p>
+<p><strong>SYS 6018 | Fall 2019 | University of Virginia </strong></p>
 <hr />
 <!--- Load Required R packages here --->
 <div id="problem-6.1-evaluating-a-regression-model" class="section level3">
@@ -225,7 +218,10 @@ Y &amp;= -1 + .5X + .2X^2 + \epsilon \\
 <p>SOLUTION HERE</p>
 </div>
 <ol start="3" style="list-style-type: lower-alpha">
-<li>Fit three polynomial regression models using least squares: linear, quadratic, and cubic. Produce another scatterplot, add the fitted lines and true population line <span class="math inline">\(f(x)\)</span> using different colors, and add a legend that maps the line color to a model. Note: Notice that while the true model is quadratic, we are also fitting linear (less complex) and cubic (more complex) models.</li>
+<li>Fit three polynomial regression models using least squares: linear, quadratic, and cubic. Produce another scatterplot, add the fitted lines and true population line <span class="math inline">\(f(x)\)</span> using different colors, and add a legend that maps the line color to a model.
+<ul>
+<li>Note: Notice that while the true model is quadratic, we are also fitting linear (less complex) and cubic (more complex) models.</li>
+</ul></li>
 </ol>
 <div id="solution">
 <p>SOLUTION HERE</p>
@@ -243,7 +239,12 @@ Y &amp;= -1 + .5X + .2X^2 + \epsilon \\
 <p>SOLUTION HERE</p>
 </div>
 <ol start="6" style="list-style-type: lower-alpha">
-<li>The MSE scores obtained in part <em>d</em> came from one realization of training data. Here will we explore how much variation there is in the MSE scores by replicating the simulation many times. Re-run the same simulation in part <em>d</em> 100 times. Create kernel density plots (you choose bandwidth) of the resulting MSE values for each model. Use <code>set.seed(613)</code> prior to running the simulation and do not set the seed in any other places.</li>
+<li>The MSE scores obtained in part <em>d</em> came from one realization of training data. Here will we explore how much variation there is in the MSE scores by replicating the simulation many times.
+<ul>
+<li>Re-run the same simulation in part <em>d</em> 100 times.</li>
+<li>Create kernel density plots (you choose bandwidth) of the resulting MSE values for each model.</li>
+<li>Use <code>set.seed(613)</code> prior to running the simulation and do not set the seed in any other places.</li>
+</ul></li>
 </ol>
 <div id="solution">
 <p>SOLUTION HERE</p>
@@ -291,6 +292,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -1,20 +1,21 @@
 ---
 title: "Homework #7"
 author: "**Your Name Here**"
-date: "Due: Mon Mar 25 9:30am"
-output: html_document
+date: "Due: Mon Oct 28, 2:00pm"
+output: html_document   # uncomment and comment the following line to switch
+# output: html_notebook # notebooks may be a better option for homework
 ---
 
 <!--- Below are global settings for knitr. You can override any of them by adding the changes to individual chunks --->
 
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
-                      cache=FALSE,       # don't cache anythin by default
                       collapse=FALSE,    # collapse by default
                       echo=TRUE,         # echo code by default
                       comment = "#>",    # change comment character
                       fig.width = 5,     # set figure width
-                      out.width = "50%", # set width of displayed images
+                      fig.align = "center",# set figure position
+                      out.width = "70%", # set width of displayed images
                       warning=FALSE,     # do not show R warnings
                       message=FALSE)     # do not show R messages
 ```
@@ -32,17 +33,17 @@ knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
 
 
 
-**SYS 4582/6018 | Spring 2019 | University of Virginia **
+**SYS 6018 | Fall 2019 | University of Virginia **
 
 *******************************************
 
 <!--- Load Required R packages here --->
 ```{r, include=FALSE}
+library(FNN)
 library(tidyverse)
 digits <- function(x, k=2) format(round(x, k), nsmall=k)
 data.dir = 'https://raw.githubusercontent.com/mdporter/SYS6018/master/data'
 ```
-
 
 
 ### Problem 7.1: Bootstrapping 
@@ -134,7 +135,7 @@ SOLUTION HERE
 
 d. Now we will see how well cross-validation performed. Simulate a test data set of $50000$ observations from the same distributions. Use `set.seed(723)` prior to generating the test data. 
     - Fit a set of kNN models, using the full training data, and calculate the mean squared error (MSE) on the test data for each model. Use the same $k$ values in *a*. 
-    - Report the optimal $k$, corresponding *edf*, and MSE based on the test set. 
+    - Report the optimal $k$, the corresponding *edf*, and MSE based on the test set. 
 
 <div id="solution">
 SOLUTION HERE

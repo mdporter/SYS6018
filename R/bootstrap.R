@@ -11,6 +11,7 @@
 #-- Install Required Packages
 library(boot)
 library(broom)
+library(splines)
 library(tidyverse)
 
 
@@ -68,9 +69,9 @@ apply(beta, 2, sd)   # standard errors (sqrt of diagonal)
 #- fit a 5 df B-spline
 # Note: don't need to include an intercept in the lm()
 # Note: the boundary.knots are set just a bit outside the range of the data
-#       so prediction is possible outside the range (see below for usage), 
-#       and will lead to equal knot locations during bootstrap. 
-#       You probably won't need to set this in practice. 
+#       so prediction is possible outside the range (see below for usage). 
+#       You probably won't need to set this in practice, unless you need 
+#       predictions for outside the range of your data. 
 kts.bdry = c(-.2, 1.2)          
 model_bs = lm(y~bs(x, df=5, deg=3, Boundary.knots = kts.bdry)-1,
               data=data_train)
@@ -78,7 +79,9 @@ tidy(model_bs)
 ggplot(data_train, aes(x,y)) + geom_point() + 
   geom_smooth(method='lm', formula='y~bs(x, df=5, deg=3, Boundary.knots = kts.bdry)-1')
 
-
+#-- Evaluate the B-spline Basis
+B = bs(x, df=7, deg=3, Boundary.knots = kts.bdry)
+matplot(x, B, type='p')
 
 #-----------------------------------------------------------------------------
 #-- Bootstrap Uncertainty in B-spline Fit

@@ -1,10 +1,10 @@
 #####################################################################
-## R Code for Anomaly Detection
-## - See lecture: 08-shrinkage.pdf
+## R Code for Lasso
+## - See lecture: 08-penalized.pdf
 ## 
 ## Michael D. Porter
 ## Created: Mar 2019
-## For: Data Mining (SYS-6018/SYS-4582) at University of Virginia
+## For: Data Mining (SYS-6018) at University of Virginia
 ## https://mdporter.github.io/SYS6018/
 #####################################################################
 

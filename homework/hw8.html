@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 <meta name="author" content="Your Name Here" />
@@ -70,9 +71,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -86,7 +85,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -103,8 +101,6 @@ summary {
 </style>
 
 
-
-<div class="container-fluid main-container">
 
 <!-- tabsets -->
 
@@ -162,20 +158,17 @@ summary {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -185,8 +178,8 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Homework #8</h1>
-<h4 class="author"><em><strong>Your Name Here</strong></em></h4>
-<h4 class="date"><em>Due: Mon Apr 1 9:30am</em></h4>
+<h4 class="author"><strong>Your Name Here</strong></h4>
+<h4 class="date">Due: Mon Nov 4 2:00pm</h4>
 
 </div>
 
@@ -202,13 +195,13 @@ $(document).ready(function () {
   margin: 20px
 }
 </style>
-<p><strong>SYS 4582/6018 | Spring 2019 | University of Virginia </strong></p>
+<p><strong>SYS 6018 | Fall 2019 | University of Virginia </strong></p>
 <hr />
 <!--- Load Required R packages here --->
 <div id="problem-8.1-optimal-tuning-parameters" class="section level3">
 <h3>Problem 8.1: Optimal Tuning Parameters</h3>
 <p>In cross-validation, we discussed choosing the tuning parameter values that minimized the cross-validation error. Another approach, called the “one-standard error” rule [ISL pg 214, ESL pg 61], uses the values corresponding to the least complex model whose cv error is within one standard error of the best model. The goal of this assignment is to compare these two rules.</p>
-<p>Use simulated data from <code>mlbench.friedman1(., sd=2)</code> in the <code>mlbench</code> R package and fit <em>lasso models</em>. The tuning parameter <span class="math inline">\(\lambda\)</span> (corresponding to the penalty on the coefficient magnitude) is the one we will focus one. Generate training data, use k-fold cross-validation to get <span class="math inline">\(\lambda_{\rm min}\)</span> and <span class="math inline">\(\lambda_{\rm 1SE}\)</span>, generate test data, make predictions for the test data, and compare performance of the two rules using mean squared error using a hypothesis test.</p>
+<p>Use simulated data from <code>mlbench.friedman1(., sd=2)</code> in the <code>mlbench</code> R package and fit <em>lasso models</em>. The tuning parameter <span class="math inline">\(\lambda\)</span> (corresponding to the penalty on the coefficient magnitude) is the one we will focus one. Generate training data, use k-fold cross-validation to get <span class="math inline">\(\lambda_{\rm min}\)</span> and <span class="math inline">\(\lambda_{\rm 1SE}\)</span>, generate test data, make predictions for the test data, and compare performance of the two rules under a mean squared error loss using a hypothesis test.</p>
 <p>Choose reasonable values for:</p>
 <ul>
 <li>Number of cv folds (<span class="math inline">\(K\)</span>)</li>
@@ -232,6 +225,7 @@ M =              # number of simulations
 getData &lt;- function(n) mlbench.friedman1(n, sd=2) # data generating function
 
 #-- Simulations
+# Set Seed Here
 
 for(m in 1:M){
 
@@ -302,6 +296,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

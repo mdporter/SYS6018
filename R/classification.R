@@ -67,10 +67,8 @@ Default = Default %>% mutate(y = ifelse(default == "Yes", 1L, 0L))
 fit.lm = lm(y~student + balance + income, data=Default)
 
 #-- Extract coefficients
-coef(fit.lm)
-
-library(broom)
-tidy(fit.lm)    # tidy way to get coefficients
+coef(fit.lm)           # generic coef function to get coefficients
+broom::tidy(fit.lm)    # tidy way to get coefficients
 
 
 #---------------------------------------------------------------------------#

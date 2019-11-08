@@ -138,6 +138,80 @@ ggplot(Default, aes(student, balance, fill=student)) +
 
 
 
+#---------------------------------------------------------------------------#
+#-- Performance Metrics and Curves
+#---------------------------------------------------------------------------#
+#-- train/test split
+set.seed(2019)
+Default = Default %>% 
+  mutate(group = sample(c('train', 'test'), size=nrow(.), 
+                        replace=TRUE, prob=c(.75, .25) )) # ~75% train
+
+#-- fit model on training data
+fit.lm = glm(y~student + balance + income, 
+             family='binomial', 
+             data=filter(Default, group=='train'))
+
+#-- Get predictions (of gamma(x)) on test data
+gamma = predict(fit.lm, 
+                newdata=filter(Default, group=='test'), 
+                type='link')  
+Gtest = filter(Default, group=='test') %>% pull(y) # true values
+
+#-- Visualize Performance by score
+filter(Default, group=='test') %>% 
+  mutate(gamma) %>% 
+  ggplot(aes(gamma, fill=default)) + geom_density(alpha=.70) + 
+  geom_rug(data=. %>% filter(default == 'Yes'), 
+           aes(color=default), sides='t') + 
+  geom_rug(data=. %>% filter(default == 'No'), 
+           aes(color=default), sides='b') + 
+  scale_fill_manual(values=c(Yes="orange", No="blue")) + 
+  scale_color_manual(values=c(Yes="orange", No="blue"), guide=FALSE)
+
+#-- Get performance data (by threshold)
+perf = tibble(truth = Gtest, prediction = gamma) %>% 
+  #- group_by() + summarize() in case of ties
+  group_by(prediction) %>%     
+  summarize(n=n(), n.1=sum(truth), n.0=n-sum(truth)) %>% 
+  #- calculate metrics
+  arrange(prediction) %>% 
+  mutate(FN = cumsum(n.1),    # false negatives 
+         TN = cumsum(n.0),    # true positives
+         TP = sum(n.1) - FN,  # true positives
+         FP = sum(n.0) - TN,  # false positives
+         N = cumsum(n),       # number of cases predicted to be 1
+         TPR = TP/sum(n.1), FPR = FP/sum(n.0)) %>% 
+  #- only keep relevant metrics
+  select(-n, -n.1, -n.0, threshold=prediction)
+
+#-- Make performance curves
+perf %>% select(threshold, FN, TP) %>% 
+  gather(metric, n, -threshold) %>% 
+  ggplot(aes(threshold, n, color=metric)) + geom_line()
+
+#-- Make Cost curves
+perf %>% mutate(cost = 1*FP + 10*FN) %>%   # use 1:10 costs
+  ggplot(aes(threshold, cost)) + geom_line() + 
+  geom_point(data=. %>% filter(cost==min(cost)), size=3, color='orange') + # # optimal from test data
+  geom_vline(xintercept = log(1/11), color='purple') +  # theoretical optimal
+  ggtitle('Cost of FP = 1; Cost of FN=10')
+
+#-- Make ROC curve
+perf %>% 
+  ggplot(aes(FPR, TPR)) + geom_path() + 
+  labs(x='FPR (1-specificity)', y='TPR (sensitivity)') + 
+  #geom_abline(lty=3, color='grey') + 
+  ggtitle("ROC Curve")
+
+#-- Area under the ROC curve (AUC)
+yardstick::roc_auc_vec(truth=Gtest %>% as.factor(), # truth must be a factor!
+                       estimate=gamma)
 
 
-
+#-- Precision-Recall
+perf %>% 
+  mutate(precision = TP/(TP + FP)) %>% 
+  ggplot(aes(TPR, precision)) + geom_line() + 
+  labs(x='Recall (TPR)', y='Precision', 
+       title="Precision-Recall Curve")

@@ -12,19 +12,21 @@
 
 #-- Load Required Packages
 library(ISLR)         # for Hitters data
-library(tidyverse)
 library(rpart)        # for classification and regression trees (CART)
 library(rpart.plot)   # for prp() which allows more plotting control
 library(randomForest) # for randomForest() function
+library(tidyverse)    # for data manipulation
 
 #-- Make Baseball Data
 #   Goal is to predict the log Salary
 
 library(ISLR)
+data(Hitters, package="ISLR")        # load the Hitters data
+
 Hitters = Hitters %>% 
   filter(!is.na(Salary)) %>%         # remove missing Salary
   mutate(Salary = log(Salary)) %>%   # convert to log Salary
-  rename(Y = Salary)
+  rename(Y = Salary)                 # rename Salary to Y
 
 set.seed(2019)
 train = sample(c(rep(TRUE, 200), rep(FALSE, nrow(Hitters)-200)))

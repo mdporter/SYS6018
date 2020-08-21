@@ -40,9 +40,8 @@ knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
 <!--- Load Required R packages here --->
 ```{r, include=FALSE}
 library(tidyverse)
-library(readxl)
-library(arules)
 digits <- function(x, k=2) format(round(x, k), nsmall=k)
+data.dir = 'https://mdporter.github.io/SYS6018/data/'
 ```
 
 ### Problem 0.1: Who are you?

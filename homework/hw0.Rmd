@@ -2,7 +2,9 @@
 title: "Homework #0"
 author: "**Your Name Here**"
 date: "Due: Thu Aug 27 1:55pm"
-output: html_document
+output: 
+  html_document:
+    df_print: paged
 ---
 
 <!--- Below are global settings for knitr. You can override any of them by adding the changes to individual chunks --->

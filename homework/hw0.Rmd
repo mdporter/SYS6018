@@ -4,8 +4,13 @@ author: "**Your Name Here**"
 date: "Due: Thu Aug 27 1:55pm"
 output: 
   html_document:
-    df_print: paged
+  #html_notebook:  
+    df_print: kable
 ---
+
+**SYS 6018 | Fall 2020 | University of Virginia **
+
+*******************************************
 
 <!--- Below are global settings for knitr. You can override any of them by adding the changes to individual chunks --->
 
@@ -19,54 +24,61 @@ knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
                       out.width = "49%", # set width of displayed images
                       warning=FALSE,     # do not show R warnings
                       message=FALSE)     # do not show R messages
+options(dplyr.summarise.inform = FALSE)  # ignore message about group structure
+
 ```
 
 <!--- Solution Region --->
-```{css, echo=FALSE}
-#solution {
-  background-color: #8FBC8F;
+```{css solution-region, echo=FALSE}
+.solution {
+  background-color: #232D4B10;
   border-style: solid;
-  border-color: blue;
+  border-color: #232D4B;
   padding: .5em;
   margin: 20px
 }
 ```
 
-
-**SYS 6018 | Fall 2020 | University of Virginia **
-
-*******************************************
-
 <!--- Load Required R packages here --->
 ```{r, include=FALSE}
-library(tidyverse)
+#- Better table printing
+library(kableExtra) # https://haozhu233.github.io/kableExtra/awesome_table_in_html.html
+format_table <- function(x, nmax=10) {
+  kable(x) %>% 
+    kable_styling(full_width = FALSE, font_size=11, position = "left") %>% 
+    {if(nrow(x) > nmax) scroll_box(., width = "100%", height = "200px") else .}
+}
+#- useful functions
 digits <- function(x, k=2) format(round(x, k), nsmall=k)
+#- data directory
 data.dir = 'https://mdporter.github.io/SYS6018/data/'
+#- required functions
+library(tidyverse)
 ```
 
 ### Problem 0.1: Who are you?
 
 a. What is your name? 
 
-<div id="solution">
+<div class="solution">
 Solution Here
 </div>
 
 b. Where are you from (e.g., hometown)? 
 
-<div id="solution">
+<div class="solution">
 Solution Here
 </div>
 
 c. What do you hope to do after graduation (be specific)?  
 
-<div id="solution">
+<div class="solution">
 Solution Here
 </div>
 
 d. List 3 interesting things about yourself. 
 
-<div id="solution">
+<div class="solution">
 Solution Here: Look up how to make a enumerated list in markdown! 
 </div>
 
@@ -77,27 +89,27 @@ Solution Here: Look up how to make a enumerated list in markdown!
 
 a. What are you most excited to learn in this course?
 
-<div id="solution">
+<div class="solution">
 Solution Here
 </div>
 
 
 b. What pre-req topics (e.g., math, coding, probability, statistics) are your weakest? 
 
-<div id="solution">
+<div class="solution">
 Solution Here
 </div>
 
 
 c. What pre-req topics are your strongest? 
 
-<div id="solution">
+<div class="solution">
 Solution Here
 </div>
 
 d. Would you rather see the mathematical details or coding details of a method/algorithm? 
 
-<div id="solution">
+<div class="solution">
 Solution Here
 </div>
 
@@ -107,17 +119,18 @@ Solution Here
 
 a. What are the equations for the least squares coefficients in linear regression (in matrix notation)? Use $X$ for the design/predictor matrix, and $Y$ the vector of responses. 
 
-<div id="solution">
+<div class="solution">
 Hello LaTex! (<https://www.latex-tutorial.com/tutorials/amsmath/>, <https://www.overleaf.com/learn/latex/Mathematical_expressions>)
 </div>
 
 
 b. Let $x_1, x_2, \ldots, x_n$ be a sample of length of time that a customer is on the phone with a call center help line. We feel comfortable modeling the data as coming from an *exponential distribution*. What is the MLE (Maximum Likelihood Estimate) of the parameter?  Show your steps.
 
-<div id="solution">
+<div class="solution">
 *Don't panic, breath, remember this is not for credit!*
 </div>
 
+---------
 
 ### Problem 0.4: Coding
 
@@ -127,14 +140,14 @@ a. Simulate 100 observations from the following model:
 - $Y \sim N(1 + 2X, 2)$
 - $Z = \begin{cases} 1 &\quad Y<0 \\ 2 &\quad Y \ge 0 \end{cases}$
 
-<div id="solution">
+<div class="solution">
 Let R shine - avoid loops by using vector operations. 
 </div>
 
 
 b. Make a scatter plot of the data. Put $X$ on the x-axis and $Y$ on the y-axis. Color the points according to $Z$. 
 
-<div id="solution">
+<div class="solution">
 Can you use ggplot2?
 </div>
 

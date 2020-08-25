@@ -20,6 +20,7 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 <!-- Force page to update so students can see new content  -->
 
@@ -358,7 +359,7 @@ td {
 </tr>
 <tr class="odd">
 <td><strong>Course Slack:</strong></td>
-<td>UVA Data Science/sys-6018_20f_res</td>
+<td>UVA MSDS 2021/sys-6018</td>
 </tr>
 </tbody>
 </table>
@@ -376,11 +377,11 @@ td {
 </tr>
 <tr class="even">
 <td><strong>Office:</strong></td>
-<td><font style="color:red"> ADD ZOOM LINK </font></td>
+<td><a href="https://virginia.zoom.us/j/93050764700?pwd=UW5iU2l0L0xNbjV4YWl0TS8vK29EZz09">Zoom</a></td>
 </tr>
 <tr class="odd">
 <td><strong>Office Hours:</strong></td>
-<td><font style="color:red"> ADD OFFICE HOURS </font> <br> (and by appt.)</td>
+<td>Thur 9:00-10:30 <br> (and by appt.)</td>
 </tr>
 </tbody>
 </table>
@@ -458,14 +459,17 @@ td {
 </ul></li>
 <li><p>Other course material and reading assignment will come from instructor notes and recent journal articles.</p></li>
 <li><p>The textbook <strong>Applied Predictive Modeling</strong> by Kuhn and Johnson <a href="https://link.springer.com/book/10.1007%2F978-1-4614-6849-3">[webpage]</a> contains some useful information. Unfortunately, we do not have free access at UVA.</p></li>
-<li><p>Examples will use <em>tidyverse</em> tools. The free online book <a href="https://r4ds.had.co.nz/">R for Data Science</a> and <a href="https://tidyverse.org">website</a> provide a good introduction and reference.</p></li>
+<li><p>Examples will use <em>tidyverse</em> tools. The free online book <a href="https://r4ds.had.co.nz/">R for Data Science</a> and <a href="https://tidyverse.org">website</a> provide a good introduction and reference. UVA Library has created some resources: <a href="https://uvastatlab.github.io/phdplus/">Data Science Essentials in R</a></p></li>
 </ul>
 <hr />
 </div>
 <div id="course-assessment" class="section level3">
 <h3>Course Assessment:</h3>
 <ul>
-<li><p>The course grade will be based on nine homework assignments (36%; 4% each), two take home midterm exams (30%; 15% each), a final project (25%), and class participation/labs/attendance (9%).</p></li>
+<li><p>The course grade will be based on nine homework assignments (36%; 4% each), two take home midterm exams (30%; 15% each), a final project (25%), and class participation/labs/attendance (9%).</p>
+<ul>
+<li><em>Due to our new circumstances, I will give everyone full participate credit. But please do participate if you are able!</em></li>
+</ul></li>
 <li><p>A+: &gt;98%, A: 92-97%, A-: 90-91%, B+: 88-89%, B: 82-87%, B-: 80-81%, etc.</p></li>
 <li><p>There is no grade “curving” in this course. However, the lowest homework grade will be dropped.</p>
 <ul>
@@ -476,10 +480,13 @@ td {
 
 <ul>
 <li><p>The exam dates are posted in the Class Schedule (on the course website). Note these now so there are no conflicts.</p></li>
-<li><p>All assignment submissions will be made through Collab. Late submissions (even 1 second late) will not be accepted and will receive a score of zero. The time stamps produced by Collab will be the authoritative reference for all such decisions. If you have special circumstances (e.g., a documented physical condition) that prevent you from adhering to the posted deadlines, please inform me at least 1 week in advance of the deadline so that I can make arrangement to accommodate you.</p></li>
+<li><p>All assignment submissions will be made through Collab. Late submissions (even 1 second late) will not be accepted and will receive a score of zero. The time stamps produced by Collab will be the authoritative reference for all such decisions. If you have special circumstances (e.g., a documented physical condition) that prevent you from adhering to the posted deadlines, please inform me at least 1 week in advance of the deadline so that I can make arrangement to accommodate you.</p>
+<ul>
+<li><em>Due to our new circumstances, I understand this policy may be too strict. Please do be in touch with if you are experiencing troubles meeting the deadlines.</em></li>
+</ul></li>
 <li><p>Homework solutions will be submitted as RMarkdown source (which will contain the code) and the compiled html/pdf.</p>
 <ul>
-<li>[RMarkdown](<a href="https://rmarkdown.rstudio.com/articles.html" class="uri">https://rmarkdown.rstudio.com/articles.html</a> will produce the html/pdf and contain the code.</li>
+<li><a href="https://rmarkdown.rstudio.com/articles.html">RMarkdown</a> will produce the html/pdf and contain the code.</li>
 <li>All code must be easy to follow (e.g., by good commenting)</li>
 <li>Mathematical symbols follows LaTex notation.</li>
 </ul></li>
@@ -494,14 +501,6 @@ td {
 <div id="course-outline" class="section level3">
 <h3>Course Outline:</h3>
 <ul>
-<li>Unsupervised Learning
-<ul>
-<li>Association Analysis</li>
-<li>Network Analytics and PageRank</li>
-<li>Non-parametric Density Estimation</li>
-<li>Clustering</li>
-<li>Anomaly Detection</li>
-</ul></li>
 <li>Supervised Learning
 <ul>
 <li>Penalized Regression (e.g., Ridge, Lasso, elastic net)</li>
@@ -512,6 +511,14 @@ td {
 <li>Resampling (bootstrap, cross-validation, monte carlo)</li>
 <li>Variable Selection and Pre-processing</li>
 <li>Support Vector Machines (SVM)</li>
+</ul></li>
+<li>Unsupervised Learning
+<ul>
+<li>Association Analysis</li>
+<li>Network Analytics and PageRank</li>
+<li>Non-parametric Density Estimation</li>
+<li>Clustering</li>
+<li>Anomaly Detection</li>
 </ul></li>
 </ul>
 <hr />
@@ -525,7 +532,7 @@ td {
 <li>Slack for Discussion
 <ul>
 <li>We will be using Slack for class discussion. Rather than emailing questions to the teaching staff, I encourage you to post your questions on Slack.</li>
-<li>Find our class page at: <strong>Slack UVA Data Science</strong> <code>sys-6018_20f_res</code></li>
+<li>Find our class page at: <strong>Slack UVA MSDS 2021</strong> <code>sys-6018</code></li>
 <li>The teaching staff will always check Slack during our office hours and possibly at other times.</li>
 <li>Please feel free to answer questions from other students, but use your discretion in not directly providing specific solutions to a homework problem (e.g., don’t give the code to answer a question).</li>
 <li>Also, please post any discussion questions or material that you want input from the class and instructors.</li>
@@ -536,7 +543,7 @@ td {
 </div>
 <div id="recording-of-classroom-lectures" class="section level3">
 <h3>Recording of classroom lectures</h3>
-<p>I will be recording every lecture in order to accommodate students who will be learning remotely. Because lectures include fellow students, you and they may be personally identifiable on the recordings. These recordings may <strong>only</strong> be used for the purpose of individual or group study with other students enrolled in this class during this semester. You may not distribute them in whole or in part through any other platform or to any persons outside of this class, nor may you make your own recordings of this class unless written permission has been obtained from the Instructor and all participants in the class have been informed that recording will occur. If you want additional details on this, please see <a href="https://uvapolicy.virginia.edu/policy/PROV-008#Recording_of_Classroom_Lectures_and_Distribution_of_Course_Materials_by_Students">Provost Policy 008</a> which is expected to be updated for the Fall 2020 semester. If you notice that I have failed to activate the recording feature, please remind me!</p>
+<p>I will be recording every lecture in order to accommodate students who will be learning remotely. Because lectures include fellow students, you and they may be personally identifiable on the recordings. These recordings may <strong>only</strong> be used for the purpose of individual or group study with other students enrolled in this class during this semester. You may not distribute them in whole or in part through any other platform or to any persons outside of this class, nor may you make your own recordings of this class unless written permission has been obtained from the Instructor and all participants in the class have been informed that recording will occur. If you want additional details on this, please see <a href="https://uvapolicy.virginia.edu/policy/PROV-005">Provost Policy 005</a>. If you notice that I have failed to activate the recording feature, please remind me!</p>
 <hr />
 </div>
 <div id="zoom-etiquette-and-expectations" class="section level3">
@@ -563,7 +570,7 @@ td {
 <li>All submitted work must be pledged.</li>
 <li>All work must be completed individually unless specific permissions are given on the assignment.
 <ul>
-<li>Homework and in-class exercises can be discussed with classmates, but the final write-up, code, and solutions must be your own.</li>
+<li>Homework and in-class exercises can be discussed with classmates, but the final write-up, code, and solutions must be your own. List the names of who you worked with (like a citation).</li>
 <li>Exams must be done completely on your own. You are not to discuss exams with anyone except the teaching staff.</li>
 </ul></li>
 <li>You are not permitted to copy code. You will no doubt come across examples on the internet. You can consult them to help understand the concept or process, but code in your own words.</li>

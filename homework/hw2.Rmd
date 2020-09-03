@@ -1,0 +1,198 @@
+---
+title: "Homework #2"
+author: "**Your Name Here**"
+date: "Due: Thu Sept 10 | 1:55pm"
+output: 
+  html_document:
+  # html_notebook:  
+    df_print: default  # set default format for table output
+editor_options: 
+  chunk_output_type: console
+---
+
+**SYS 6018 | Fall 2020 | University of Virginia **
+
+*******************************************
+
+<!--- Below are global settings for knitr. You can override any of them by adding the changes to individual chunks --->
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
+                      collapse=FALSE,    # collapse by default
+                      echo=TRUE,         # echo code by default
+                      comment = "#>",    # change comment character
+                      fig.width = 5,     # set figure width
+                      fig.align = "center",# set figure position
+                      out.width = "49%", # set width of displayed images
+                      warning=FALSE,     # do not show R warnings
+                      message=FALSE)     # do not show R messages
+options(dplyr.summarise.inform = FALSE)  # ignore message about group structure
+```
+
+<!--- Solution Region --->
+```{css solution-region, echo=FALSE}
+.solution {
+  background-color: #232D4B10;
+  border-style: solid;
+  border-color: #232D4B;
+  padding: .5em;
+  margin: 20px
+}
+```
+
+
+<!--- Load Required R packages here --->
+```{r packages, include=FALSE}
+#- Better table printing
+library(kableExtra) # https://haozhu233.github.io/kableExtra/awesome_table_in_html.html
+format_table <- function(x, nmax=10) {
+  kable(x) %>% 
+    kable_styling(full_width = FALSE, font_size=11, position = "left") %>% 
+    {if(nrow(x) > nmax) scroll_box(., width = "100%", height = "200px") else .}
+}
+#- useful functions
+digits <- function(x, k=2) format(round(x, k), nsmall=k)
+#- data directory
+data.dir = 'https://mdporter.github.io/SYS6018/data/'
+#- required functions
+library(tidyverse)
+```
+
+
+
+### Problem 2.1: Bootstrapping 
+
+Bootstrap resampling can be used to quantify the uncertainty in a fitted curve. 
+
+
+a. Create a set of functions to generate data from the following distributions:
+\begin{align*}
+X &\sim \mathcal{U}(0, 2) \qquad \text{Uniform in $[0,2]$}\\
+Y &= 1 + 2x + 5\sin(5x) + \epsilon \\
+\epsilon &\sim \mathcal{N}(0,\, \sigma=2.5)
+\end{align*}
+
+<div class="solution">
+
+Solution Here
+
+</div>
+
+
+b. Simulate $n=100$ realizations from these distributions. Produce a scatterplot and draw the true regression line $f(x) = E[Y \mid X=x]$. Use `set.seed(211)` prior to generating the data.
+
+<div class="solution">
+
+Solution Here
+
+</div>
+
+
+c. Now fit a 5th degree polynomial. Produce a scatterplot and draw the *estimated* regression curve.
+
+
+<div class="solution">
+
+Solution Here
+
+</div>
+
+
+
+d. Draw $200$ bootstrap samples, fit a 5th degree polynomial to each bootstrap sample, and make predictions at `eval.pts = seq(0, 2, length=100)`
+    - Set the seed (use `set.seed(212)`) so your results are reproducible.
+    - Produce a scatterplot and add the $200$ bootstrap curves
+    
+<div class="solution">
+
+Solution Here
+
+</div>
+
+    
+e. Calculate the pointwise 95% confidence intervals from the bootstrap samples. That is, for each $x \in {\rm eval.pts}$, calculate the upper and lower limits such that only 5% of the curves fall outside the interval at $x$. 
+    - Remake the plot from part *c*, but add the upper and lower boundaries from the 95% confidence intervals. 
+
+
+<div class="solution">
+
+Solution Here
+
+</div>
+
+### Problem 2.2: V-Fold cross-validation with $k$ nearest neighbors
+
+Run 10-fold cross-validation on the data generated in part 1b to select the optimal $k$ in a k-nearest neighbor (kNN) model. Then evaluate how well cross-validation performed by evaluating the performance on a large test set. The steps below will guide you.
+
+
+a. Use $10$-fold cross-validation to find the value of $k$ (i.e., neighborhood size) that provides the smallest cross-validated MSE using a kNN model. Search over $k=3,4,\ldots, 50$.
+    - Use `set.seed(221)` prior to generating the folds to ensure the results are replicable. 
+    - Report the optimal $k$ (as determined by cross-validation), the corresponding estimated MSE, and produce a plot with $k$ on the x-axis and the estimated MSE on the y-axis (optional: add 1-standard error bars). 
+
+
+<div class="solution">
+
+Solution Here
+
+</div>
+
+
+b. The $k$ (number of neighbors) in a kNN model determines the effective degrees of freedom *edf*. What is the optimal *edf*? Be sure to use the correct sample size when making this calculation. Produce a plot similar to that from part *a*, but use *edf* (effective degrees of freedom) on the x-axis. 
+
+
+<div class="solution">
+
+Solution Here
+
+</div>
+
+
+c. After running cross-validation, a final model fit from *all* of the training data needs to be produced to make predictions. What value of $k$ would you choose? Why? 
+
+
+<div class="solution">
+
+Solution Here
+
+</div>
+
+
+d. Now we will see how well cross-validation performed. Simulate a test data set of $50000$ observations from the same distributions. Use `set.seed(223)` prior to generating the test data. 
+    - Fit a set of kNN models, using the full training data, and calculate the mean squared error (MSE) on the test data for each model. Use the same $k$ values in *a*. 
+    - Report the optimal $k$, the corresponding *edf*, and MSE based on the test set. 
+
+<div class="solution">
+
+Solution Here
+
+</div>
+
+e. Plot both the cross-validation estimated and true test error on the same plot. See Figure 5.6 in ISL (pg 182) as a guide. 
+    - Produce two plots: one with $k$ on the x-axis and one with *edf* on the x-axis.
+    
+    
+<div class="solution">
+
+Solution Here
+
+</div>
+    
+    
+f. Based on the plots from *e*, does it appear that cross-validation worked as intended? How sensitive is the choice of $k$ on the resulting test MSE?      
+
+<div class="solution">
+
+Solution Here
+
+</div>
+
+
+
+
+
+
+
+
+
+
+

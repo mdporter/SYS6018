@@ -219,7 +219,8 @@ X = datasets::faithful
 #-- Plot: Base R
 plot(X, las=1); grid()
 #-- Plot: ggplot
-ggplot(X) + geom_point(aes(eruptions, waiting))
+ggplot(X, aes(eruptions, waiting)) + geom_point() + 
+  geom_density_2d() # geom_density2d_filled(), geom_contour_filled(), ...
 
 #-- MV KDE: Unconstrained
 H1 = Hscv(X)                  # smoothed cross-validation bw estimator
@@ -233,9 +234,21 @@ points(X, pch=19, cex=.5, col='grey60')           # add points
 grid()                                            # add grid lines
 
 
+## Note: you can inspect the output from kde() to see what goodies are returned
+str(f1)
+## notice that f1$eval.points is a list of the X1, X2 values where estimates were made
+##  and f1$estimate is a matrix of the density estimates
+## Note: The ks packages includes a predict() function for the density
+X.eval = expand.grid(eruptions = seq(min(X$eruptions), max(X$eruptions), length=100),
+                     waiting = seq(min(X$waiting), max(X$waiting), length=100))
+X.eval %>% mutate(fhat = predict(f1, x = .)) %>% 
+  ggplot(aes(eruptions, waiting)) +
+  geom_contour_filled(aes(z=fhat)) + 
+  geom_point(data=X, color="white")
+  
 
 #-- Product kernel
-H2 = Hscv.diag(X)
+H2 = Hscv.diag(X)     # forces off-diagonal var-cov terms to be 0
 f2 = kde(X, H=H2)             
 
 plot(f2, 
@@ -244,6 +257,23 @@ plot(f2,
 points(X, pch=19, cex=.5, col='grey60')           # add points
 grid()                                            # add grid lines
 
+
+#-- Independence (not the best model for this problem)
+he = hscv(X$eruptions)
+fe = kde(X$eruptions, h=he)
+hw = hscv(X$waiting)
+fw = kde(X$waiting, h=hw)
+
+plot(fe, xlab="eruptions")
+plot(fw, xlab="waiting")
+
+X.eval %>% 
+  mutate(fhat.e = predict(fe, x=eruptions), 
+         fhat.w = predict(fw, x=waiting), 
+         fhat = fhat.e*fhat.w) %>% 
+  ggplot(aes(eruptions, waiting)) +
+  geom_contour_filled(aes(z=fhat)) + 
+  geom_point(data=X, color="white")
 
 
 

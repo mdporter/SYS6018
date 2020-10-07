@@ -62,16 +62,6 @@ library(glmnet)
 
 ### Problem 5.1 Geographic Profiling
 
-```{r, echo=FALSE, eval=FALSE}
-set.seed(2019)
-n = 283
-sd = 2.1
-x = sqrt(rnorm(n, sd=sd)^2 + rnorm(n, sd=sd)^2)
-
-readr::write_csv(tibble(x), "../data/geo_profile.csv", col_names=FALSE)
-#hist(x, 15)
-
-```
 
 Geographic profiling, a method developed in criminology, can be used to estimate the [home location (roost) of animals](https://www.sciencedirect.com/science/article/pii/S0022519305004157) based on a collection of sightings. The approach requires an estimate of the distribution the animal will travel from their roost to forage for food. 
 

@@ -51,7 +51,7 @@ loglike2 = sapply(lam.seq, function(lam) sum(dpois(x, lambda=lam, log=TRUE)))
 all.equal(loglike, loglike2)
 
 #- best lambda via grid search:
-lap.opt = lam.seq[which.max(loglike)]
+lam.opt = lam.seq[which.max(loglike)]
 
 #-- Make log-likelihood plot
 lam.data = tibble(lam.seq, loglike)

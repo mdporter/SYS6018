@@ -435,9 +435,11 @@ summary {
 <li>Now we will vary the tuning parameters of <code>mtry</code> and <code>ntree</code> to see what effect they have on performance.
 <ul>
 <li>Use a range of reasonable <code>mtry</code> and <code>ntree</code> values.</li>
-<li>Use repeated hold-out to assess performance. Hold-out 50 observations and repeat 40 times.</li>
-<li>Use a plot to show the hold-out MSE</li>
+<li>Use 5 times repeated out-of-bag (OOB) to assess performance. That is, run random forest 5 times for each tuning set, calculate the OOB MSE each time and use the average for the MSE associated with the tuning parameters.</li>
+<li>Use a plot to show the average MSE as a function of <code>mtry</code> and <code>ntree</code>.</li>
 <li>Report the best tuning parameter combination.</li>
+<li>Note: random forest is a stochastic model; it will be different every time it runs. Set the random seed to control the uncertainty associated with the stochasticity.</li>
+<li>Hint: If you use the <code>randomForest</code> package, the <code>mse</code> element in the output is a vector of OOB MSE values for 1:<code>ntree</code> trees in the forest. This means that you can set <code>ntree</code> to some maximum value and get the MSE for any number of trees less than <code>ntree</code>.</li>
 </ul></li>
 </ol>
 <div class="solution">

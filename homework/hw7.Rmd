@@ -1,0 +1,151 @@
+---
+title: "Homework #7"
+author: "**Your Name Here**"
+date: "Due: Thu Oct 22 | 1:55pm"
+output: 
+  html_document:
+  # html_notebook:
+    df_print: default  # set default format for table output
+---
+
+**SYS 6018 | Fall 2020 | University of Virginia **
+
+*******************************************
+
+
+<!--- Below are global settings for knitr. You can override any of them by adding the changes to individual chunks --->
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
+                      collapse=FALSE,    # collapse by default
+                      echo=TRUE,         # echo code by default
+                      comment = "#>",    # change comment character
+                      fig.width = 5,     # set figure width
+                      fig.align = "center",# set figure position
+                      out.width = "49%", # set width of displayed images
+                      warning=TRUE,      # show R warnings
+                      message=TRUE)      # show R messages
+options(dplyr.summarise.inform = FALSE)  # ignore message about group structure
+```
+
+<!--- Solution Region --->
+```{css solution-region, echo=FALSE}
+.solution {
+  background-color: #232D4B10;
+  border-style: solid;
+  border-color: #232D4B;
+  padding: .5em;
+  margin: 20px
+}
+```
+
+
+<!--- Load Required R packages here --->
+```{r packages, include=FALSE}
+#- Better table printing
+library(kableExtra) # https://haozhu233.github.io/kableExtra/awesome_table_in_html.html
+format_table <- function(x, nmax=10) {
+  kable(x) %>% 
+    kable_styling(full_width = FALSE, font_size=11, position = "left") %>% 
+    {if(nrow(x) > nmax) scroll_box(., width = "100%", height = "200px") else .}
+}
+#- useful functions
+digits <- function(x, k=2) format(round(x, k), nsmall=k)
+#- data directory
+data.dir = 'https://mdporter.github.io/SYS6018/data/'
+#- required functions here
+
+library(tidyverse)
+```
+
+
+
+
+### Problem 7.1: Tree Splitting for classification
+
+Consider the Gini index, classification error, and entropy impurity measures in a simple classification setting with two classes. 
+
+Create a single plot that displays each of these quantities as a function of $p_m$, the estimated probability of an observation in node $m$ being from class 1. The x-axis should display $p_m$, ranging from 0 to 1, and the y-axis should display the value of the Gini index, classification error, and entropy.
+
+<div class="solution"> 
+
+Add Solution Here
+
+</div>
+
+
+
+### Problem 7.2: Combining bootstrap estimates
+
+```{r, echo=FALSE}
+p_red = c(0.2, 0.25, 0.3, 0.4, 0.4, 0.45, 0.7, 0.85, 0.9, 0.9)
+```
+
+Suppose we produce ten bootstrapped samples from a data set containing red and green classes. We then apply a classification tree to each bootstrapped sample and, for a specific value of $X$, produce the following 10 estimates of $\Pr(\text{Class is Red} \mid X)$: `r stringr::str_c(p_red, sep=", ")`
+
+a. ISLR 8.2 describes the *majority vote* approach for making a hard classification from a set of bagged classifiers. What is the final classification for this example using majority voting?
+
+<div class="solution"> 
+
+Add Solution Here
+
+</div>
+
+
+b. An alternative is to base the final classification on the average probability. What is the final classification for this example using average probability?
+
+
+<div class="solution"> 
+
+Add Solution Here
+
+</div>
+
+
+c. Suppose the cost of mis-classifying a Red class is twice as costly as mis-classifying a Green class. How would you modify both approaches to make better final classifications under these unequal costs? Report the final classifications. 
+
+
+<div class="solution"> 
+
+Add Solution Here
+
+</div>
+
+
+
+### Problem 7.3: Random Forest Tuning
+
+Random forest has several tuning parameters that you will explore in this problem. We will use the `Boston` housing data from the `MASS` R package (See the ISLR Lab in section 8.3.3 for example code).
+
+- Note: remember that `MASS` can mask the `dplyr::select()` function.
+
+a. List all of the random forest tuning parameters in the `randomForest::randomForest()` function. Note any tuning parameters that are specific to classification or regression problems. Which tuning parameters do you think will be most important to search? 
+
+<div class="solution"> 
+
+Add Solution Here
+
+</div>
+
+b. Use a random forest model to predict `medv`. Use the default parameters and report the 10-fold cross-validation MSE. 
+
+<div class="solution"> 
+
+Add Solution Here
+
+</div>
+
+
+c. Now we will vary the tuning parameters of `mtry` and `ntree` to see what effect they have on performance. 
+    - Use a range of reasonable `mtry` and `ntree` values.
+    - Use repeated hold-out to assess performance. Hold-out 50 observations and repeat 40 times. 
+    - Use a plot to show the hold-out MSE
+    - Report the best tuning parameter combination. 
+
+
+<div class="solution"> 
+
+Add Solution Here
+
+</div>
+

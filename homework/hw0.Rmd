@@ -46,13 +46,14 @@ The teaching staff (TA and myself) are here to help! Don't wait too long before 
 - Data: `ISLR`, `moderndive`
 - Trees: `rpart`, `rpart.plot`, `randomForest`, 
 - Resampling: `boot`, `caret`
-- Regression: `broom`, `glmnet`, `FNN`, `splines`, `modelr`, `tidymodels`
-- Classification: `e107`, `MASS`
+- Regression: `broom`, `glmnet`, `FNN`, `modelr`, `tidymodels`
+- Classification: `e1071`, `MASS`
 - Density Estimation: `fitdistrplus`, `ks`
 - Clustering: `mclust`, `mixtools`
 - Ensembles: `gbm`, `xgboost`
 - Association Analysis: `arules`
 - Networks: `igraph`
+
 
 Note: Do not call `install.packages()` in RMarkdown. However you will need to use `library()` in RMarkdown.
 

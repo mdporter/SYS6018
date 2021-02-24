@@ -42,6 +42,7 @@ prostate = readr::read_tsv(data.url) %>% select(-1) # remove row numbers
 train = prostate$train
 test = !train
 prostate.train = filter(prostate, train) %>% select(-train)
+prostate.test = filter(prostate, test) %>% select(-train)
 
 #-- Fit OLS
 prostate_lm = lm(lpsa~., data=prostate.train)

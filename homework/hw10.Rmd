@@ -1,112 +1,81 @@
 ---
-title: "Homework #10"
+title: "Homework #10: Networks" 
 author: "**Your Name Here**"
-date: "Due: Tue Nov 17 | 1:55pm"
-output: 
-  html_document:
-  # html_notebook:
-    df_print: default  # set default format for table output
+date: "Due: Wed May 5 | 10:55am"
+output: R6018::homework
 ---
 
-**SYS 6018 | Fall 2020 | University of Virginia **
+**SYS 4582/6018 | Spring 2021 | University of Virginia**
 
 *******************************************
-
-<!--- Below are global settings for knitr. You can override any of them by adding the changes to individual chunks --->
-
-```{r global_options, include=FALSE}
-knitr::opts_chunk$set(error=TRUE,        # Keep compiling upon error
-                      collapse=FALSE,    # collapse by default
-                      echo=TRUE,         # echo code by default
-                      comment = "#>",    # change comment character
-                      fig.width = 5,     # set figure width
-                      fig.align = "center",# set figure position
-                      out.width = "49%", # set width of displayed images
-                      warning=TRUE,      # show R warnings
-                      message=TRUE)      # show R messages
-options(dplyr.summarise.inform = FALSE)  # ignore message about group structure
+```{r config, echo=FALSE}
+source(system.file("config/hw_config.R", package="R6018")) # knitr settings
+# options(dplyr.summarise.inform = FALSE)  # ignore dplyr message about grouping
 ```
 
-<!--- Solution Region --->
-```{css solution-region, echo=FALSE}
-.solution {
-  background-color: #232D4B10;
-  border-style: solid;
-  border-color: #232D4B;
-  padding: .5em;
-  margin: 20px
-}
-```
+# Required R packages and Directories {-}
 
-
-<!--- Load Required R packages here --->
-```{r packages, include=FALSE}
-#- Better table printing
-library(kableExtra) # https://haozhu233.github.io/kableExtra/awesome_table_in_html.html
-format_table <- function(x, nmax=10, ...) {
-  kable(x, ...) %>% 
-    kable_styling(full_width = FALSE, font_size=11, position = "left") %>% 
-    {if(nrow(x) > nmax) scroll_box(., width = "100%", height = "300px") else .}
-}
-#- useful functions
-digits <- function(x, k=2) format(round(x, k), nsmall=k)
-#- data directory
-data.dir = 'https://mdporter.github.io/SYS6018/data/'
-#- required functions here
+### {.solution}
+```{r packages, message=FALSE, warning=FALSE}
+data.dir = 'https://mdporter.github.io/SYS6018/data/' # data directory
+library(R6018)     # functions for SYS-6018
+library(tidyverse) # functions for data manipulation  
 library(igraph)
-library(tidyverse)
 ```
 
-### Problem 10.1 The Marvel Universe
+
+# Problem 1 The Marvel Universe
 
 [Alberich, Miro-Julia, \& Rossell&oacute; (2002)](https://arxiv.org/pdf/cond-mat/0202174.pdf) 
 examined the social network structure of the Marvel Comics Universe and found some similarities to real-world collaboration networks. 
 The folks at <http://syntagmatic.github.io/exposedata/marvel/> have made the network data available (along with some nice visualizations). I have extracted the Hero Social Network Data which can be accessed using [this link](https://mdporter.github.io/SYS6018/data/marvel_hero-network.csv). Note that the data contain one edge for each time two heroes appeared in the same comic.  
 
 
-a. Load the data and make a *weighted* and *undirected* graph, where the `weight` corresponds to the number of times the heroes appeared in the same comic. Ensure your graph has an edge attribute named `weight`. The weight between *LITTLE, ABNER* and *BLACK PANTHER/T'CHAL LITTLE* should be 7. 
-    - No need to make a plot, just show your code to make the graph object.
+## a. Load the data and make a *weighted* and *undirected* graph, where the `weight` corresponds to the number of times the heroes appeared in the same comic. 
+- Ensure your graph has an edge attribute named `weight`. The weight between *LITTLE, ABNER* and *BLACK PANTHER/T'CHAL LITTLE* should be 7. 
+- No need to make a plot, just show your code to make the graph object.
 
-<div class="solution"> 
-Add Solution Here
-</div>
+### {.solution}
 
-
-
-b. Run the *fast-greedy* community detection algorithm (`igraph::cluster_fast_greedy()`).
-    - Use the edge weights in the community detection algorithm.
-    - How many communities did it find? 
-    - Use a plot to show community size of each group (i.e., group number on the x-axis and group size on y-axis).
-
-<div class="solution"> 
-Add Solution Here
-</div>
+Solution Here
 
 
 
-c. Calculate the following centrality scores for the hero network: *eigenvector, betweeness, and degree*. 
-    - `igraph` has two versions of centrality calculations (I know, a bit confusing).
-    - The ones starting with `centr_` do not consider edge weights.
-    - The others (e.g., `betweenness()`, `eigen_centrality()`) will allow weights.
-    - For this exercise, ignore the weights and use the `centr_` versions. 
-    - By default, these will return a normalized version (which divides the score by the theoretical maximum value). 
-    - Show the top 10 heroes arranged by *eigenvector centrality*. 
-    - Which hero has the largest eigenvector centrality? How does this make the hero *important*? 
+## b. Run the *fast-greedy* community detection algorithm (`igraph::cluster_fast_greedy()`).
+- Use the edge weights in the community detection algorithm.
+- How many communities did it find? 
+- Use a plot to show community size of each group (i.e., group number on the x-axis and group size on y-axis).
 
-<div class="solution"> 
-Add Solution Here
-</div>
+### {.solution}
 
-d. For each of the three largest communities find the hero with the largest *betweeness centrality*. Explain how these heroes are *important*. 
+Solution Here
 
 
-<div class="solution"> 
-Add Solution Here
-</div>
+## c. Calculate the following centrality scores for the hero network: *eigenvector, betweeness, and degree*. 
+- `igraph` has two versions of centrality calculations (I know, a bit confusing).
+- The ones starting with `centr_` do not consider edge weights.
+- The others (e.g., `betweenness()`, `eigen_centrality()`) will allow weights.
+- For this exercise, ignore the weights and use the `centr_` versions. 
+- By default, these will return a normalized version (which divides the score by the theoretical maximum value). 
+- Show the top 10 heroes arranged by *eigenvector centrality*. 
+- Which hero has the largest eigenvector centrality? How does this make the hero *important*? 
+
+### {.solution}
+
+Solution Here
+
+## d. For each of the three largest communities find the hero with the largest *betweeness centrality*. Explain how these heroes are *important*. 
 
 
-### Problem 10.2: Alpha Centrality
+### {.solution}
 
+Solution Here
+
+
+       
+
+
+# Problem 2: Alpha Centrality
 
 [Bonacich and Lloyd (2001)](https://github.com/mdporter/SYS6018/raw/master/other/alpha-centrality_Bonacich.pdf) introduced *alpha centrality* as an alternative to eigenvector centrality. Their main idea is that the importance of a node is based on the network structure **plus** some known external sources of importance. The alpha centrality vector $x$ is defined:
 \[ 
@@ -115,11 +84,14 @@ x = \alpha  A^T x + s
 where $s$ is the vector of exogenous importance and $0 \leq \alpha \leq 1/\lambda_1$ (where $\lambda_1$ is the maximum eigenvalue of $A$) reflects the relative importance of the endogenous factors of importance.
 
 
-a. PageRank can be considered a special case of alpha centrality. What does PageRank use for $s$, $\alpha$, and $A$? Use the notation from the class notes,  e.g., $\alpha=d$. 
+## a. PageRank can be considered a special case of alpha centrality. What does PageRank use for $s$, $\alpha$, and $A$? Use the notation from the class notes,  e.g., $\alpha=d$. 
 
-<div class="solution"> 
-Add Solution Here
-</div>
+### {.solution}
+
+Solution Here
+
+
+### {-}
 
 ---
 
@@ -134,44 +106,46 @@ The next few problems will explore how alpha centrality can be used for identify
 </div>
 
 
-b. Make a *directed* graph from these data. 
-    - Show code, no need to make a plot
-    - Note: the `time` column may cause a message when you create the igraph object. We don't use time for this problem, so it can be safely ignored.  
+## b. Make a *directed* graph from these data. 
+- Show code, no need to make a plot
+- Note: the `time` column may cause a message when you create the igraph object. We don't use time for this problem, so it can be safely ignored.  
 
-<div class="solution"> 
-Add Solution Here
-</div>
+### {.solution}
 
-c. Using the *directed graph*, set $s=1$ for the known fraudsters, $s=0$ for the legitimate, and $s=0.01$ for the unknown nodes and calculate the alpha centrality. You can think of $s$ as proportional to the prior probability that a node is a fraudster. 
-    - Use $\alpha = 0.8$. 
-    - Use a Cleveland dot plot (or bar plot) to visually display the alpha centrality scores for all node. Use color (or shape) to distinguish between the fraud, non-fraud, and unknown nodes. 
-    - Comment on what this tells you about the two unknown nodes
+Solution Here
 
-<div class="solution"> 
-Add Solution Here
-</div>
+## c. Using the *directed graph*, set $s=1$ for the known fraudsters, $s=0$ for the legitimate, and $s=0.01$ for the unknown nodes and calculate the alpha centrality. You can think of $s$ as proportional to the prior probability that a node is a fraudster. 
+- Use $\alpha = 0.8$. 
+- Use a Cleveland dot plot (or bar plot) to visually display the alpha centrality scores for all node. Use color (or shape) to distinguish between the fraud, non-fraud, and unknown nodes. 
+- Comment on what this tells you about the two unknown nodes
+
+### {.solution}
+
+Solution Here
 
 
-### Problem 10.3: Hubs and Authorities (HITS) 
+
+
+# Problem 3: Hubs and Authorities (HITS) 
 
 The HITS algorithm is described in [MMDS 5.5](http://infolab.stanford.edu/~ullman/mmds/ch5.pdf)
 
 
-a. The HITS scores are designed to work with *directed* networks. What is the result of running HITS on an *undirected* network? Show that the scores reduce to a familiar centrality score. 
+## a. The HITS scores are designed to work with *directed* networks. What is the result of running HITS on an *undirected* network? Show that the scores reduce to a familiar centrality score. 
 
-<div class="solution"> 
-Add Solution Here
-</div>
+### {.solution}
 
-
-b. Write a function to calculate the Hubs and Authority scores. See MMDS 5.5.2 for details. 
-
-<div class="solution"> 
-Add Solution Here
-</div>
+Solution Here
 
 
-c. Use your function to calculate the hubs and authority scores for the Political Blog data [Adamic and Glance (2005). "The political blogosphere and the 2004 U.S. election: divided they blog", In Proceedings of the *3rd International Workshop on Link discovery (LinkKDD '05)*. ACM, New York, NY, USA](https://mdporter.github.io/SYS6018/other/(Adamic)%20Political%20Blogs.pdf).
+## b. Write a function to calculate the Hubs and Authority scores. See MMDS 5.5.2 for details. 
+
+### {.solution}
+
+Solution Here
+
+
+## c. Use your function to calculate the hubs and authority scores for the Political Blog data [Adamic and Glance (2005). "The political blogosphere and the 2004 U.S. election: divided they blog", In Proceedings of the *3rd International Workshop on Link discovery (LinkKDD '05)*. ACM, New York, NY, USA](https://mdporter.github.io/SYS6018/other/(Adamic)%20Political%20Blogs.pdf).
 
 - nodes: <https://mdporter.github.io/SYS6018/data/polblogs_nodes.csv>
 
@@ -185,14 +159,9 @@ Run HITS on the full data, and then report the top 5 hubs and top 5 authority sc
 - Note: the network is *directed*
  
 
-<div class="solution"> 
-Add Solution Here
-</div>
+### {.solution}
 
-
-
-
-
+Solution Here
 
 
 

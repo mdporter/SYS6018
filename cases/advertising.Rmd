@@ -1,0 +1,330 @@
+---
+title: "RMarkdown and Regression"
+subtitle: "Advertising and Sales"
+author: "Michael D. Porter"
+date: Spring 22 | Data Mining (SYS-6018) | University of Virginia
+output: html_document
+---
+
+<!-- The above content is the YAML header. This is a comment. Ctrl + Alt + C -->
+
+
+```{r setup, include=FALSE}
+#-- Settings for chunk options
+knitr::opts_chunk$set(echo = TRUE,    
+                      warning = TRUE, 
+                      message = FALSE)
+
+# See the R Markdown Reference Guide https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf
+
+# Note the chunk name 'setup' and argument `include = FALSE`
+```
+
+
+## Introduction
+
+Suppose that we are consultants hired by a client to provide advice on how to improve sales of a particular product. The Advertising data set consists of the product sales (in thousands of units) in 200 different markets (e.g., cities), along with advertising budgets for the product in each of those markets for three different media: TV, radio, and newspaper (in thousands of dollars).
+
+
+### Citation
+
+The problem description and data are taken from **An Introduction to Statistical Learning** by James, Witten, Hastie, and Tibshirani. The advertising data is available from the textbook authors: <https://www.statlearning.com/s/Advertising.csv>. 
+
+
+## Getting Started
+
+### Load Required Packages
+
+```{r}
+#-- Packages
+library(broom)      # for tidy model output
+library(knitr)      # for kable() tables
+library(GGally)     # pairs plot ggpairs()
+library(tidyverse)  # dplyr, ggplot2, etc
+theme_set(theme_bw()) # set default ggplot theme
+```
+
+### Load Data
+
+```{r load-data}
+#-- Load Data
+url = 'https://www.statlearning.com/s/Advertising.csv'
+advert = read_csv(url, col_select = -1) # skip first column
+```
+
+```{r}
+#-- Show data
+advert 
+```
+
+```{r, eval = FALSE, echo=FALSE}
+# Using eval=FALSE and echo=FALSE is good for chunks that contains notes, 
+#  and code that didn't quite work. Good to keep this in the document in case
+#  you want to come back and try again. 
+
+# None of this will show in the html:
+print(advert)                 # don't do this if advert isn't a tibble
+advert %>% filter(TV = 230)   # this isn't working!!! 
+plot(advert)                  # I forgot how to do this in ggplot?
+```
+
+
+
+## Data Summary
+
+```{r}
+summary(advert)
+```
+
+The pairs plot shows the bivariate structure
+```{r pairs-plot, out.width="100%"}
+library(GGally)
+ggpairs(advert)
+```
+
+The plot of smoothed component fits help capture the relationship between the predictor variables and sales. Here is the scatterplot of TV and sales:
+```{r}
+ggplot(advert, aes(TV, sales)) + geom_point()
+```
+
+We can make three individual plots
+```{r, out.width = "33%",  fig.show="hold"}
+ggplot(advert, aes(TV, sales)) + geom_point() + geom_smooth(method = "lm")
+ggplot(advert, aes(radio, sales)) + geom_point() + geom_smooth(method = "lm")
+ggplot(advert, aes(newspaper, sales)) + geom_point() + geom_smooth(method = "lm")
+```
+
+To use *faceting* to show all plots in same plot, I need to convert the data into *long* format:
+```{r long-format}
+#- convert to "long" format
+advert_long = advert %>% 
+  pivot_longer(cols=-sales,
+               names_to="predictor",
+               values_to="budget")
+
+advert_long
+```
+
+```{r scatter-facet, out.width="80%", fig.pos="center"}
+advert_long %>%                       
+  ggplot(aes(x=budget, y=sales)) + 
+  geom_smooth() + 
+  geom_point() + 
+  facet_wrap(~predictor, scales="free_x")
+```
+
+Note: see the [ggplot2 cheatsheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization.pdf) for help with ggplot2. 
+
+
+## Regression Models
+
+Consider the advertising sales model that uses all three predictors
+$$
+\text{sales} =  \beta_0 + \beta_1 \times \text{(TV)} + \beta_2 \times \text{(radio)} +
+\beta_3 \times \text{(newspaper)}  + \text{error}
+$$
+
+In R, the formula would be `Sales ~ TV + Radio + Newspaper` (the order of the predictor variables does not matter).
+```{r}
+library(broom)   # for tidy(), glance(), and augment() functions
+
+#- fit full (main effects) model
+lm.all = lm(sales ~ TV + radio + newspaper,
+            data=advert)
+
+#- model summary
+summary(lm.all)
+
+#- tidy output (coefficients)
+lm.all %>% 
+  broom::tidy(conf.int=TRUE) %>% 
+  knitr::kable(digits=3)
+
+#- tidy model summary
+lm.all %>% 
+  broom::glance()
+
+#- add model output to the original data
+lm.all %>% broom::augment()
+```
+
+
+### Simpler Model
+
+We can consider other models. You probably noticed that `newspaper` is not statistically significant in the full model, so we can try the model without it:
+```{r}
+#-- Only TV + Radio
+lm.TVRadio = lm(sales ~ TV + radio, 
+                data=advert)
+summary(lm.TVRadio)
+```
+
+### Interaction Effects
+
+
+We have found that the best model so far is the one that uses `TV` and `Radio` to predict the value of `Sales`. 
+
+Specifically, the least squares model is:
+
+$$\widehat{\text{sales}} = `r round(coef(lm.TVRadio)[1],3)` + `r round(coef(lm.TVRadio)[2],3)` \times \text{(TV)} + `r round(coef(lm.TVRadio)[3],3)` \times \text{(radio)}$$
+
+- So a one unit increase in `TV` would suggest a `r round(coef(lm.TVRadio)[2],3)` unit increase in `Sales`, no matter the budget allocated to `Radio`
+- But what if spending money on `Radio` advertising actually increases the effectiveness of the `TV` advertising?
+    - So `TV` effects should increase as `Radio` increases
+    - E.g., spending 1/2 of a \$100,000 budget on `TV` and `Radio` may increase `Sales` more than allocating the entire amount to only `TV` or only `Radio`
+    - In marketing, this is the *synergy* effect. In statistics, this is known as an *interaction* effect.
+
+
+#### Modeling Interactions
+
+Consider the linear regression model with two variables and an interaction effect
+
+$$Y  = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_1 X_2 + \epsilon$$
+
+This model relaxes the additive structure, while maintaining the linear structure. Consider the equation re-written
+
+\begin{align*}
+Y  &= \beta_0 + (\beta_1 + \beta_3 X_2)X_1 + \beta_2 X_2 + \epsilon \\
+   &= \beta_0 + \tilde{\beta}_1 X_1 + \beta_2 X_2 + \epsilon
+\end{align*}
+where $\tilde{\beta}_1 = (\beta_1 + \beta_3 X_2)$.
+
+- Since $\tilde{\beta}_1$ changes with $X_2$, the effect of $X_1$ on $Y$ is no longer constant.
+    - Adjusting $X_2$ will change the impact of $X_1$ on $Y$
+
+In R, use the notation `X_1:X_2` to include an interaction effect:
+```{r}
+lm.synergy = lm(sales ~ TV + radio + TV:radio,
+                data=advert)
+summary(lm.synergy)
+```
+
+
+### Prediction
+
+In R, the `predict()` function will return the predicted values from a fitted regression model. Besides the model, the function needs the $X$ values (the `newdata` argument) for making predictions.   
+- Type `?predict.lm` to read the help pages  
+- The `object` argument is the `lm` model  
+- The `newdata` must be a `data.frame`/`tibble`
+
+```{r}
+#-- predict the Sales for a budget with TV = 50
+#   ($50,000) and Radio = 20 ($20,000)
+pred_data = tibble(TV=50, radio=20, newspaper=0)
+predict(lm.TVRadio,
+        newdata = pred_data, 
+        interval = "prediction") # or "confidence"
+```
+
+Multiple values (grid of predictor values)
+```{r}
+#- grid of values at which to predict
+pred_grid = 
+  expand_grid(TV = seq(0, 50, by=25), 
+              radio = seq(0, 60, by=20), 
+              newspaper = 0)
+
+#- add predictions to the grid (using bind_cols)
+bind_cols(
+  pred_grid,
+  predict(lm.TVRadio, pred_grid, interval = "prediction") %>% as_tibble()
+)
+
+#- add predictions to the grid (using augment)
+augment(lm.TVRadio, newdata = pred_grid, interval = "prediction")
+
+#- add predictions to the grid (using mutate)
+pred_grid %>% 
+  mutate(TVRadio = predict(lm.TVRadio, .), 
+         synergy = predict(lm.synergy, .))
+```
+
+### Residual Analysis
+
+```{r}
+## Residual Analysis
+residuals_wide = advert %>% 
+  mutate(TVRadio = lm.TVRadio$residuals, 
+        synergy = lm.synergy$residuals)
+
+residuals = residuals_wide %>% 
+  pivot_longer(c(TVRadio, synergy), names_to = "model", values_to = "r")
+
+```
+
+
+The residuals are not centered around 0 and have a long left tail, even when using the interaction model. 
+```{r}
+#-- Density of residuals
+ggplot(residuals, aes(r, fill=model)) + geom_density(alpha=.8) + 
+  geom_vline(xintercept=0) + 
+  scale_fill_manual(values=c("blue", "orange")) + 
+  labs(x="residual", title="density of residuals")
+```
+
+NOTE: I could still use the "wide" data and two geoms:
+```{r}
+residuals_wide %>% 
+  ggplot() + 
+  geom_density(aes(synergy), fill = "blue", alpha=.8) + 
+  geom_density(aes(TVRadio), fill = "orange", alpha=.8) + 
+  geom_vline(xintercept=0) + 
+  labs(x="residual", title="density of residuals")
+```
+
+
+
+The residuals on `radio` looks decent (especially on synergy model)
+```{r}
+#-- Radio: residual scatterplot
+ggplot(residuals, aes(radio, r)) + geom_smooth() + geom_point() + 
+    geom_hline(yintercept=0, color="orange") + 
+    facet_wrap(~model) +  labs(y="residuals")
+```
+
+
+But the residuals on TV shows some unaccounted for patterns, even with synergy model.  
+```{r}
+#-- TV: residual scatterplot
+ggplot(residuals, aes(TV, r)) + geom_smooth() + geom_point() + 
+  geom_hline(yintercept=0, color="orange") + 
+  facet_wrap(~model) +  labs(y="residuals")
+```
+
+This suggests add a transformation to `TV`, perhaps a log transformation
+```{r}
+#-- Best models of ones I considered
+
+#-- use log(TV) only
+best1 = lm(sales ~ log(TV) + radio + TV:radio, data=advert)
+summary(best1)
+
+#-- include main effects log(TV) + TV
+best2 = lm(sales ~ TV + log(TV) + radio + TV:radio, data=advert) 
+summary(best2)
+```
+With an $R^2$ of `r round(summary(best1)$r.squared, 3)`, we may have found how the data were generated! 
+
+```{r}
+R = mutate(advert, r=best1$residuals) 
+```
+
+The residuals using the best model look much cleaner
+```{r}
+#-- Density of residuals
+ggplot(R, aes(r)) + geom_density(alpha=.8, fill="orange") + 
+  geom_rug() + 
+  geom_vline(xintercept=0) + 
+  labs(x="residual", title="density of residuals")
+```
+
+```{r}
+#-- residual scatterplot
+R %>% 
+  pivot_longer(c(TV, radio, newspaper), 
+               names_to = "variable", values_to="budget") %>% 
+  ggplot(aes(budget, r)) + geom_smooth() + geom_point() + 
+    geom_hline(yintercept=0, color="orange") + 
+    facet_wrap(~variable, scales="free_x") +  labs(x="", y="residuals")
+```
+

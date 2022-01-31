@@ -10,7 +10,7 @@ output: R6018::homework
 ------------------------------------------------------------------------
 
 ```{r config, echo=FALSE}
-source(system.file("config/hw_config.R", package="R6030")) # knitr settings
+source(system.file("config/hw_config.R", package="R6018")) # knitr settings
 # options(dplyr.summarise.inform = FALSE)  # ignore dplyr message about grouping
 ```
 

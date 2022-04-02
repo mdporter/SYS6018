@@ -1,0 +1,29 @@
+---
+title: "Homework #7: Tree Ensembles" 
+author: "**Your Name Here**"
+date: "Due: Tue Apr 18 | 10:30 am"
+output: R6018::homework
+---
+
+**SYS 4582/6018 | Spring 2022 | University of Virginia **
+
+*******************************************
+```{r config, echo=FALSE}
+source(system.file("config/hw_config.R", package="R6018")) # knitr settings
+# options(dplyr.summarise.inform = FALSE)  # ignore dplyr message about grouping
+```
+
+
+
+# Problem 1: Tree Ensembles
+
+Implement Random Forest and Boosted Trees on the project training data. Use cross-validation to estimate the tuning parameters and predictive performance.
+
+- Report the optimal tuning parameters.
+- Report cross-validation performance for your final model using the metrics described in the project.
+- Submit your code just for these two models - don't submit your entire project.
+- This will give you a head start on part 2 of the project.
+
+::: {.solution}
+Add solution here
+:::

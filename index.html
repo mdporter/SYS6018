@@ -396,23 +396,17 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before {
-content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "\e259";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "";
-border: none;
-}
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "";
+content: "\e258";
 font-family: 'Glyphicons Halflings';
-display: inline-block;
-padding: 10px;
-border-right: 1px solid #ddd;
+border: none;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -511,7 +505,7 @@ display: none;
 <td align="left">1</td>
 <td align="left">Jan 19</td>
 <td align="left">Thu</td>
-<td align="left">Introduction</td>
+<td align="left"><a href="lectures/intro.pdf">Introduction</a></td>
 <td align="left">Pre-Req material; R and Rstudio <br> <a href="https://mdsr-book.github.io/mdsr2e/">Modern Data Science with
 R</a> sections: 2,3,4,6,7,9</td>
 <td align="left">HW 0 assigned; Get textbook(s); update software; review
@@ -557,9 +551,9 @@ pre-req material</td>
 <td align="left">Tue</td>
 <td align="left">Resampling: Bootstrap and Splines</td>
 <td align="left">ISL 5.2, 7.2-7.4 <br> ESL 7.11, 5.1-5.3 <br> (optional)
-<a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion-1E/appendix-bootstrapping.pdf">Bootstrapping
-Regression Models</a></td>
-<td align="left"><strong>HW 1 Due</strong></td>
+[Bootstrapping Regression Models](<a href="https://socialsciences.mcmaster.ca/jfox/Books/Co" class="uri">https://socialsciences.mcmaster.ca/jfox/Books/Co</a></td>
+<td align="left">mpanion-1E/appendix-bootstrapping.pdf) <strong>HW 1
+Due</strong></td>
 </tr>
 <tr class="odd">
 <td align="left">7</td>
@@ -615,10 +609,10 @@ Regression Models</a></td>
 <td align="left">Thu</td>
 <td align="left">Density Estimation</td>
 <td align="left"><a href="https://github.com/cran/IPSUR/raw/master/inst/doc/IPSUR.pdf">IPSUR:
-pg. 209-218 (MLE intro)</a><br><a href="https://www.math.arizona.edu/~jwatkins/O_mle.pdf">Maximum
-Likelihood Estimation: pg. 221-223</a><br> <a href="https://github.com/cran/IPSUR/raw/master/inst/doc/IPSUR.pdf">IPSUR
+pg. 209-218 (MLE intro)</a><br>[Maximum Likelihood Estimation: pg.
+221-2</td>
+<td align="left">23](<a href="https://www.math.arizona.edu/~jwatkins/O_mle.pdf" class="uri">https://www.math.arizona.edu/~jwatkins/O_mle.pdf</a>)<br> <a href="https://github.com/cran/IPSUR/raw/master/inst/doc/IPSUR.pdf">IPSUR
 Chap. 5-7 (Random Variable Review, if necessary)</a></td>
-<td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left"></td>
@@ -699,9 +693,9 @@ paper</a></td>
 <td align="left">Apr 06</td>
 <td align="left">Thu</td>
 <td align="left">Boosting</td>
-<td align="left">ESL 10.10-10.14 <br> <a href="https://arxiv.org/pdf/1603.02754.pdf">XGBoost paper</a>, <a href="https://catboost.ai/docs/concepts/tutorials.html">CatBoost
-paper</a>, <a href="https://lightgbm.readthedocs.io/en/latest/Features.html">LightGBM</a></td>
-<td align="left"></td>
+<td align="left">ESL 10.10-10.14 <br> <a href="https://arxiv.org/pdf/1603.02754.pdf">XGBoost paper</a>, [CatBoost
+paper](<a href="https://catboost.ai/docs/concepts/tutorials.h" class="uri">https://catboost.ai/docs/concepts/tutorials.h</a></td>
+<td align="left">tml), <a href="https://lightgbm.readthedocs.io/en/latest/Features.html">LightGBM</a></td>
 </tr>
 <tr class="even">
 <td align="left">22</td>

@@ -68,6 +68,7 @@ Add solution here
 ## d. Bootstrap sampling
 
 Make 200 bootstrap samples. For each bootstrap sample, fit a 5th degree polynomial and make predictions at `eval_pts = seq(0, 2, length=100)`
+
 - Set the seed (use `set.seed(212)`) so your results are reproducible.
 - Produce a scatterplot with the original data and add the 200 bootstrap curves
 

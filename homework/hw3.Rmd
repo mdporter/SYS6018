@@ -1,0 +1,144 @@
+---
+title: "Homework #3: Penalized Regression"
+author: "**Your Name Here**"
+date: "Wed Feb 22 | 11:45am"
+output: R6018::homework
+---
+
+**SYS 6018 | Sp 2023 | University of Virginia**
+------------------------------------------------------------------------
+
+```{r config, echo=FALSE}
+source(system.file("config/hw_config.R", package="R6018")) # knitr settings
+# options(dplyr.summarise.inform = FALSE)  # ignore dplyr message about grouping
+```
+
+
+
+# Required R packages and Directories
+
+::: {.solution}
+```{r packages, message=FALSE, warning=FALSE}
+data.dir = 'https://mdporter.github.io/SYS6018/data' # data directory
+library(mlbench)
+library(glmnet)
+library(R6018)     # functions for SYS-6018
+library(tidyverse) # functions for data manipulation
+```
+:::
+
+# Problem 1: Optimal Tuning Parameters
+
+In cross-validation, we discussed choosing the tuning parameter values that minimized the cross-validation error. Another approach, called the "one-standard error" rule [ISL pg 214, ESL pg 61], uses the values corresponding to the least complex model whose cv error is within one standard error of the best model. The goal of this assignment is to compare these two rules.
+
+Use simulated data from `mlbench.friedman1(n, sd=2)` in the `mlbench` R package to fit *lasso models*. The tuning parameter $\lambda$ (corresponding to the penalty on the coefficient magnitude) is the one we will focus one. Generate training data, use k-fold cross-validation to get $\lambda_{\rm min}$ and $\lambda_{\rm 1SE}$, generate test data, make predictions for the test data, and compare performance of the two rules under a squared error loss using a hypothesis test.
+
+
+Choose reasonable values for:
+
+- Number of cv folds ($K$)
+    - Note: you are free to use repeated CV, repeated hold-outs, or bootstrapping instead of plain cross-validation; just be sure to describe what do did so it will be easier to follow.
+- Number of training and test observations
+- Number of simulations
+- If everyone uses different values, we will be able to see how the results change over the different settings.
+- Don't forget to make your results reproducible (e.g., set seed)
+
+This pseudo code will get you started:
+```yaml
+library(mlbench)
+library(glmnet)
+
+#-- Settings
+n.train =        # number of training obs
+n.test =         # number of test obs
+K =              # number of CV folds
+alpha =          # glmnet tuning alpha (1 = lasso, 0 = ridge)
+M =              # number of simulations
+
+#-- Data Generating Function
+getData <- function(n) mlbench.friedman1(n, sd=2) # data generating function
+
+#-- Simulations
+# Set Seed Here
+
+for(m in 1:M) {
+
+# 1. Generate Training Data
+# 2. Build Training Models using cross-validation, e.g., cv.glmnet()
+# 3. get lambda that minimizes cv error and 1 SE rule
+# 4. Generate Test Data
+# 5. Predict y values for test data (for each model: min, 1SE)
+# 6. Evaluate predictions
+
+}
+
+#-- Compare
+# compare performance of the approaches / Statistical Test
+```
+
+## a. Code for the simulation and performance results
+
+::: {.solution}
+Add solution here
+:::
+
+
+## b. Hypothesis Test
+
+Describe and state the results of a hypothesis test comparing $\lambda_{\rm min}$ and $\lambda_{\rm 1SE}$.
+
+::: {.solution}
+Add solution here
+:::
+
+
+
+# Problem 2 Prediction Contest: Real Estate Pricing
+
+This problem uses the [realestate-train](`r file.path(data.dir, 'realestate-train.csv')`) and [realestate-test](`r file.path(data.dir, 'realestate-test.csv')`) (click on links for data).
+
+The goal of this contest is to predict sale price (in thousands) (`price` column) using an *elastic net* model. Evaluation of the test data will be based on the root mean squared error ${\rm RMSE}= \sqrt{\frac{1}{m}\sum_i (y_i - \hat{y}_i)^2}$ for the $m$ test set observations.
+
+
+## a. Data
+
+Load the data and create necessary data structures for running *elastic net*.
+
+- You are free to use any data transformation or feature engineering
+- Note: there are some categorical predictors so at the least you will have to convert those to something numeric (e.g., one-hot or dummy coding).
+
+::: {.solution}
+Add solution here
+:::
+
+
+## b. Prediction
+
+Use an *elastic net* model to predict the `price` of the test data.
+
+- You are free to use any data transformation or feature engineering
+- You are free to use any tuning parameters
+- Report the $\alpha$ and $\lambda$ parameters you used to make your final predictions.
+- Describe how you choose those tuning parameters
+
+::: {.solution}
+Add solution here
+:::
+
+## c. Submit predictions
+
+Submit a .csv file (ensure comma separated format) named `lastname_firstname.csv` that includes your predictions in a column named *yhat*. We will use automated evaluation, so the format must be exact.
+
+- You will receive credit for a proper submission; the top five scores will receive 2 bonus points.
+																																																	::: {.solution}
+Add solution here
+:::
+
+## d. Anticipated Performance
+
+Report the anticipated performance of your method in terms of RMSE. We will see how close your performance assessment matches the actual value.
+
+::: {.solution}
+Add solution here
+:::
+

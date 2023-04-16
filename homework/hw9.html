@@ -2850,6 +2850,13 @@ Use <code>Pclass</code>, <code>Sex</code>, <code>Age</code>,
 <code>Fare</code>, <code>SibSp</code>, <code>Parch</code>, and
 <code>Embarked</code> for the predictor variables (features) and
 <code>Survived</code> as the outcome variable.</p>
+<div style="background-color:lightblue; display: block;">
+<p>NOTE: Use the training data <code>titanic_train</code> as the test
+data. We would not usually do this, but after posting the homework I was
+notified that the test data does not contain the labels which prohibits
+analysis of the permutation feature importance scores. In summary, set
+<code>test = titanic_*train*</code>.</p>
+</div>
 <div id="a.-method-1-built-in-importance-scores" class="section level2">
 <h2>a. Method 1: Built-in importance scores</h2>
 <p>Fit a tree ensemble model (e.g., Random Forest, boosted tree) on the

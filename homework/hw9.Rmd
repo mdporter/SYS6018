@@ -34,6 +34,12 @@ library(tidyverse) # functions for data manipulation
 The [R package `titanic`](https://cran.r-project.org/web/packages/titanic/index.html) contains data on who survived the Titanic sinking. The passengers have been split into a training (`titanic_train`) and testing (`titanic_test`) set. We are going to use this data to investigate feature importance.
 Use `Pclass`, `Sex`, `Age`, `Fare`, `SibSp`, `Parch`, and `Embarked` for the predictor variables (features) and `Survived` as the outcome variable. 
 
+::: {style="background-color:lightblue; display: block;"}
+
+NOTE: Use the training data `titanic_train` as the test data. We would not usually do this, but after posting the homework I was notified that the test data does not contain the labels which prohibits analysis of the permutation feature importance scores. 
+In summary, set `test = titanic_*train*`.  
+
+:::
 
 ## a. Method 1: Built-in importance scores
 

@@ -1,0 +1,167 @@
+---
+title: "Homework #10: Clustering" 
+author: "**Your Name Here**"
+date: "Due: Fri Apr 28 | 11:45am"
+output: R6018::homework
+---
+
+**SYS 4582/6018 | Spring 2023 | University of Virginia **
+
+*******************************************
+```{r config, echo=FALSE}
+source(system.file("config/hw_config.R", package="R6018")) # knitr settings
+# options(dplyr.summarise.inform = FALSE)  # ignore dplyr message about grouping
+```
+
+
+
+# Required R packages and Directories {-}
+
+::: {.solution}
+```{r packages, message=FALSE, warning=FALSE}
+data.dir = 'https://mdporter.github.io/SYS6018/data/' # data directory
+library(R6018)     # functions for SYS-6018
+library(tidyverse) # functions for data manipulation   
+library(mclust)    # functions for mixture models
+library(mixtools)  # poisregmixEM() function
+```
+:::
+
+
+# Problem 1: Customer Segmentation with RFM (Recency, Frequency, and Monetary Value)
+
+RFM analysis is an approach that some businesses use to understand their customers' activities. At any point in time, a company can measure how recently a customer purchased a product (Recency), how many times they purchased a product (Frequency), and how much they have spent (Monetary Value). There are many ad-hoc attempts to segment/cluster customers based on the RFM scores (e.g., here is one based on using the customers' rank of each dimension independently: <https://joaocorreia.io/blog/rfm-analysis-increase-sales-by-segmenting-your-customers.html>). In this problem you will use the clustering methods we covered in class to segment the customers. 
+
+
+The data for this problem can be found here: <`r file.path(data.dir, "RFM.csv")`>. Cluster based on the Recency, Frequency, and Monetary value columns.
+
+
+::: {.solution}
+Load data here
+:::
+
+
+## a. Implement hierarchical clustering. 
+
+- Describe any pre-processing steps you took (e.g., scaling, distance metric)
+- State the linkage method you used with justification. 
+- Show the resulting dendrogram
+- State the number of segments/clusters you used with justification. 
+- Using your segmentation, are customers 1 and 99 in the same cluster?     
+    
+::: {.solution}
+Add solution here
+:::
+
+
+
+## b. Implement k-means.  
+
+- Describe any pre-processing steps you took (e.g., scaling)
+- State the number of segments/clusters you used with justification. 
+- Using your segmentation, are customers 1 and 99 in the same cluster?     
+    
+::: {.solution}
+Add solution here
+:::
+
+## c. Implement model-based clustering
+
+- Describe any pre-processing steps you took (e.g., scaling)
+- State the number of segments/clusters you used with justification. 
+- Describe the best model. What restrictions are on the shape of the components?
+- Using your segmentation, are customers 1 and 99 in the same cluster?     
+
+::: {.solution}
+Add solution here
+:::
+
+## d. Discussion
+
+Discuss how you would cluster the customers if you had to do this for your job. Do you think one model would do better than the others? 
+
+::: {.solution}
+Add solution here
+:::
+
+
+
+# Problem 2: Poisson Mixture Model
+
+The pmf of a Poisson random variable is:
+\begin{align*}
+f_k(x; \lambda_k) = \frac{\lambda_k^x e^{-\lambda_k}}{x!}
+\end{align*}
+
+A two-component Poisson mixture model can be written:
+\begin{align*}
+f(x; \theta) = \pi \frac{\lambda_1^x e^{-\lambda_1}}{x!} + (1-\pi) \frac{\lambda_2^x e^{-\lambda_2}}{x!}
+\end{align*}
+
+
+
+## a. Parameters
+
+What are the parameters of the model? 
+
+::: {.solution}
+Add solution here
+:::
+
+## b. Log-likelihood
+
+Write down the log-likelihood for $n$ independent observations ($x_1, x_2, \ldots, x_n$). 
+
+::: {.solution}
+Add solution here
+:::
+
+## c. Responsibilities
+
+Suppose we have initial values of the parameters. Write down the equation for updating the *responsibilities* using the notation given in the problem statement. 
+
+::: {.solution}
+Add solution here
+:::
+
+
+## d. Updating model parameters
+
+Suppose we have responsibilities, $r_{ik}$ for all $i=1, 2, \ldots, n$ and $k=1,2$. Write down the equations for updating the parameters. 
+
+::: {.solution}
+Add solution here
+:::
+
+
+## e. Two-component Poisson mixture model
+
+Fit a two-component Poisson mixture model, report the estimated parameter values, and show a plot of the estimated mixture pmf for the following data:
+
+```{r, echo=TRUE}
+#-- Run this code to generate the data
+set.seed(123)             # set seed for reproducibility
+n = 200                   # sample size
+z = sample(1:2, size=n, replace=TRUE, prob=c(.25, .75)) # sample the latent class
+theta = c(8, 16)          # true parameters
+y = ifelse(z==1, rpois(n, lambda=theta[1]), rpois(n, lambda=theta[2]))
+```
+
+- Note: The function `poisregmixEM()` in the R package `mixtools` is designed to estimate a mixture of *Poisson regression* models. We can still use this function for our problem of pmf estimation if it is recast as an intercept-only regression. To do so, set the $x$ argument (predictors) to `x = rep(1, length(y))` and `addintercept = FALSE`. 
+    - Look carefully at the output from this model. The `beta` values (regression coefficients) are on the log scale. The model output of `lambda` are the prior probabilities. 
+
+::: {.solution}
+Add solution here
+:::
+
+
+## f. Extra Credit
+
+**2 pts Extra Credit**: Write a function that estimates this two-component Poisson mixture model using the EM approach. Show that it gives the same result as part *e*. 
+
+- Note: you are not permitted to copy code.  Write everything from scratch and use comments to indicate how the code works (e.g., the E-step, M-step, initialization strategy, and convergence should be clear). 
+- Cite any resources you consulted to help with the coding. 
+
+::: {.solution}
+Add solution here
+:::

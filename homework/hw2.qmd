@@ -1,0 +1,155 @@
+---
+title: "Homework #2: Resampling" 
+author: "**Your Name Here**"
+format: sys6018hw-html
+---
+
+```{r config, include=FALSE}
+# Set global configurations and settings here
+knitr::opts_chunk$set()                 # set global chunk options
+ggplot2::theme_set(ggplot2::theme_bw()) # set ggplot2 theme
+```
+
+# Required R packages and Directories {.unnumbered .unlisted}
+
+```{r packages, message=FALSE, warning=FALSE}
+data_dir = 'https://mdporter.github.io/SYS6018/data/' # data directory
+library(tidymodels)# for optional tidymodels solutions
+library(tidyverse) # functions for data manipulation  
+```
+
+# Problem 1: Bootstrapping 
+
+Bootstrap resampling can be used to quantify the uncertainty in a fitted curve. 
+
+
+## a. Data Generating Process
+
+Create a set of functions to generate data from the following distributions:
+\begin{align*}
+X &\sim \mathcal{U}(0, 2) \qquad \text{Uniform between $0$ and $2$}\\
+Y &= 1 + 2x + 5\sin(5x) + \epsilon \\
+\epsilon &\sim \mathcal{N}(0,\, \sigma=2.5)
+\end{align*}
+
+::: {.callout-note title="Solution"}
+Add Solution Here
+:::
+
+## b. Simulate data
+
+Simulate $n=100$ realizations from these distributions. Produce a scatterplot and draw the true regression line $f(x) = E[Y \mid X=x]$. Use `set.seed(211)` prior to generating the data.
+
+::: {.callout-note title="Solution"}
+Add Solution Here
+:::
+
+
+## c. 5th degree polynomial fit
+
+Fit a 5th degree polynomial. Produce a scatterplot and draw the *estimated* regression curve.
+
+
+::: {.callout-note title="Solution"}
+Add Solution Here
+:::
+
+
+## d. Bootstrap sampling
+
+Make 200 bootstrap samples. For each bootstrap sample, fit a 5th degree polynomial and make predictions at `eval_pts = seq(0, 2, length=100)`
+
+- Set the seed (use `set.seed(212)`) so your results are reproducible.
+- Produce a scatterplot with the original data and add the 200 bootstrap curves
+
+::: {.callout-note title="Solution"} 
+Add Solution Here
+:::
+    
+## e. Confidence Intervals
+
+Calculate the pointwise 95% confidence intervals from the bootstrap samples. That is, for each $x \in {\rm eval\_pts}$, calculate the upper and lower limits such that only 5% of the curves fall outside the interval at $x$. 
+
+- Remake the plot from part *c*, but add the upper and lower boundaries from the 95% confidence intervals. 
+
+
+::: {.callout-note title="Solution"}
+Add Solution Here
+:::
+
+# Problem 2: V-Fold cross-validation with $k$ nearest neighbors
+
+Run 10-fold cross-validation on the data generated in part 1b to select the optimal $k$ in a k-nearest neighbor (kNN) model. Then evaluate how well cross-validation performed by evaluating the performance on a large test set. The steps below will guide you.
+
+
+## a. Implement 10-fold cross-validation
+
+Use $10$-fold cross-validation to find the value of $k$ (i.e., neighborhood size) that provides the smallest cross-validated MSE using a kNN model. 
+
+- Search over $k=3,4,\ldots, 40$.
+- Use `set.seed(221)` prior to generating the folds to ensure the results are replicable. 
+- Show the following:
+    - the optimal $k$ (as determined by cross-validation)
+    - the corresponding estimated MSE
+    - produce a plot with $k$ on the x-axis and the estimated MSE on the y-axis (optional: add 1-standard error bars). 
+- Notation: The $k$ is the tuning paramter for the kNN model. The $v=10$ is the number of folds in V-fold cross-validation. Don't get yourself confused.
+
+
+
+::: {.callout-note title="Solution"}
+Add Solution Here
+:::
+
+
+## b. Find the optimal *edf*
+
+The $k$ (number of neighbors) in a kNN model determines the effective degrees of freedom *edf*. What is the optimal *edf*? Be sure to use the correct sample size when making this calculation. Produce a plot similar to that from part *a*, but use *edf* (effective degrees of freedom) on the x-axis. 
+
+
+::: {.callout-note title="Solution"}
+Add Solution Here
+:::
+
+## c. Choose $k$
+
+After running cross-validation, a final model fit from *all* of the training data needs to be produced to make predictions. What value of $k$ would you choose? Why? 
+
+
+::: {.callout-note title="Solution"}
+Add Solution Here
+:::
+
+## d. Evaluate actual performance
+
+Now we will see how well cross-validation performed. Simulate a test data set of $50000$ observations from the same distributions. Use `set.seed(223)` prior to generating the test data. 
+
+- Fit a set of kNN models, using the full training data, and calculate the mean squared error (MSE) on the test data for each model. Use the same $k$ values in *a*. 
+- Report the optimal $k$, the corresponding *edf*, and MSE based on the test set.
+
+::: {.callout-note title="Solution"}
+Add Solution Here
+:::
+
+## e. Performance plots
+
+Plot both the cross-validation estimated and (true) error calculated from the test data on the same plot. See Figure 5.6 in ISL (pg 182) as a guide. 
+
+- Produce two plots: one with $k$ on the x-axis and one with *edf* on the x-axis.
+- Each plot should have two lines: one from part *a* and one from part *d* 
+    
+::: {.callout-note title="Solution"}
+Add Solution Here
+:::
+    
+## f. Did cross-validation work as intended?
+
+Based on the plots from *e*, does it appear that cross-validation worked as intended? How sensitive is the choice of $k$ on the resulting test MSE?      
+
+::: {.callout-note title="Solution"}
+Add Solution Here
+:::
+
+
+
+
+

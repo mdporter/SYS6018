@@ -1,0 +1,111 @@
+---
+title: "Homework #5: SVM and Calibration" 
+author: "**Your Name Here**"
+format: sys6018hw-html
+---
+
+```{r config, include=FALSE}
+# Set global configurations and settings here
+knitr::opts_chunk$set()                 # set global chunk options
+ggplot2::theme_set(ggplot2::theme_bw()) # set ggplot2 theme
+```
+
+# Required R packages and Directories {.unnumbered .unlisted}
+
+```{r packages, message=FALSE, warning=FALSE}
+dir_data= 'https://mdporter.github.io/SYS6018/data/' # data directory
+library(knitr)      # for nicer printing of tables with kable
+library(e1071)      # for SVM
+library(tidymodels) # for modeling and evaluation functions
+library(tidyverse)  # functions for data manipulation  
+```
+
+
+# COMPAS Recidivism Prediction
+
+A recidivism risk model called COMPAS was the topic of a [ProPublica article](https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing/) on ML bias. Because the data and notebooks used for article was released on [github](https://github.com/propublica/compas-analysis), we can also evaluate the prediction bias (i.e., calibration). 
+
+This code will read in the *violent crime* risk score and apply the filtering used in the [analysis](https://github.com/propublica/compas-analysis/blob/master/Compas%20Analysis.ipynb).
+```{r, message=FALSE}
+#| code-fold: true
+library(tidyverse)
+df = read_csv("https://raw.githubusercontent.com/propublica/compas-analysis/master/compas-scores-two-years-violent.csv")
+
+risk = df %>% 
+  filter(days_b_screening_arrest <= 30) %>%
+  filter(days_b_screening_arrest >= -30) %>% 
+  filter(is_recid != -1) %>%
+  filter(c_charge_degree != "O") %>%
+  filter(v_score_text != 'N/A') %>% 
+  transmute(
+    age, age_cat,
+    charge = ifelse(c_charge_degree == "F", "Felony", "Misdemeanor"),
+    race,
+    sex,                 
+    priors_count = priors_count...15,
+    score = v_decile_score,              # the risk score {1,2,...,10}
+    outcome = two_year_recid...53        # outcome {1 = two year recidivate}
+  )
+```
+
+The `risk` data frame has the relevant information for completing the problems.
+
+
+
+# Problem 1: COMPAS risk score
+
+
+## a. Risk Score and Probability (table)
+
+Assess the predictive bias in the COMPAS risk scores by evaluating the probability of recidivism, e.g. estimate $\Pr(Y = 1 \mid \text{Score}=x)$. Use any reasonable techniques (including Bayesian) to estimate the probability of recidivism for each risk score. 
+
+Specifically, create a table (e.g., data frame) that provides the following information:
+
+- The COMPASS risk score.
+- The point estimate of the probability of recidivism for each risk score.
+- 95% confidence or credible intervals for the probability (e.g., Using normal theory, bootstrap, or Bayesian techniques).
+
+Indicate the choices you made in estimation (e.g., state the prior if you used Bayesian methods).
+
+
+::: {.callout-note title="Solution"}
+Add solution here
+:::
+
+## b. Risk Score and Probability (plot)
+
+Make a plot of the risk scores and corresponding estimated probability of recidivism. 
+
+- Put the risk score on the x-axis and estimate probability of recidivism on y-axis.
+- Add the 95% confidence or credible intervals calculated in part a.
+- Comment on the patterns you see. 
+
+::: {.callout-note title="Solution"}
+Add solution here
+:::
+
+
+## c. Risk Score and Probability (by race)
+
+Repeat the analysis, but this time do so for every race. Produce a set of plots (one per race) and comment on the patterns. 
+
+::: {.callout-note title="Solution"}
+Add solution here
+:::
+
+## d. ROC Curves
+
+Use the raw COMPAS risk scores to make a ROC curve for each race. 
+
+- Are the best discriminating models the ones you expected? 
+- Are the ROC curves helpful in evaluating the COMPAS risk score? 
+
+::: {.callout-note title="Solution"}
+Add solution here
+:::
+
+
+# Problem 2: Support Vector Machines (SVM)
+
+Focus on Problem 1, we won't have an SVM problem this week.
+

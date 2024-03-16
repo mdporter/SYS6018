@@ -43,6 +43,13 @@ ul.nav a:hover {
 }
 
 
+/* Nested lists */
+ul li li { 
+  margin-top: 0px;
+  margin-bottom: 5px; 
+}
+
+
 
 /* BlockQuote */
 
@@ -59,7 +66,7 @@ blockquote {
 /* Table Settings */
 
 table {
-  width: 65%;
+  width: 70%; 
 }
 th {
   /* background-color: green; */

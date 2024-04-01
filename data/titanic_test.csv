@@ -1,0 +1,302 @@
+Name_ID,Name,Sex,Age,Class,Ticket,Joined,Occupation,Job,Fare,sibsp,parch,Survived
+44,"ANDERSON, Mr Harry",male,47,1,19952,Southampton,Stockbroker,NA,26.55,0,0,1
+60,"ANDREWS, Miss Kornelia Theodosia",female,62,1,13502,Cherbourg,NA,NA,77.95833333333334,1,0,1
+164,"BECKWITH, Mrs Sallie",female,46,1,11751,Southampton,NA,NA,52.55416666666667,1,1,1
+169,"BEHR, Mr Karl Howell",male,26,1,111369,Cherbourg,NA,NA,30,0,0,1
+194,"BIRD, Miss Ellen",female,31,1,17483,Southampton,Personal Maid,Servant,221.77916666666667,0,0,1
+199,"BISHOP, Mrs Helen",female,19,1,11967,Cherbourg,NA,NA,91.07916666666667,1,0,1
+210,"BLANK, Mr Henry",male,39,1,112277,Cherbourg,Jeweller,NA,31,0,0,1
+219,"BONNELL, Miss Caroline",female,30,1,36928,Southampton,NA,NA,164.86666666666667,0,0,1
+253,"BRERETON, Mr George Andrew",male,37,1,111427,Southampton,NA,NA,26.55,0,0,1
+254,"BREWE, Dr Arthur Jackson",male,45,1,112379,Cherbourg,NA,NA,39.6,0,0,0
+304,"BUTT, Major Archibald Willingham",male,46,1,113050,Southampton,Military,NA,26.55,0,0,0
+328,"CANDEE, Mrs Helen Churchill",female,52,1,17606,Cherbourg,NA,NA,27.445833333333333,0,0,1
+338,"CARLSSON, Mr Frans Olof",male,33,1,695,Southampton,NA,NA,5,0,0,0
+349,"CARTER, Mrs Lucile",female,36,1,113760,Southampton,NA,NA,120,1,2,1
+356,"CASSEBEER, Mrs Eleanor Genevieve",female,36,1,17770,Cherbourg,NA,NA,27.72083333333333,0,0,1
+363,"CAVENDISH, Mr Tyrell William",male,36,1,19877,Southampton,NA,NA,78.85,1,0,0
+370,"CHAMBERS, Mr Norman Campbell",male,27,1,113806,Southampton,NA,NA,53.1,1,0,1
+371,"CHAMBERS, Mrs Bertha",female,32,1,113806,Southampton,NA,NA,53.1,1,0,1
+383,"CHIBNALL, Mrs Edith Martha Bowerman",female,48,1,113505,Southampton,Of Independent Means,NA,55,0,1,1
+396,"CLARK, Mr Walter Miller",male,27,1,13508,Cherbourg,NA,NA,136.77916666666667,1,0,0
+427,"COMPTON, Mrs Mary Eliza",female,64,1,17756,Cherbourg,NA,NA,83.15833333333335,0,2,1
+485,"CUMINGS, Mr John Bradley",male,39,1,17599,Cherbourg,NA,NA,71.28333333333333,1,0,0
+551,"DICK, Mrs Vera",female,17,1,17474,Southampton,NA,NA,57,1,0,1
+579,"DOUGLAS, Mrs Mahala",female,48,1,17761,Cherbourg,NA,NA,106.42500000000001,1,0,1
+592,"DUFF GORDON, Sir Cosmo Edmund",male,49,1,11755,Cherbourg,Landowner,NA,39.6,1,0,1
+594,"DULLES, Mr William Crothers",male,39,1,17580,Cherbourg,NA,NA,29.7,0,0,0
+607,"EARNSHAW, Mrs Olive",female,23,1,11767,Cherbourg,Of Independent Means,NA,83.15833333333335,0,1,1
+685,"FORTUNE, Miss Alice Elizabeth",female,24,1,19950,Southampton,NA,NA,263,3,2,1
+687,"FORTUNE, Miss Mabel Helen",female,23,1,19950,Southampton,NA,NA,263,3,2,1
+848,"HARRIS, Mrs Irene",female,35,1,36973,Southampton,NA,NA,83.47500000000001,1,0,1
+861,"HASSAB, Mr Hammad",male,27,1,17572,Cherbourg,Servant,Servant,76.72916666666667,0,0,1
+872,"HEAD, Mr Christopher",male,42,1,113038,Southampton,Politician,NA,42.5,0,0,0
+937,"HOMER, Mr Harry",male,40,1,111426,Southampton,Gambler,NA,26.55,0,0,1
+973,"ICARD, Miss Rose Amélie",female,39,1,113572,Southampton,Personal Maid,Servant,80,0,0,1
+1101,"KIMBALL, Mr Edwin Nelson Jr.",male,42,1,11753,Southampton,NA,NA,52.55416666666667,1,0,1
+1197,"LINES, Miss Mary Conover",female,16,1,17592,Cherbourg,NA,NA,39.4,0,1,1
+1211,"LONG, Mr Milton Clyde",male,29,1,113501,Southampton,NA,NA,30,0,0,0
+1213,"LONGLEY, Miss Gretchen Fiske",female,21,1,13502,Cherbourg,NA,NA,77.95833333333334,0,0,1
+1215,"LORING, Mr Joseph Holland",male,30,1,113801,Southampton,Stockbroker,NA,45.5,0,0,0
+1227,"LURETTE, Miss Eugénie Elise",female,59,1,17569,Cherbourg,Personal Maid,Servant,146.52083333333334,0,0,1
+1238,"MADILL, Miss Georgette Alexandra",female,16,1,24160,Southampton,NA,NA,211.3375,0,1,1
+1270,"MARVIN, Mr Daniel Warner",male,18,1,113773,Southampton,Of Independent Means,NA,53.1,1,0,0
+1271,"MARVIN, Mrs Mary Graham Carmichael",female,18,1,113773,Southampton,NA,NA,53.1,1,0,1
+1353,"MILLET, Mr Francis Davis",male,65,1,13509,Cherbourg,Artist,NA,26.55,0,0,0
+1440,"NEWELL, Miss Madeleine",female,31,1,35273,Cherbourg,NA,NA,113.275,1,0,1
+1509,"OSTBY, Mr Engelhart Cornelius",male,64,1,113509,Southampton,Jeweller,NA,61.97916666666667,0,1,0
+1514,"OVIéS Y RODRíGUEZ, Mr Servando José Florentino",male,36,1,17562,Cherbourg,Merchant,NA,27.72083333333333,0,0,0
+1559,"PEARS, Mrs Edith",female,22,1,113776,Southampton,NA,NA,66.6,1,0,1
+1726,"ROTHSCHILD, Mr Martin",male,46,1,17603,Cherbourg,NA,NA,59.4,1,0,0
+1744,"RYERSON, Master John Borie",male,13,1,17608,Cherbourg,NA,NA,262.375,2,2,1
+1745,"RYERSON, Miss Emily Borie",female,18,1,17608,Cherbourg,NA,NA,262.375,2,2,1
+1747,"RYERSON, Mr Arthur Larned",male,61,1,17608,Cherbourg,NA,NA,262.375,1,3,0
+1768,"SäGESSER, Mlle Emma",female,24,1,17477,Cherbourg,Personal Maid,Servant,69.3,0,0,1
+1795,"SCHABERT, Mrs Emma",female,35,1,13236,Cherbourg,NA,NA,57.75,1,0,1
+1829,"SHUTES, Miss Elizabeth Weed",female,40,1,17582,Southampton,Governess,Servant,153.46249999999998,0,0,1
+1833,"SILVEY, Mr William Baird",male,51,1,13507,Cherbourg,Businessman,NA,55.9,1,0,0
+1839,"SIMONIUS-BLUMER, Mr Colonel (Oberst) Alfons",male,56,1,13213,Southampton,Banker,NA,35.5,0,0,1
+1885,"SMITH, Mr Richard William",male,57,1,113056,Southampton,NA,NA,26,0,0,0
+1902,"SPEDDEN, Master Robert Douglas",male,6,1,16966,Cherbourg,NA,NA,134.5,0,2,1
+1909,"STäHELIN-MAEGLIN, Dr Max",male,32,1,13214,Southampton,Lawyer,NA,30.5,0,0,1
+1917,"STEAD, Mr William Thomas",male,62,1,113514,Southampton,Journalist,NA,26.55,0,0,0
+1922,"STEPHENSON, Mrs Martha",female,52,1,36947,Cherbourg,NA,NA,78.26666666666667,1,0,1
+1949,"SUTTON, Mr Frederick",male,61,1,36963,Southampton,Property Developer / Real Estate,NA,32.32083333333333,0,0,0
+1956,"SWIFT, Mrs Margaret Welles",female,46,1,17466,Southampton,NA,NA,25.929166666666664,0,0,1
+1965,"TAUSSIG, Mr Emil",male,52,1,110413,Southampton,NA,NA,79.65,1,1,0
+2108,"WEIR, Colonel John",male,59,1,113800,Southampton,Military,NA,26.55,0,0,0
+2133,"WHITE, Mr Richard Frasar",male,21,1,35281,Southampton,NA,NA,77.2875,0,1,0
+2139,"WICK, Miss Mary Natalie",female,31,1,36928,Southampton,NA,NA,164.86666666666667,0,2,1
+2151,"WILLARD, Miss Constance",female,21,1,113795,Southampton,NA,NA,26.55,0,0,1
+2155,"WILLIAMS, Mr Charles Duane",male,51,1,17597,Cherbourg,Lawyer,NA,61.37916666666667,0,1,0
+2166,"WILSON, Miss Helen Alice",female,31,1,16966,Cherbourg,Personal Maid,Servant,134.5,0,0,1
+2191,"WRIGHT, Mr George",male,62,1,113807,Southampton,Businessman,NA,26.55,0,0,0
+1243,"MAIONI, Miss Roberta Elizabeth Mary",female,19,1,110152,Southampton,Personal Maid,Servant,86.5,0,0,1
+984,"ISMAY, Mr Joseph Bruce",male,49,1,112058,Southampton,Shipowner,NA,NA,0,0,1
+8,"ABELSON, Mr Samuel",male,30,2,3381,Cherbourg,NA,NA,24,1,0,0
+112,"BAINBRIGGE, Mr Charles Robert",male,22,2,31030,Southampton,Horse Trainer,NA,10.5,0,0,0
+118,"BANFIELD, Mr Frederick James",male,28,2,34068,Southampton,Miner,NA,10.5,0,0,0
+159,"BECKER, Master Richard F.",male,1,2,230136,Southampton,NA,NA,39,2,1,1
+242,"BRACKEN, Mr James Hollen",male,30,2,220367,Southampton,Stockman,NA,13,0,0,0
+271,"BROWN, Miss Amelia Mary",female,18,2,248733,Southampton,Cook (Personal),Servant,13,0,0,1
+281,"BRYHL, Miss Dagmar Jenny Ingeborg",female,20,2,236853,Southampton,NA,NA,26,1,0,1
+333,"CARBINES, Mr William",male,18,2,28424,Southampton,Miner,NA,13,0,0,0
+373,"CHAPMAN, Mr John Henry",male,36,2,29037,Southampton,Farmer,NA,26,1,0,0
+447,"COREY, Mrs Mary Emma",female,32,2,13534,Southampton,NA,NA,21,0,0,0
+452,"COTTERILL, Mr Henry",male,20,2,29107,Southampton,Carpenter / Joiner,NA,11.5,0,0,0
+508,"DAVIES, Master John Morgan jr",male,8,2,33112,Southampton,NA,NA,36.75,1,1,1
+517,"DAVIES, Mrs Agnes",female,48,2,33112,Southampton,NA,NA,36.75,0,2,1
+518,"DAVIS, Miss Mary Ann Charlotte",female,28,2,237668,Southampton,NA,NA,13,0,0,1
+529,"DEACON, Mr Percy William",male,17,2,14879,Southampton,Baker,NA,73.5,0,0,0
+537,"DEL CARLO, Mr Sebastiano",male,29,2,2167,Cherbourg,NA,NA,27.72083333333333,1,0,0
+538,"DEL CARLO, Mrs Argene",female,24,2,2167,Cherbourg,NA,NA,27.72083333333333,1,0,1
+588,"DREW, Mrs Lulu Thorne",female,34,2,28220,Southampton,NA,NA,32.5,1,1,1
+598,"DURáN I MONé, Sra. Florentina",female,30,2,2148,Cherbourg,NA,NA,13.858333333333333,1,0,1
+720,"GARSIDE, Miss Ethel",female,39,2,243880,Southampton,NA,NA,13,0,0,1
+737,"GILES, Mr Edgar",male,18,2,28133,Southampton,Cab Driver,NA,11.5,1,0,0
+747,"GIVARD, Mr Hans Kristensen",male,30,2,250646,Southampton,NA,NA,13,0,0,0
+825,"HARBECK, Mr William H.",male,45,2,248746,Southampton,Cinematographer,NA,13,0,0,0
+847,"HARRIS, Mr Walter",male,44,2,14208,Southampton,NA,NA,10.5,0,0,0
+857,"HART, Mrs Esther Ada",female,48,2,13529,Southampton,NA,NA,26.25,1,1,1
+889,"HERMAN, Miss Alice",female,24,2,220845,Southampton,NA,NA,65,1,2,1
+890,"HERMAN, Miss Kate",female,24,2,220845,Southampton,NA,NA,65,1,2,1
+892,"HERMAN, Mrs Jane",female,50,2,220845,Southampton,NA,NA,65,1,2,1
+921,"HODGES, Mr Henry Price",male,49,2,250643,Southampton,Musical Instrument Vendor,NA,13,0,0,0
+1000,"JARVIS, Mr Denzil John",male,46,2,237565,Southampton,Engineer,NA,15,0,0,0
+1002,"JEFFERYS, Mr Clifford Thomas",male,24,2,31029,Southampton,Granite Cutter,NA,31.5,2,0,0
+1060,"KARNES, Mrs Claire",female,22,2,13534,Southampton,NA,NA,21,0,0,0
+1148,"LAROCHE, Miss Simonne Marie Anne Andrée",female,3,2,2123,Cherbourg,NA,NA,41.579166666666666,1,2,1
+1171,"LEITCH, Miss Jessie Wills",female,31,2,248727,Southampton,NA,NA,33,0,0,1
+1233,"MACK, Mrs Mary",female,56,2,S.O./C. 3,Southampton,NA,NA,10.5,0,0,0
+1278,"MATTHEWS, Mr William John",male,22,2,28228,Southampton,China Clay Worker,NA,13,0,0,0
+1336,"MELLINGER, Miss Violet Madeline",female,13,2,250644,Southampton,NA,NA,19.5,0,1,1
+1417,"MYLES, Mr Thomas Francis",male,63,2,240276,Queenstown,Gentleman,NA,9.6875,0,0,0
+1434,"NAVRATIL, Master Michel Marcel",male,3,2,230080,Southampton,NA,NA,26,1,1,1
+1445,"NICHOLLS, Mr Joseph Charles",male,19,2,33112,Southampton,Miner,NA,36.75,1,1,0
+1541,"PARRISH, Mrs Lutie Davis",female,59,2,230433,Southampton,NA,NA,26,0,1,1
+1577,"PERNOT, Mr René",male,39,2,2131,Cherbourg,Chauffeur,Servant,15.05,0,0,0
+1621,"PONESELL, Mr Martin",male,24,2,250647,Southampton,NA,NA,13,0,0,0
+1641,"PULBAUM, Mr Franz",male,27,2,2168,Cherbourg,NA,NA,15.033333333333333,0,0,0
+1647,"QUICK, Mrs Jane",female,33,2,26360,Southampton,NA,NA,26,0,2,1
+1683,"RICHARDS, Master William Rowe",male,3,2,29106,Southampton,NA,NA,18.75,1,1,1
+1712,"ROGERS, Mr Reginald Harry",male,18,2,28004,Southampton,NA,NA,10.5,0,0,0
+1736,"RUGG, Miss Emily",female,22,2,31026,Southampton,NA,NA,10.5,0,0,1
+1797,"SCHMIDT, Mr Augustus",male,21,2,248659,Southampton,NA,NA,13,0,0,0
+1849,"SJöSTEDT, Mr Ernst Adolf",male,59,2,237442,Southampton,NA,NA,13.5,0,0,0
+1897,"SOBEY, Mr Samuel James Hayden",male,25,2,29178,Southampton,Quarryman,NA,13,0,0,0
+1954,"SWANE, Mr George",male,19,2,248734,Southampton,Chauffeur,Servant,13,0,0,0
+2021,"TROUT, Mrs Jessie Laird",female,27,2,240929,Southampton,NA,NA,12.65,0,0,1
+2033,"TURPIN, Mr William John",male,29,2,11668,Southampton,Carpenter / Joiner,NA,21,1,0,0
+2034,"TURPIN, Mrs Dorothy Ann",female,26,2,11668,Southampton,Housewife,NA,21,1,0,0
+2086,"WARE, Mr John James",male,46,2,31352,Southampton,Carpenter / Joiner,NA,21,1,0,0
+2088,"WARE, Mrs Florence Louise",female,32,2,31352,Southampton,NA,NA,21,0,0,1
+2109,"WEISZ, Mr Léopold",male,36,2,228414,Southampton,Stonemason and Carver,NA,26,1,0,0
+2123,"WHEELER, Mr Edwin Charles",male,25,2,2159,Southampton,Servant,Servant,12.875,0,0,0
+2125,"WHILEMS, Mr Charles",male,30,2,244270,Southampton,Factory Foreman,NA,13,0,0,1
+2150,"WILKINSON, Mrs Elizabeth Anne",female,30,2,2926,Southampton,NA,NA,26,1,0,1
+2156,"WILLIAMS, Mr Charles Eugene",male,23,2,244373,Southampton,Sportsman,NA,13,0,0,1
+2202,"YVOIS, Miss Henriette",female,24,2,248747,Southampton,NA,NA,13,0,0,0
+325,"CAMPBELL, Mr William Henry",male,21,2,239853,Southampton,NA,H&W Guarantee Group,0,0,0,0
+2095,"WATSON, Mr Ennis Hastings",male,18,2,239856,Southampton,Apprentice Electrician,H&W Guarantee Group,0,0,0,0
+5,"ABBOTT, Mrs Rhoda Mary 'Rosa'",female,39,3,CA2673,Southampton,NA,NA,20.25,1,1,1
+16,"AHLIN, Mrs Johanna Persdotter",female,40,3,7546,Southampton,NA,NA,9.475,1,0,0
+20,"AKS, Mrs Leah",female,18,3,392091,Southampton,NA,NA,9.35,0,1,1
+47,"ANDERSSON, Master Sigvard Harald Elias",male,4,3,347082,Southampton,NA,NA,31.275,4,2,0
+49,"ANDERSSON, Miss Ellis Anna Maria",female,2,3,347082,Southampton,NA,NA,31.275,4,2,0
+51,"ANDERSSON, Miss Ida Augusta Margareta",female,38,3,347091,Southampton,NA,NA,7.775,4,2,0
+63,"ANGHELOFF, Mr Minko",male,26,3,349202,Southampton,General Labourer,NA,7.895833333333333,0,0,0
+75,"ASIM, Mr Adola",male,35,3,3101310,Southampton,General Labourer,NA,7.05,0,0,0
+84,"ASPLUND, Mrs Selma Augusta Emilia",female,38,3,347077,Southampton,NA,NA,31.387500000000003,1,5,1
+89,"ATTALA, Mr Sleiman",male,27,3,2694,Cherbourg,Journalist,NA,7.2250000000000005,0,0,0
+90,"ATTALAH, Miss Malake",female,17,3,2627,Cherbourg,NA,NA,14.458333333333332,0,0,0
+96,"BACCOS, Mr Raffull",male,20,3,2679,Cherbourg,Farm Labourer,NA,7.2250000000000005,0,0,0
+98,"BACKSTRöM, Mr Karl Alfred",male,32,3,3101278,Southampton,General Labourer,NA,15.85,1,0,0
+102,"BACLINI, Miss Marie Catherine",female,5,3,2666,Cherbourg,NA,NA,19.258333333333333,2,1,1
+114,"BALKIC, Mr Cerin",male,26,3,349248,Southampton,General Labourer,NA,7.895833333333333,0,0,0
+120,"BANSKI, Mrs Mara",female,30,3,349244,Southampton,NA,NA,8.683333333333334,0,0,1
+200,"BJöRKLUND, Mr Ernst Herbert",male,18,3,347090,Southampton,General Labourer,NA,7.75,0,0,0
+229,"BOULOS, Miss Nourelain",female,9,3,2678,Cherbourg,NA,NA,15.245833333333332,1,1,0
+248,"BRAF, Miss Elin Ester Maria",female,20,3,347471,Southampton,Servant,NA,7.854166666666666,0,0,0
+266,"BROCKLEBANK, Mr William Alfred",male,39,3,364512,Southampton,Groom,NA,8.05,0,0,0
+283,"BUCKLEY, Miss Katherine",female,22,3,329944,Queenstown,NA,NA,7.283333333333333,0,0,0
+322,"CALIC, Mr Petar",male,17,3,315086,Southampton,Farm Labourer,NA,8.6625,0,0,0
+340,"CARR, Miss Jane",female,45,3,368364,Queenstown,NA,NA,7.75,0,0,0
+442,"COR, Mr Ivan",male,27,3,349229,Southampton,General Labourer,NA,7.895833333333333,0,0,0
+458,"COUTTS, Master Neville Leslie",male,3,3,37671,Southampton,NA,NA,15.9,1,1,1
+462,"COXON, Mr Daniel",male,58,3,364500,Southampton,Dealer,NA,7.25,0,0,0
+470,"CRIBB, Miss Laura Mae",female,16,3,371362,Southampton,Shop Assistant,NA,16.1,0,1,1
+511,"DAVIES, Mr Evan",male,22,3,23568,Southampton,Miner,NA,8.05,0,0,0
+530,"DEAN, Master Bertram Vere",male,1,3,2315,Southampton,NA,NA,20.575,1,2,1
+531,"DEAN, Miss Elizabeth Gladys 'Millvina'",female,0.2,3,2315,Southampton,NA,NA,20.575,1,2,1
+543,"DENNIS, Mr William",male,25,3,21175,Southampton,Farmer,NA,7.25,0,0,0
+547,"DEVANEY, Miss Margaret Delia",female,19,3,330958,Queenstown,NA,NA,7.879166666666666,0,0,1
+574,"DORKING, Mr Edward Arthur",male,18,3,10482,Southampton,Groom,NA,8.05,0,0,1
+582,"DOWDELL, Miss Elizabeth",female,31,3,364516,Southampton,Housekeeper,NA,12.475,0,0,1
+585,"DRAZENOVIC, Mr Jozef",male,33,3,349241,Cherbourg,General Labourer,NA,7.895833333333333,0,0,0
+612,"EDVARDSSON, Mr Gustaf Hjalmar",male,18,3,349912,Southampton,General Labourer,NA,7.775,0,0,0
+616,"EKLUND, Mr Hans Linus",male,16,3,347074,Southampton,General Labourer,NA,7.775,0,0,0
+623,"ELSBURY, Mr William James",male,48,3,3902,Southampton,Farmer,NA,7.25,0,0,0
+629,"ESTANISLAU, Mr Manuel Gonçalves",male,37,3,3101306,Southampton,General Labourer,NA,7.05,0,0,0
+670,"FOLEY, Mr Joseph",male,19,3,330910,Queenstown,Farm Labourer,NA,7.879166666666666,0,0,0
+683,"FORD, Mrs Margaret Ann Watson",female,54,3,6608,Southampton,Farmer,NA,34.375,1,3,0
+727,"GEORGE/JOSEPH, Mrs Shawneene",female,38,3,2688,Cherbourg,NA,NA,7.229166666666667,0,0,1
+741,"GILINSKI, Mr Eliezer",male,22,3,14973,Southampton,Locksmith,NA,8.05,0,0,0
+761,"GOODWIN, Master Harold Victor",male,9,3,2144,Southampton,NA,NA,46.9,5,2,0
+767,"GOODWIN, Mr Frederick Joseph",male,42,3,2144,Southampton,Engineer,NA,46.9,1,6,0
+795,"GUSTAFSSON, Mr Johan Birger",male,28,3,3101277,Southampton,NA,NA,7.925000000000001,2,0,0
+801,"HAGLAND, Mr Ingvald Olai Olsen",male,28,3,65303,Southampton,General Labourer,NA,6.966666666666667,1,0,0
+802,"HAGLAND, Mr Konrad Mathias Reiersen",male,19,3,65304,Southampton,General Labourer,NA,6.966666666666667,1,0,0
+815,"HAMPE, Mr Léon Jérome",male,19,3,345769,Southampton,Painter & Decorator,NA,9.5,0,0,0
+854,"HART, Mr Henry",male,28,3,394140,Queenstown,General Labourer,NA,6.858333333333333,0,0,0
+875,"HEDMAN, Mr Oskar Arvid",male,27,3,347089,Southampton,Settler Recruiter,NA,6.9750000000000005,0,0,1
+876,"HEE, Mr Ling",male,24,3,1601,Southampton,Seaman,NA,56.49583333333334,0,0,1
+877,"HEGARTY, Miss Hanora",female,20,3,365226,Queenstown,NA,NA,6.75,0,0,0
+880,"HEININEN, Miss Wendla Maria",female,23,3,3101290,Southampton,Servant,NA,7.925000000000001,0,0,0
+883,"HENDEKOVIC, Mr Ignjac",male,29,3,349243,Southampton,General Labourer,NA,7.895833333333333,0,0,0
+912,"HIRVONEN, Miss Hildur Elisabeth",female,2,3,3101298,Southampton,NA,NA,12.2875,0,1,1
+932,"HOLM, Mr John Fredrik Alexander",male,43,3,7075,Southampton,Farmer,NA,6.45,0,0,0
+949,"HOWARD, Miss May Elizabeth",female,26,3,39186,Southampton,Laundry Worker,NA,8.05,0,0,1
+970,"HYMAN, Mr Abraham Joseph",male,33,3,3470,Southampton,Framer,NA,7.887499999999999,0,0,1
+976,"ILIEFF, Mr Ylio",male,32,3,349220,Southampton,General Labourer,NA,7.895833333333333,0,0,0
+1007,"JENSEN, Mr Hans Peder",male,20,3,350050,Southampton,NA,NA,7.854166666666666,0,0,0
+1015,"JOHANNESEN, Mr Bernt Johannes",male,29,3,65306,Southampton,NA,NA,8.112499999999999,0,0,1
+1016,"JOHANSON, Mr Jakob Alfred",male,34,3,3101264,Southampton,General Labourer,NA,6.495833333333334,0,0,0
+1021,"JOHANSSON PALMQUIST, Mr Oskar Leander",male,26,3,347070,Southampton,NA,NA,7.775,0,0,1
+1022,"JOHNSON, Master Harold Theodor",male,4,3,347742,Southampton,NA,NA,11.133333333333333,1,1,1
+1025,"JOHNSON, Mr Malkolm Joackim",male,33,3,347062,Southampton,General Labourer,NA,7.775,0,0,0
+1029,"JOHNSTON, Miss Catherine Nellie",female,7,3,6607,Southampton,NA,NA,23.45,1,2,0
+1030,"JOHNSTON, Mr Andrew Emslie",male,35,3,6607,Southampton,Plumber,NA,23.45,1,2,0
+1040,"JONSSON, Mr Carl",male,25,3,350417,Southampton,General Labourer,NA,7.854166666666666,0,0,1
+1042,"JOSEPH (SHAHIN), Mr Elias",male,39,3,2675,Cherbourg,NA,NA,7.229166666666667,0,2,0
+1050,"JUSSILA, Miss Mari Aina",female,21,3,4137,Southampton,Servant,NA,9.841666666666667,1,0,0
+1052,"KALLIO, Mr Nikolai Erland",male,17,3,3101274,Southampton,General Labourer,NA,7.125,0,0,0
+1053,"KALVIK, Mr Johannes Halvorsen",male,21,3,8475,Southampton,General Labourer,NA,8.433333333333334,0,0,0
+1065,"KATAVELOS, Mr Vasilios G.",male,19,3,2682,Cherbourg,Farmer,NA,7.229166666666667,0,0,0
+1067,"KEANE, Mr Andrew",male,23,3,12460,Queenstown,Farm Labourer,NA,7.75,0,0,0
+1076,"KELLY, Miss Mary",female,22,3,14312,Queenstown,NA,NA,7.75,0,0,1
+1078,"KELLY, Mr James",male,44,3,330911,Queenstown,Farm Labourer,NA,7.829166666666667,0,0,0
+1094,"KHALIL, Mr Betros",male,25,3,2660,Cherbourg,Farm Labourer,NA,14.454166666666666,1,0,0
+1119,"KLASéN, Miss Gertrud Emilia",female,1,3,350405,Southampton,NA,NA,12.183333333333334,1,1,0
+1128,"KREKORIAN, Mr Neshan",male,25,3,2654,Cherbourg,General Labourer,NA,7.229166666666667,0,0,1
+1131,"KUTSCHER (LITHMAN), Mr Simon",male,26,3,251,Southampton,Baker,NA,7.55,0,0,0
+1143,"LANDERGREN, Miss Aurora Adelia",female,22,3,7077,Southampton,NA,NA,7.25,0,0,1
+1152,"LARSSON, Mr Bengt Edvin",male,29,3,347067,Southampton,General Labourer,NA,7.775,0,0,0
+1163,"LEFEBVRE, Master Henry",male,5,3,4133,Southampton,NA,NA,25.466666666666665,3,1,0
+1165,"LEFEBVRE, Miss Jeannie",female,8,3,4133,Southampton,NA,NA,25.466666666666665,3,1,0
+1166,"LEFEBVRE, Miss Mathilde",female,12,3,4133,Southampton,NA,NA,25.466666666666665,3,1,0
+1193,"LINDQVIST, Mr Eino William",male,20,3,3101285,Southampton,NA,NA,7.925000000000001,1,0,1
+1196,"LINEHAN, Mr Michael",male,20,3,330971,Queenstown,Farm Labourer,NA,7.879166666666666,0,0,0
+1203,"LIVSHIN, Mr David",male,24,3,374887,Southampton,Jeweller,NA,7.25,0,0,0
+1237,"MADIGAN, Miss Margaret",female,21,3,370370,Queenstown,NA,NA,7.75,0,0,1
+1255,"MANNION, Miss Margaret",female,28,3,36866,Queenstown,NA,NA,7.7375,0,0,1
+1293,"MCCARTHY, Miss Catherine",female,24,3,383123,Queenstown,NA,NA,7.75,0,0,1
+1333,"MEANWELL, Mrs Marian",female,62,3,392087,Southampton,Milliner,NA,8.05,0,0,0
+1348,"MIHOFF, Mr Stoytcho",male,28,3,349207,Southampton,General Labourer,NA,7.895833333333333,0,0,0
+1360,"MINKOFF, Mr Lazar",male,21,3,349211,Southampton,General Labourer,NA,7.895833333333333,0,0,0
+1394,"MORROW, Mr Thomas Rowan",male,30,3,372622,Queenstown,General Labourer,NA,7.75,0,0,0
+1398,"MOUTAL, Mr Rahamin Haim",male,27,3,374746,Southampton,Traveller,NA,8.05,0,0,0
+1405,"MULLIN, Miss Catherine",female,21,3,35852,Queenstown,NA,NA,7.733333333333333,0,0,1
+1408,"MULVIHILL, Miss Bridget Elizabeth",female,25,3,382653,Queenstown,NA,NA,7.75,0,0,1
+1424,"NANCARROW, Mr William Henry",male,35,3,3338,Southampton,Mason,NA,8.05,0,0,0
+1432,"NAUGHTON, Miss Hannah",female,21,3,365237,Queenstown,Teacher,NA,7.75,0,0,0
+1461,"NOFAL, Mr Mansouer",male,20,3,2697,Cherbourg,Journalist,NA,7.229166666666667,0,0,0
+1478,"O'CONNOR, Mr Maurice",male,16,3,371060,Queenstown,General Labourer,NA,7.75,0,0,0
+1497,"OLSSON, Mr Nils Johan Göransson",male,28,3,347464,Southampton,NA,NA,7.854166666666666,0,0,0
+1507,"OSéN, Mr Olaf Elon",male,16,3,7534,Southampton,Farm Labourer,NA,9.216666666666667,0,0,0
+1511,"O'SULLIVAN, Miss Bridget Mary",female,21,3,330909,Queenstown,NA,NA,7.629166666666666,0,0,0
+1533,"PANULA, Master Jaako Arnold",male,15,3,3101295,Southampton,General Labourer,NA,39.6875,4,1,0
+1547,"PASIC, Mr Jakob",male,21,3,315097,Southampton,Farmer,NA,8.6625,0,0,0
+1574,"PERKIN, Mr John Henry",male,23,3,21174,Southampton,Farmer,NA,7.25,0,0,0
+1586,"PETER / JOSEPH, Master Michael J. (""Michael Joseph"")",male,4,3,2668,Cherbourg,NA,NA,22.358333333333334,1,1,1
+1587,"PETER / JOSEPH, Miss Anna (""Mary Joseph"")",female,2,3,2668,Cherbourg,NA,NA,22.358333333333334,1,1,1
+1591,"PETERSEN, Mr Marius",male,24,3,342441,Southampton,Dairy Worker,NA,8.05,0,0,0
+1592,"PETRANEC, Miss Matilda",female,28,3,349245,Southampton,Servant,NA,7.895833333333333,0,0,0
+1594,"PETROFF, Mr Pastcho",male,29,3,349215,Southampton,General Labourer,NA,7.895833333333333,0,0,0
+1595,"PETTERSSON, Miss Elin Natalia",female,18,3,347087,Southampton,NA,NA,7.775,0,0,0
+1609,"PICARD, Mr Benoît",male,33,3,392078,Southampton,Leather Worker,NA,8.05,0,0,1
+1648,"RADEFF, Mr Alexander",male,27,3,349223,Southampton,General Labourer,NA,7.895833333333333,0,0,0
+1656,"RAZI, Mr Raihed",male,30,3,2629,Cherbourg,NA,NA,7.229166666666667,0,0,0
+1672,"RICE, Master Albert",male,9,3,382652,Queenstown,NA,NA,29.125,4,1,0
+1704,"ROBINS, Mr Alexander A.",male,50,3,3337,Southampton,Mason,NA,14.5,1,0,0
+1741,"RYAN, Mr Edward",male,24,3,383162,Queenstown,General Labourer,NA,7.75,0,0,1
+1742,"RYAN, Mr Patrick",male,29,3,371110,Queenstown,General Labourer,NA,24.15,0,0,0
+1755,"SADOWITZ, Mr Henry",male,16,3,1855,Southampton,Fur Cutter,NA,7.591666666666667,0,0,0
+1762,"SAGE, Miss Stella Anne",female,20,3,2343,Southampton,Dressmaker / Couturière,NA,69.55,8,2,0
+1764,"SAGE, Mr Frederick",male,16,3,2343,Southampton,Cook,NA,69.55,8,2,0
+1765,"SAGE, Mr George John",male,19,3,2343,Southampton,Barman,NA,69.55,8,2,0
+1769,"SALANDER, Mr Karl Johan",male,24,3,7266,Southampton,General Labourer,NA,9.325000000000001,0,0,0
+1774,"SAMAAN, Mr Elias",male,17,3,2662,Cherbourg,General Labourer,NA,21.679166666666664,2,0,0
+1780,"SANDSTRöM, Mrs Agnes Charlotta",female,24,3,9549,Southampton,NA,NA,16.7,0,2,1
+1784,"SAUNDERCOCK, Mr William Henry",male,19,3,2151,Southampton,Miner,NA,8.05,0,0,0
+1792,"SCANLAN, Mr James",male,22,3,36209,Queenstown,NA,NA,7.7250000000000005,0,0,0
+1844,"SIROTA, Mr Morris",male,19,3,392092,Southampton,Tailor,NA,8.05,0,0,0
+1845,"SIVIC, Mr Husein",male,40,3,349251,Southampton,General Labourer,NA,7.895833333333333,0,0,0
+1854,"SKOOG, Miss Mabel",female,9,3,347088,Southampton,NA,NA,27.9,3,2,0
+1857,"SKOOG, Mrs Anna Bernhardina",female,43,3,347088,Southampton,NA,NA,27.9,1,4,0
+1858,"SLABENOFF, Mr Petco",male,42,3,349214,Southampton,General Labourer,NA,7.895833333333333,0,0,0
+1870,"SMILJANIC, Mr Mile",male,37,3,315037,Southampton,Farm Labourer,NA,8.6625,0,0,0
+1889,"SMYTH, Miss Julia",female,18,3,335432,Queenstown,NA,NA,7.733333333333333,0,0,1
+1907,"SPINNER, Mr Henry John",male,31,3,369943,Southampton,Glove Cutter,NA,8.05,0,0,0
+1914,"STANLEY, Mr Edward Roland",male,21,3,45380,Southampton,Porter,NA,8.05,0,0,0
+1933,"STRANDéN, Mr Juho Niilosson",male,30,3,3101288,Southampton,NA,NA,7.925000000000001,0,0,1
+1937,"STRILIC, Mr Ivan",male,27,3,315083,Southampton,Farmer,NA,8.6625,0,0,0
+1950,"SVENSSON, Mr Johan",male,74,3,347060,Southampton,NA,NA,7.775,0,0,0
+1988,"THEOBALD, Mr Thomas Leonard",male,33,3,363294,Southampton,Groom,NA,8.05,0,0,0
+1994,"THOMPSON, Mr Alexander Morrison",male,36,3,32302,Southampton,Mason,NA,8.05,0,0,0
+2026,"TU'MAH, Mrs Hinnah",female,27,3,2650,Cherbourg,NA,NA,15.245833333333332,0,2,1
+2027,"TURCIN, Mr Stjepan",male,36,3,349247,Southampton,General Labourer,NA,7.895833333333333,0,0,0
+2039,"VAN BILLIARD, Master James William",male,10,3,851,Southampton,NA,NA,14.5,1,1,0
+2047,"VAN IMPE, Mr Jean Baptiste",male,36,3,345773,Southampton,Farmer,NA,24.15,1,1,0
+2052,"VANDERPLANCKE, Mr Julius",male,31,3,345763,Southampton,Farmer,NA,18,3,0,0
+2053,"VANDERPLANCKE, Mr Leo Edmondus",male,15,3,345763,Southampton,Farm Labourer,NA,18,2,0,0
+2054,"VANDERPLANCKE, Mrs Emelie Maria",female,31,3,345763,Southampton,NA,NA,18,1,0,0
+2071,"WAELENS, Mr Achille",male,22,3,345767,Southampton,Farm Labourer,NA,9,0,0,0
+2100,"WAZLI, Mr Yousif Ahmed",male,22,3,2647,Cherbourg,Farmer,NA,7.2250000000000005,0,0,0
+2152,"WILLER, Mr Aaron",male,37,3,3410,Cherbourg,NA,NA,8.712499999999999,0,0,0
+2153,"WILLEY, Mr Edward John",male,20,3,751,Southampton,Farm Labourer,NA,7.55,0,0,0
+2159,"WILLIAMS, Mr Leslie",male,28,3,54636,Southampton,Pugilist,NA,16.1,0,0,0
+2170,"WINDELøV, Mr Einar",male,21,3,3101317,Southampton,Dairy Worker,NA,7.25,0,0,0
+2200,"YOUSSEFF (ABI SAAB), Mr Gerios",male,26,3,2685,Cherbourg,Shoemaker,NA,7.2250000000000005,0,0,0
+1024,"JOHNSON, Mr August",male,49,3,370160,Southampton,Seaman,NA,NA,0,0,0
+1026,"JOHNSON, Mr William Cahoone Jr.",male,19,3,370160,Southampton,Seaman,NA,NA,0,0,0
+1930,"STOREY, Mr Thomas",male,51,3,370160,Southampton,Seaman,NA,NA,0,0,0

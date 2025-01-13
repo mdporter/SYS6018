@@ -1,0 +1,95 @@
+/*-- scss:defaults --*/
+
+/* TODO: Customize html appearance by setting SCSS variables */
+/* See https://quarto.org/docs/output-formats/html-themes.html#theme-options */
+
+/*-- scss:rules --*/
+
+/* Indent callout for solutions */
+.callout-note {
+  margin-left: 1rem;
+}
+
+
+
+/* Solution Region */
+div.solution {
+  background-color: #232D4B10;;
+  border-style: solid;
+  border-color: #232D4B;
+  border-left-color: #232D4B;
+  border-left-width: .3em;
+  padding: .5em;
+  padding-top: .1em;
+  margin: 20px
+}
+
+
+/* Homework Title */
+h1.title {
+   font-size: 1.6em;
+   border-bottom: none;
+   padding-bottom: none;
+}
+
+/* h1 is main question */
+h1 {
+   font-size: 1.4em;
+   font-weight: bold;
+   border-bottom: 1px solid #C0C0C0;
+   padding-bottom: none;
+}
+
+/* h2 is subsection */
+h2 {
+   font-size:1.0em;
+   padding-left:1.5em;
+   text-indent:-1.2em;
+   font-weight: normal;
+}
+
+h3 {
+   font-size:1.0em;
+}
+
+h4 {
+   font-size:0.9em;
+}
+
+h5 {
+   font-size:0.8em;
+}
+
+h6 {
+   font-size:0.7em;
+}
+
+
+/* Adjust horizontal spacing */
+
+p {
+  padding-left: 1.5em;
+}
+
+.solution p {
+  margin-left: -1.25em;
+}
+
+li p {
+  padding-left: 0;
+}
+
+.solution li {
+  padding-left: 1.25em;
+}
+
+pre {
+  margin-left: 1.5em;
+  margin-right: 1.5em;
+}
+
+.solution pre{
+  margin-left: 0;
+  margin-right: 0;
+}
+

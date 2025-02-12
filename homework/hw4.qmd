@@ -4,6 +4,10 @@ author: "**Your Name Here**"
 format: sys6018hw-html
 ---
 
+::: {.callout-warning title="Independent Work"}
+This is an *independent assignment*. Do not discuss or work with classmates.
+:::
+
 ```{r config, include=FALSE}
 # Set global configurations and settings here
 knitr::opts_chunk$set()                 # set global chunk options
